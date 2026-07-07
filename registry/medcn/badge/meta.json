@@ -1,0 +1,16 @@
+{
+  "name": "badge",
+  "title": "Badge",
+  "description": "Small status descriptor. Status variants (success/warning/destructive/info) map to clinical states: normal, elevated, critical, low.",
+  "category": "primitives",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+  "registryDependencies": ["utils"],
+  "props": [
+    { "name": "variant", "type": "\"default\" | \"soft\" | \"secondary\" | \"outline\" | \"success\" | \"warning\" | \"destructive\" | \"info\"", "default": "\"default\"", "description": "Visual style; status variants are tinted, not solid." },
+    { "name": "asChild", "type": "boolean", "default": "false", "description": "Render as the child element (Radix Slot)." }
+  ],
+  "clinicalNotes": "Status variants use tinted backgrounds with colored text for readability at small sizes. Never rely on color alone for clinical state — pair with an explicit label (e.g. \"Elevated\").",
+  "notes": "Ported from petals_ui; Petals `pink` variant removed."
+}

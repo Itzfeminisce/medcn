@@ -1,0 +1,25 @@
+{
+  "name": "vitals-card",
+  "title": "Vitals Card",
+  "description": "Single vital-sign reading with status badge, trend, reference range, and reading time.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "badge", "card"],
+  "props": [
+    { "name": "label", "type": "ReactNode", "description": "Vital name, e.g. \"Blood pressure\"." },
+    { "name": "value", "type": "ReactNode", "description": "The reading, e.g. \"118/76\"." },
+    { "name": "unit", "type": "ReactNode", "description": "e.g. \"mmHg\", \"bpm\", \"°C\"." },
+    { "name": "icon", "type": "ReactNode" },
+    { "name": "status", "type": "\"normal\" | \"elevated\" | \"high\" | \"low\"", "description": "Derives the status badge." },
+    { "name": "badge", "type": "ReactNode", "description": "Overrides the derived status badge entirely." },
+    { "name": "trend", "type": "\"up\" | \"down\" | \"stable\"" },
+    { "name": "trendLabel", "type": "ReactNode", "description": "e.g. \"+4 vs last week\"." },
+    { "name": "trendDirection", "type": "\"good\" | \"bad\" | \"neutral\"", "default": "\"neutral\"", "description": "Trend arrow direction is data; direction-goodness is clinical judgment — they are separate props on purpose." },
+    { "name": "referenceRange", "type": "ReactNode", "description": "e.g. \"Normal: 90–120 / 60–80\"." },
+    { "name": "time", "type": "ReactNode", "description": "When the reading was taken." }
+  ],
+  "clinicalNotes": "`trend` (up/down) and `trendDirection` (good/bad) are deliberately independent: a falling heart rate can be good, a falling SpO₂ is not. The component never infers clinical meaning from numbers — status and direction are always caller-supplied. Always display units and, where possible, the reference range alongside a reading. Status is also exposed as a text label, not color alone.",
+  "notes": "Ported from petals_ui unchanged apart from import paths."
+}

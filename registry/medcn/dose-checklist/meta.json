@@ -1,0 +1,18 @@
+{
+  "name": "dose-checklist",
+  "title": "Dose Checklist",
+  "description": "Day checklist of scheduled medication doses with taken-state and an adherence progress header.",
+  "category": "medication",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "checkbox", "progress"],
+  "props": [
+    { "name": "doses", "type": "DoseItem[]", "description": "{ id, name, dose?, time?, taken? }" },
+    { "name": "onToggle", "type": "(dose: DoseItem, taken: boolean) => void", "description": "Called when a dose is checked/unchecked; state is controlled by the caller." },
+    { "name": "title", "type": "ReactNode", "default": "\"Today's doses\"" },
+    { "name": "hideProgress", "type": "boolean", "default": "false", "description": "Hide the \"n of m taken\" header and bar." }
+  ],
+  "clinicalNotes": "Taken-state is caller-controlled — the component records intent, it is not a medication-administration record (MAR) and must not be used as the source of truth for administration. Checked items remain readable (strikethrough + reduced opacity, not hidden). Times are display-only strings; timezone handling belongs to the caller.",
+  "notes": "Ported from petals_ui unchanged apart from import paths."
+}

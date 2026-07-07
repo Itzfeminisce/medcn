@@ -1,0 +1,14 @@
+{
+  "name": "checkbox",
+  "title": "Checkbox",
+  "description": "Accessible checkbox built on Radix, with animated check state.",
+  "category": "forms",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["@radix-ui/react-checkbox"],
+  "registryDependencies": ["utils"],
+  "props": [
+    { "name": "checked / defaultChecked / onCheckedChange", "type": "Radix Checkbox.Root props", "description": "Standard Radix controlled/uncontrolled checkbox API passes through." }
+  ],
+  "notes": "Ported from petals_ui unchanged (brand-neutral already)."
+}

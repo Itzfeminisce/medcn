@@ -1,0 +1,16 @@
+{
+  "name": "button",
+  "title": "Button",
+  "description": "Displays a button or a component that looks like a button.",
+  "category": "primitives",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+  "registryDependencies": ["utils"],
+  "props": [
+    { "name": "variant", "type": "\"default\" | \"secondary\" | \"outline\" | \"ghost\" | \"destructive\" | \"link\"", "default": "\"default\"", "description": "Visual style." },
+    { "name": "size", "type": "\"default\" | \"sm\" | \"lg\" | \"icon\" | \"icon-sm\"", "default": "\"default\"", "description": "Control height and padding." },
+    { "name": "asChild", "type": "boolean", "default": "false", "description": "Render as the child element (Radix Slot) — e.g. a link styled as a button." }
+  ],
+  "notes": "Ported from petals_ui; Petals `brand` variant removed for the neutral clinical theme."
+}
