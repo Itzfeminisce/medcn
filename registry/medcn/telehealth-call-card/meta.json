@@ -1,0 +1,24 @@
+{
+  "name": "telehealth-call-card",
+  "title": "Telehealth Call Card",
+  "description": "Upcoming video visit with clinician identity, timezone-labelled time, tech check, and a Join button.",
+  "category": "scheduling",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "card", "avatar", "badge", "button"],
+  "props": [
+    { "name": "clinicianName", "type": "React.ReactNode" },
+    { "name": "specialty", "type": "React.ReactNode" },
+    { "name": "avatarSrc", "type": "string" },
+    { "name": "scheduledTime", "type": "Date | string" },
+    { "name": "timezone", "type": "string", "description": "Timezone label — always shown." },
+    { "name": "joinEnabled", "type": "boolean", "default": "false", "description": "Whether the join window is open (policy, so it's a prop)." },
+    { "name": "joinHref", "type": "string", "description": "Join target when enabled; rendered as a link." },
+    { "name": "onJoin", "type": "() => void" },
+    { "name": "camera", "type": "boolean", "description": "Camera tech-check state; omit to hide." },
+    { "name": "mic", "type": "boolean", "description": "Mic tech-check state; omit to hide." }
+  ],
+  "clinicalNotes": "Always show the timezone: cross-timezone telehealth no-shows are usually timezone bugs, so the label is required and rendered next to every scheduled time. The join window is policy (e.g. enabled 10 minutes before start), so `joinEnabled` is a prop the caller controls rather than something the component computes. The tech-check row surfaces camera/mic readiness before the call, when it can still be fixed. Presentation only — it does not establish the media session or verify device permissions.",
+  "notes": "medcn-original. Composes card + avatar + badge + button; onJoin callback like emergency-contact-card (no use client)."
+}

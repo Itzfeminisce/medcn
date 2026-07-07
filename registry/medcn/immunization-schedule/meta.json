@@ -1,0 +1,15 @@
+{
+  "name": "immunization-schedule",
+  "title": "Immunization Schedule",
+  "description": "VaccinationRecordRows grouped into collapsible sections with per-group and overall due/overdue counts.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "vaccination-record-row", "collapsible", "badge"],
+  "props": [
+    { "name": "groups", "type": "ImmunizationGroup[]", "description": "{ label, rows: VaccinationRecordRowProps[], defaultOpen? }[], in display order." }
+  ],
+  "clinicalNotes": "Group order follows the national schedule the caller passes in — the component imposes no schedule of its own, because immunization schedules are jurisdiction-specific. Each section header and the overall summary lead with what needs action (overdue, then due), and sections with due/overdue items default to open so nothing actionable is hidden behind a collapsed header. Status is shown as a text count (\"1 overdue\"), never by color alone. Per-vaccine status and dating are the caller's responsibility; this composes VaccinationRecordRow for the row-level detail.",
+  "notes": "medcn-original. Composes vaccination-record-row + collapsible; server component rendering client Collapsible children."
+}

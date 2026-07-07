@@ -1,0 +1,20 @@
+{
+  "name": "glucose-badge",
+  "title": "Glucose Badge",
+  "description": "Blood-glucose reading as a compact context-aware gauge with a five-segment spectrum.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "tooltip"],
+  "props": [
+    { "name": "value", "type": "number", "description": "Reading, interpreted in `unit`." },
+    { "name": "unit", "type": "\"mmol/L\" | \"mg/dL\"", "description": "Explicit unit — never guessed, since the same number classifies differently per unit." },
+    { "name": "context", "type": "\"fasting\" | \"post-meal\" | \"random\" | \"bedtime\"", "description": "Sampling context; selects the threshold set used for classification." },
+    { "name": "category", "type": "\"low\" | \"normal\" | \"elevated\" | \"high\" | \"veryHigh\"", "description": "Overrides the auto-derived category." },
+    { "name": "showCategoryLabel", "type": "boolean", "default": "true", "description": "Show the category label + spectrum gauge column." },
+    { "name": "size", "type": "\"sm\" | \"default\"", "default": "\"default\"" }
+  ],
+  "clinicalNotes": "Thresholds differ by context AND by diabetic status/target, so auto-classification is informational only — pass `category` explicitly when your pipeline classifies readings. Defaults (mg/dL, converted from mmol/L at 18.0182): all contexts flag Low below 70 (bedtime 90); fasting In range 70–99, Elevated 100–125, High 126–179, Very high ≥180; post-meal/random In range up to 139, Elevated 140–199, High 200–249, Very high ≥250; bedtime In range 90–150, Elevated 151–180, High 181–249, Very high ≥250. Both Low and the high bands are abnormal, so the spectrum lights only the active segment (positional, not an ordinal severity ramp). The reading is exposed to screen readers as text with its unit spoken in full, so category is never conveyed by color alone. Very high pulses (reduced-motion safe). The unit is required and never inferred.",
+  "notes": "medcn-original sibling of blood-pressure-badge; adds a Low band and context-keyed thresholds, so no cumulative fill."
+}

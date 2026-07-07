@@ -1,0 +1,22 @@
+{
+  "name": "refill-countdown",
+  "title": "Refill Countdown",
+  "description": "Days-of-supply remaining as a depleting bar with the run-out date and an escalating tone.",
+  "category": "medication",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "card", "badge", "separator"],
+  "props": [
+    { "name": "daysRemaining", "type": "number", "description": "Days of supply left. Mutually exclusive with quantityRemaining/dailyUse." },
+    { "name": "quantityRemaining", "type": "number", "description": "Units left; combined with dailyUse to derive days." },
+    { "name": "dailyUse", "type": "number", "description": "Units consumed per day; required with quantityRemaining." },
+    { "name": "drugName", "type": "React.ReactNode" },
+    { "name": "strength", "type": "React.ReactNode" },
+    { "name": "runOutDate", "type": "Date | string", "description": "Explicit run-out date; derived from today + daysRemaining when omitted." },
+    { "name": "supplyDays", "type": "number", "default": "30", "description": "Full supply length; sets the depleting bar's baseline." },
+    { "name": "actions", "type": "React.ReactNode", "description": "Action slot, e.g. a Request refill button." }
+  ],
+  "clinicalNotes": "Count days of supply from the dispensed quantity and the sig (quantity ÷ daily use), not from calendar refill dates — a patient who doubles a PRN dose runs out early. Always show the run-out *date*, not just a number: patients plan around dates. Tone escalates at ≤7 days (warning) and ≤3 days (destructive), with a distinct out-of-supply state at 0. This is informational UI; it does not order refills or account for pharmacy lead time — surface the run-out date early enough for the caller's fulfilment workflow. The days-remaining and run-out date are exposed to screen readers as text via the card's label, so status is never conveyed by the bar color alone.",
+  "notes": "medcn-original. Composes card + badge + button (action slot) + separator; derives days and run-out date when not given."
+}

@@ -1,0 +1,17 @@
+{
+  "name": "lab-trend-panel",
+  "title": "Lab Trend Panel",
+  "description": "LabResultRows with a leading trend sparkline and a popover of recent dated values.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "card", "badge", "lab-result", "trend-sparkline", "popover"],
+  "props": [
+    { "name": "title", "type": "React.ReactNode", "description": "Panel heading (LabPanel)." },
+    { "name": "collectedDate", "type": "Date | string", "description": "Sample collection date (LabPanel)." },
+    { "name": "children", "type": "React.ReactNode", "description": "LabTrendRow entries." }
+  ],
+  "clinicalNotes": "For slow-moving analytes (eGFR, HbA1c) the trend direction carries more clinical meaning than a single in/out-of-range flag, so each row leads with a sparkline shaded against its own reference range; the popover lists the recent dated values behind it. The sparkline exposes an auto-generated text trend summary (direction, last value, count) to screen readers, so the trend is never conveyed by shape alone, and the numeric value + flag from LabResultRow remain the primary readout. LabTrendRow accepts every LabResultRowProp, so `critical` flags and reference ranges behave exactly as in lab-result.",
+  "notes": "medcn-original. Composes lab-result (LabResultRow + LabPanel) + trend-sparkline + popover; LabTrendRow is the per-analyte unit."
+}

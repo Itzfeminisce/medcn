@@ -1,0 +1,16 @@
+{
+  "name": "care-team-list",
+  "title": "Care Team List",
+  "description": "Overlapping avatar group of the care team with a per-member role/status/contact popover.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils", "avatar", "badge", "popover"],
+  "props": [
+    { "name": "members", "type": "CareTeamMember[]", "description": "{ name, role, specialty?, status?, avatarSrc?, contact? }[]." },
+    { "name": "max", "type": "number", "default": "5", "description": "Avatars shown before collapsing the rest into a +N overflow popover." }
+  ],
+  "clinicalNotes": "Role labels are load-bearing and always rendered as text — \"attending\" vs \"resident\" vs \"named nurse\" changes who is accountable, so the role is never implied by avatar or color alone and each avatar's accessible name includes name, role, and availability. Availability (on-call/available/busy) is shown both as a presence dot and as a text label. Contact actions are a caller-supplied slot; the component makes no assumption about how a member is reached.",
+  "notes": "medcn-original. Composes avatar (AvatarGroup/AvatarStatus) + badge + popover; +N overflow like allergy-list."
+}

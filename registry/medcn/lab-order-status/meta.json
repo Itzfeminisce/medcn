@@ -1,0 +1,19 @@
+{
+  "name": "lab-order-status",
+  "title": "Lab Order Status",
+  "description": "Horizontal micro-pipeline for a lab order from ordered to resulted, with reviewed and terminal states.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "tooltip"],
+  "props": [
+    { "name": "current", "type": "\"ordered\" | \"collected\" | \"in-lab\" | \"resulted\" | \"reviewed\"", "description": "The furthest stage the order has reached." },
+    { "name": "showReviewed", "type": "boolean", "default": "false", "description": "Append a final Reviewed stage after Resulted." },
+    { "name": "times", "type": "Partial<Record<LabOrderStage, Date | string>>", "description": "Per-stage timestamps, shown in each node's tooltip." },
+    { "name": "terminal", "type": "{ state: \"cancelled\" | \"rejected\"; at?: Date | string; reason?: string }", "description": "Terminal outcome that ends the pipeline (e.g. a haemolysed sample)." },
+    { "name": "size", "type": "\"sm\" | \"default\"", "default": "\"default\"" }
+  ],
+  "clinicalNotes": "\"Resulted\" is not \"reviewed\": an available result nobody has looked at is a real safety gap, so the optional `reviewed` stage exists for pipelines that track clinician sign-off — enable it with `showReviewed`. Terminal `rejected` (e.g. haemolysed or insufficient sample) and `cancelled` states end the pipeline at the reached stage rather than pretending it will resolve; the reason is surfaced in the terminal node's tooltip. This is informational UI: it renders the state your system reports and never infers progression. The full stage list, each stage's status, and its timestamp are exposed to screen readers as text, so state is never conveyed by position or color alone.",
+  "notes": "medcn-original. Both low (unreviewed) and terminal states are load-bearing safety signals; pipeline halts honestly on terminal."
+}

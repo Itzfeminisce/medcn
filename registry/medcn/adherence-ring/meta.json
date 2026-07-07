@@ -1,0 +1,18 @@
+{
+  "name": "adherence-ring",
+  "title": "Adherence Ring",
+  "description": "Ring of scheduled doses taken over a window, with streak and a taken/missed/skipped breakdown.",
+  "category": "medication",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils", "tooltip"],
+  "props": [
+    { "name": "data", "type": "AdherenceDay[]", "description": "Per-day summary ({ date, taken, scheduled, skipped? }), oldest → newest — not raw events." },
+    { "name": "target", "type": "number", "default": "80", "description": "Adherence target %; at or above reads as on-track." },
+    { "name": "windowLabel", "type": "React.ReactNode", "description": "Window label, e.g. \"7 days\"." },
+    { "name": "size", "type": "\"sm\" | \"default\"", "default": "\"default\"" }
+  ],
+  "clinicalNotes": "Distinguish intentionally-skipped doses from missed ones — they are different behaviours, so the tooltip breaks out taken/missed/skipped and skipped doses are never folded into a punitive \"missed\" count. Below-target adherence renders in a neutral tone, never destructive red: the ring informs, it does not shame, and adherence UIs that scold reduce engagement. The percentage and full breakdown are exposed to screen readers as text, so status is never conveyed by the ring's fill or color alone. Input is a per-day summary you compute upstream, not raw dose events; the streak counts consecutive most-recent fully-adherent days.",
+  "notes": "medcn-original. SVG ring + tooltip (not the linear Progress); neutral-below-threshold tone by design."
+}

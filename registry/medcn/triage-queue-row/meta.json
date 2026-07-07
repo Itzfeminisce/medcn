@@ -1,0 +1,23 @@
+{
+  "name": "triage-queue-row",
+  "title": "Triage Queue Row",
+  "description": "One waiting patient with identity, triage level, chief complaint, and an escalating wait chip.",
+  "category": "triage",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils", "avatar", "badge", "triage-level-indicator"],
+  "props": [
+    { "name": "name", "type": "React.ReactNode" },
+    { "name": "age", "type": "React.ReactNode" },
+    { "name": "sex", "type": "React.ReactNode" },
+    { "name": "avatarSrc", "type": "string" },
+    { "name": "level", "type": "1 | 2 | 3 | 4 | 5", "description": "Acuity level, passed to TriageLevelIndicator." },
+    { "name": "complaint", "type": "React.ReactNode", "description": "Chief complaint, truncated to one line." },
+    { "name": "waitingMinutes", "type": "number" },
+    { "name": "targetMinutes", "type": "number", "description": "Per-level wait target; the chip escalates as it is approached and breached." },
+    { "name": "actions", "type": "React.ReactNode", "description": "Right-aligned action slot." }
+  ],
+  "clinicalNotes": "Waiting-time targets differ per acuity level (e.g. MTS level 2 = 10 min, level 3 = 60 min), so the target is a prop and never assumed — the wait chip escalates neutral → warning (≥75% of target) → destructive breach (≥target), and the breach state is announced to screen readers, not conveyed by color alone. The row is built to stay legible on a wallboard at distance. Acuity classification and target policy are the caller's; this is presentation only.",
+  "notes": "medcn-original. Composes triage-level-indicator + avatar + badge; per-level target drives the wait-chip tone."
+}

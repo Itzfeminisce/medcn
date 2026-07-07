@@ -1,0 +1,17 @@
+{
+  "name": "fasting-status-banner",
+  "title": "Fasting Status Banner",
+  "description": "Pre-procedure nil-by-mouth banner with verbatim restrictions and a live countdown.",
+  "category": "scheduling",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils"],
+  "props": [
+    { "name": "procedureTime", "type": "Date | string", "description": "Scheduled procedure time; the countdown target." },
+    { "name": "procedureLabel", "type": "React.ReactNode", "description": "What the procedure is, e.g. \"Colonoscopy\"." },
+    { "name": "restrictions", "type": "FastingRestriction[]", "description": "Restriction rows ({ label, kind?, window? }), passed verbatim." }
+  ],
+  "clinicalNotes": "Fasting rules are instruction data authored by the care team and are passed in verbatim: this component renders the restriction rows and counts down to the procedure, but it never computes clinical fasting cutoffs itself (those depend on procedure type, anaesthesia, and local policy). Tone escalates as the procedure approaches — informational at >2h, warning within 2h, critical within 30 min, and a neutral \"reached\" state at the scheduled time — but reaching the time does not clear NPO; only the care team does. The countdown is client-side and hydration-safe (no clock renders on the server). The full state and restriction list are exposed to screen readers as text via the banner's label.",
+  "notes": "medcn-original, client component (live countdown). Restrictions are verbatim instruction data; no clinical computation."
+}

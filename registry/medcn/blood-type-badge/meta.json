@@ -1,0 +1,19 @@
+{
+  "name": "blood-type-badge",
+  "title": "Blood Type Badge",
+  "description": "ABO/Rh chip in fixed monospace with an optional red-cell compatibility popover.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "badge", "popover"],
+  "props": [
+    { "name": "group", "type": "\"O\" | \"A\" | \"B\" | \"AB\"" },
+    { "name": "rh", "type": "\"+\" | \"-\"" },
+    { "name": "unverified", "type": "boolean", "default": "false", "description": "Self-reported vs lab-confirmed." },
+    { "name": "showCompatibility", "type": "boolean", "default": "true", "description": "Show the donor/recipient compatibility popover." },
+    { "name": "className", "type": "string" }
+  ],
+  "clinicalNotes": "Self-reported blood type is never sufficient for a transfusion decision — the `unverified` state exists precisely to force UIs to distinguish reported from lab-confirmed, and renders with a dashed border, a marker, and a caution in the popover. The compatibility table is red-cell (RBC) ABO/Rh only and is informational: it is not a crossmatch, and the popover says so. The type is exposed to screen readers spelled out (\"A positive\"), not as a bare glyph. Plasma/platelet compatibility is inverse to RBC and intentionally not shown here to avoid implying this is a transfusion tool.",
+  "notes": "medcn-original. Composes badge (monospace chip) + popover; static RBC_COMPAT table exported for reuse."
+}

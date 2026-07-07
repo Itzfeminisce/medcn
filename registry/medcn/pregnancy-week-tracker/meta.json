@@ -1,0 +1,19 @@
+{
+  "name": "pregnancy-week-tracker",
+  "title": "Pregnancy Week Tracker",
+  "description": "Gestational-age progress with trimester boundaries, a 37–42w term band, and the EDD.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils", "progress", "tooltip"],
+  "props": [
+    { "name": "gestationalAgeDays", "type": "number", "description": "Direct gestational age in days; highest precedence." },
+    { "name": "eddDate", "type": "Date | string", "description": "Estimated due date; preferred over LMP (often scan-adjusted)." },
+    { "name": "lmpDate", "type": "Date | string", "description": "Last menstrual period." },
+    { "name": "asOf", "type": "Date | string", "description": "Reference \"today\"; defaults to now. Set for deterministic rendering." },
+    { "name": "milestones", "type": "PregnancyMilestone[]", "description": "{ week, label }[] ticks, e.g. anomaly scan." }
+  ],
+  "clinicalNotes": "Dating method matters: an EDD from a dating scan and one from LMP can differ by more than a week, so precedence is explicit gestationalAgeDays → eddDate (often scan-adjusted) → lmpDate, and the component always displays which basis the shown EDD came from. The term window (37–42w) is drawn as a band, not a single date, because \"term\" is a range and framing one day as the finish line is clinically misleading; the EDD (40w) is a marker within it. Gestational age is shown as weeks + days (\"28w 3d\"), the clinical convention. Presentation only — no risk assessment. Pass `asOf` for deterministic (SSR-safe) rendering.",
+  "notes": "medcn-original. Composes progress (fill) + tooltip (tick labels); term window is a band, EDD a marker within it."
+}

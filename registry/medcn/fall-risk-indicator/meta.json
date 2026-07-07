@@ -1,0 +1,20 @@
+{
+  "name": "fall-risk-indicator",
+  "title": "Fall Risk Indicator",
+  "description": "Banded fall-risk chip with a named scale, numeric score, pip meter, and assessment date.",
+  "category": "triage",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils"],
+  "props": [
+    { "name": "band", "type": "\"low\" | \"moderate\" | \"high\"", "description": "The classified band. Passed in — thresholds differ by scale, so callers classify." },
+    { "name": "score", "type": "number", "description": "Raw score for context." },
+    { "name": "maxScore", "type": "number", "description": "Scale maximum, e.g. Morse = 125." },
+    { "name": "scale", "type": "string", "description": "Scale name — required so the score is interpretable." },
+    { "name": "assessedAt", "type": "Date | string", "description": "When the assessment was performed." },
+    { "name": "size", "type": "\"sm\" | \"default\"", "default": "\"default\"" }
+  ],
+  "clinicalNotes": "The scale must be named: a fall-risk score is meaningless without it, because thresholds differ by instrument (Morse ranges 0–125, Hendrich II 0–16), so this component never derives the band from a bare score — the caller classifies and passes `band`. A risk score without its assessment date is stale data, so the date is surfaced alongside the score and reads \"date unknown\" when absent. The band is also conveyed by a three-pip meter and exposed to screen readers as text, never by color alone. Informational UI — consumers own clinical validation and re-assessment cadence.",
+  "notes": "medcn-original. Pip-meter pattern shared with allergy-badge; band is required (no per-scale threshold guessing)."
+}
