@@ -41,6 +41,21 @@ animated ECG stroke (hero only, one instance per page max).
 - Headings: tight tracking, `text-balance`. Body copy ≤ 65ch.
 - Section rhythm on doc pages: `gap-10`; page gutter `max-w-6xl px-6`.
 
+## Dogfooding (strict)
+
+The doc site consumes medcn's own registry components wherever one exists —
+`Button`, `Badge`, etc. come from `registry/medcn`, never re-implemented in
+site code. When the site needs a new reusable primitive, it is added to the
+registry first, then consumed. Site-only helpers are limited to doc-site
+mechanics (CodeBlock, CommandPill, SidebarNav, ThemeToggle, ComponentPreview)
+and still follow shadcn conventions.
+
+## Code display
+
+All user-facing code is shiki-highlighted (`github-dark-default`) via
+`components/code-block.tsx`, on the fixed dark code surface in both themes.
+Single-line shell commands use the CommandPill instead. Never a bare `<pre>`.
+
 ## Recurring patterns
 
 - **Command pill**: mono text in a bordered `bg-card` pill with a copy button —

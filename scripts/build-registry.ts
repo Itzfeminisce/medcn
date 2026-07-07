@@ -22,6 +22,7 @@ const ROOT = path.resolve(import.meta.dirname, "..")
 const REGISTRY_SRC = path.join(ROOT, "registry", "medcn")
 const OUT_DIR = path.join(ROOT, "public", "r")
 const BASE_URL = process.env.REGISTRY_URL ?? "https://medcn.dev/r"
+const SITE_URL = BASE_URL.replace(/\/r$/, "")
 
 interface Meta {
   name: string
@@ -35,6 +36,7 @@ interface Meta {
   props?: unknown[]
   clinicalNotes?: string
   notes?: string
+  links?: { radix?: string; shadcn?: string }
 }
 
 /** shadcn built-in item names that should NOT be resolved to our base URL. */
@@ -95,10 +97,14 @@ async function main() {
           content: rewriteImports(componentSource),
         },
       ],
+      // Extra metadata so agents/tooling get the full picture from one fetch
       meta: {
         category: meta.category,
         version: meta.version,
+        docs: `${SITE_URL}/components/${meta.name}`,
+        ...(meta.props ? { props: meta.props } : {}),
         ...(meta.clinicalNotes ? { clinicalNotes: meta.clinicalNotes } : {}),
+        ...(meta.links ? { links: meta.links } : {}),
       },
     }
 
@@ -120,7 +126,7 @@ async function main() {
   const index = {
     $schema: "https://ui.shadcn.com/schema/registry.json",
     name: "medcn",
-    homepage: BASE_URL.replace(/\/r$/, ""),
+    homepage: SITE_URL,
     items: indexItems,
   }
   await fs.writeFile(
@@ -128,6 +134,43 @@ async function main() {
     JSON.stringify(index, null, 2) + "\n"
   )
   console.log(`  ✓ r/registry.json (${indexItems.length} items)`)
+
+  await writeLlmsTxt(indexItems as { name: string; description: string }[])
+}
+
+/** llms.txt — machine-readable catalog for coding agents. */
+async function writeLlmsTxt(items: { name: string; description: string }[]) {
+  const lines = [
+    "# medcn",
+    "",
+    "> Copy-paste UI components for health & medical products (vitals, medication, scheduling, triage, records). Distributed as source through the shadcn registry — shadcn/ui conventions (Tailwind CSS, Radix, cva); the code lands in your project and you own it.",
+    "",
+    "Install any component with the shadcn CLI:",
+    "",
+    `    npx shadcn@latest add ${BASE_URL}/<name>.json`,
+    "",
+    `Or register the namespace in components.json — "registries": { "@medcn": "${BASE_URL}/{name}.json" } — then \`npx shadcn@latest add @medcn/<name>\`.`,
+    "",
+    `Each registry item (${BASE_URL}/<name>.json) contains the full source, npm dependencies, registry dependencies, and under \`meta\`: props, version, docs URL, and clinical notes. Read the clinical notes before wiring data.`,
+    "",
+    "## Components",
+    "",
+    ...items.map(
+      (item) =>
+        `- [${item.name}](${SITE_URL}/components/${item.name}): ${item.description} Registry: ${BASE_URL}/${item.name}.json`
+    ),
+    "",
+    "## Index",
+    "",
+    `- [Registry index](${BASE_URL}/registry.json)`,
+    `- [Docs](${SITE_URL}/docs)`,
+    "",
+  ]
+  await fs.writeFile(
+    path.join(ROOT, "public", "llms.txt"),
+    lines.join("\n")
+  )
+  console.log("  ✓ llms.txt")
 }
 
 main().catch((err) => {

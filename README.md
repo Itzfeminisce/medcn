@@ -1,48 +1,58 @@
 # medcn
 
-**Copy-paste UI components for health & medical products.** shadcn-registry compatible — install with the shadcn CLI, own the code. medcn complements [shadcn/ui](https://ui.shadcn.com); it doesn't replace it.
+**UI components for health & medical products.** Vitals, medication, scheduling, triage, records — built on shadcn/ui conventions and distributed as source through the shadcn registry. Install with the CLI you already use; the code lands in your project and it's yours.
 
-> Full product spec: [PRD.md](./PRD.md)
+medcn complements [shadcn/ui](https://ui.shadcn.com), it doesn't replace it. It also **strictly uses** the shadcn approach itself: Tailwind CSS, Radix primitives, cva variants, `cn()` — and the doc site is built from medcn's own registry components (we dogfood everything we ship).
 
-## Using a component
+## Quick start
 
 ```bash
 npx shadcn@latest add https://medcn.dev/r/vitals-card.json
 ```
 
-Or register the namespace once in `components.json` (`"registries": { "@medcn": "https://medcn.dev/r/{name}.json" }`) and:
+Or register the namespace once in `components.json`:
+
+```json
+{ "registries": { "@medcn": "https://medcn.dev/r/{name}.json" } }
+```
 
 ```bash
 npx shadcn@latest add @medcn/vitals-card
 ```
 
-## Repo layout
+Dependency chains resolve automatically (`vitals-card` → `card`, `badge`).
 
-```
-registry/medcn/<name>/     component source of truth — one folder per item:
-                           <name>.tsx + <name>.demo.tsx + meta.json
-scripts/build-registry.ts  emits public/r/*.json (shadcn registry-item schema)
-app/                       the doc site (Next.js) — pages generated from registry folders
-public/r/                  generated registry output (gitignored; `pnpm registry:build`)
-```
+## Using with coding agents
+
+medcn is agent-first:
+
+- **`https://medcn.dev/llms.txt`** — machine-readable component catalog.
+- **Registry items** (`/r/<name>.json`) carry full source plus `meta.props`, `meta.clinicalNotes`, and a docs URL — one fetch tells an agent everything.
+- Works with the **shadcn MCP server** once the `@medcn` namespace is registered.
+- See `/docs/agents` on the site, and [AGENTS.md](./AGENTS.md) if you're pointing an agent at this repo itself.
+
+## What's inside
+
+| Path | Purpose |
+|---|---|
+| `registry/medcn/<name>/` | Component source of truth: `<name>.tsx` + demo + `meta.json` (props, clinical notes, deps) |
+| `scripts/build-registry.ts` | Generates `public/r/*.json` (shadcn registry schema) + `public/llms.txt` |
+| `app/` | Doc site — Next.js, dark-default clinical theme, shiki-highlighted code, sidebar docs |
+| `PRD.md` / `docs/DESIGN.md` / `AGENTS.md` | Product spec · design spec · contributor/agent guide |
+
+Every health component documents its clinical reasoning (units, reference ranges, why `trend` and `trendDirection` are separate props) — on its page and in its registry metadata.
 
 ## Development
 
 ```bash
 pnpm install
-pnpm registry:build   # generate public/r/*.json
+pnpm registry:build   # generate /r/*.json + llms.txt
 pnpm dev              # doc site on :3000
-pnpm typecheck
+pnpm build            # full gate: registry + typecheck + static build
 ```
 
-### Adding a component
+Adding components: see [AGENTS.md](./AGENTS.md) — the conventions apply to humans too.
 
-1. Create `registry/medcn/<name>/` with `<name>.tsx`, `<name>.demo.tsx`, `meta.json`.
-2. Use authoring imports: `@/registry/medcn/lib/utils`, `@/registry/medcn/<dep>/<dep>` — the build rewrites them to `@/lib/utils` / `@/components/ui/<dep>` for consumers.
-3. Register the demo in `components/demos.tsx`.
-4. `pnpm registry:build && pnpm typecheck`.
-5. Quality bar before publishing: see PRD §7 (demo = honest docs, clinical notes, clean install into a scratch app, light+dark, version bumped).
+## License
 
-## Status
-
-Proving slice (M0/M1): `button`, `badge`, `card`, `checkbox`, `progress`, `vitals-card`, `dose-checklist` — seeded from `petals_ui`, Petals branding removed. Next: e2e `shadcn add` verification, then Fumadocs (M2) and the curated port (M3). Roadmap in [PRD.md](./PRD.md#11-roadmap).
+MIT

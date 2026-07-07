@@ -7,6 +7,7 @@
   "version": "0.1.0",
   "dependencies": ["class-variance-authority"],
   "registryDependencies": ["utils"],
+  "links": { "shadcn": "https://ui.shadcn.com/docs/components/card" },
   "props": [
     { "name": "variant", "type": "\"default\" | \"outline\" | \"ghost\" | \"elevated\" | \"interactive\"", "default": "\"default\"", "description": "Surface treatment; `interactive` adds hover lift for clickable cards." }
   ],

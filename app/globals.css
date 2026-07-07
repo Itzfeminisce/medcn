@@ -147,6 +147,16 @@
   }
 }
 
+/* Shiki code blocks — sit on our fixed code surface in both themes */
+.code-block pre {
+  background-color: transparent !important;
+  padding: 1.25rem;
+  overflow-x: auto;
+}
+.code-block code {
+  font-family: var(--font-mono);
+}
+
 @layer utilities {
   /* Hairline blueprint grid for hero/section backdrops */
   .bg-grid {

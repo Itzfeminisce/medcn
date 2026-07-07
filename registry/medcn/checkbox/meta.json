@@ -7,6 +7,7 @@
   "version": "0.1.0",
   "dependencies": ["@radix-ui/react-checkbox"],
   "registryDependencies": ["utils"],
+  "links": { "radix": "https://www.radix-ui.com/primitives/docs/components/checkbox" },
   "props": [
     { "name": "checked / defaultChecked / onCheckedChange", "type": "Radix Checkbox.Root props", "description": "Standard Radix controlled/uncontrolled checkbox API passes through." }
   ],

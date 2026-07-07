@@ -22,6 +22,8 @@ export interface RegistryItemMeta {
   props?: RegistryProp[]
   clinicalNotes?: string
   notes?: string
+  /** External references: the Radix primitive a component wraps, or the shadcn counterpart. */
+  links?: { radix?: string; shadcn?: string }
 }
 
 export async function getRegistryItems(): Promise<RegistryItemMeta[]> {
