@@ -1,0 +1,16 @@
+{
+  "name": "radio-group",
+  "title": "Radio Group",
+  "description": "Single-choice radio set built on Radix, with animated selection.",
+  "category": "forms",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["@radix-ui/react-radio-group", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "links": { "radix": "https://www.radix-ui.com/primitives/docs/components/radio-group" },
+  "props": [
+    { "name": "value / defaultValue / onValueChange", "type": "Radix RadioGroup.Root props", "description": "Controlled/uncontrolled selected value." },
+    { "name": "RadioGroupItem.value", "type": "string", "description": "The value this item selects; pair each item with a Label." }
+  ],
+  "notes": "Foundational form primitive; replaces the hand-rolled radiogroups in pain-scale/gcs-score-input. Ported from petals_ui unchanged."
+}

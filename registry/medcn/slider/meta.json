@@ -1,0 +1,19 @@
+{
+  "name": "slider",
+  "title": "Slider",
+  "description": "Continuous or stepped scalar input built on Radix, with optional marks.",
+  "category": "forms",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["@radix-ui/react-slider", "class-variance-authority"],
+  "registryDependencies": ["utils"],
+  "links": { "radix": "https://www.radix-ui.com/primitives/docs/components/slider" },
+  "props": [
+    { "name": "value / defaultValue", "type": "number[]", "description": "Controlled/uncontrolled thumb values (array — supports multi-thumb ranges)." },
+    { "name": "min / max / step", "type": "number", "default": "0 / 100 / 1", "description": "Scale bounds and increment." },
+    { "name": "showMarks", "type": "boolean", "default": "false", "description": "Render a dot at each step interval." },
+    { "name": "markLabels", "type": "Record<number, ReactNode>", "description": "Labels shown under specific mark values." },
+    { "name": "variant", "type": "\"default\" | \"success\"", "default": "\"default\"", "description": "Range fill color." }
+  ],
+  "notes": "Foundational form primitive; ported from petals_ui with brand-pink/brand-teal variants removed."
+}

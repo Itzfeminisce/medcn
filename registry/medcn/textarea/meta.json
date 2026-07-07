@@ -1,0 +1,16 @@
+{
+  "name": "textarea",
+  "title": "Textarea",
+  "description": "Auto-sizing multi-line text input for free-text notes.",
+  "category": "forms",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils"],
+  "links": { "shadcn": "https://ui.shadcn.com/docs/components/textarea" },
+  "props": [
+    { "name": "aria-invalid", "type": "boolean", "description": "Applies the destructive error ring and border." },
+    { "name": "...props", "type": "React.ComponentProps<\"textarea\">", "description": "All native textarea attributes pass through." }
+  ],
+  "notes": "Foundational form primitive; grows with content via field-sizing-content. Ported from petals_ui unchanged."
+}

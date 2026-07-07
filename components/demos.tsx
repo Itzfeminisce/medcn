@@ -13,18 +13,22 @@ import CardDemo from "@/registry/medcn/card/card.demo"
 import CareTeamListDemo from "@/registry/medcn/care-team-list/care-team-list.demo"
 import CheckboxDemo from "@/registry/medcn/checkbox/checkbox.demo"
 import CollapsibleDemo from "@/registry/medcn/collapsible/collapsible.demo"
+import DateFieldDemo from "@/registry/medcn/date-field/date-field.demo"
 import DoseChecklistDemo from "@/registry/medcn/dose-checklist/dose-checklist.demo"
 import DrugInteractionAlertDemo from "@/registry/medcn/drug-interaction-alert/drug-interaction-alert.demo"
 import EcgStripDemo from "@/registry/medcn/ecg-strip/ecg-strip.demo"
 import EmergencyContactCardDemo from "@/registry/medcn/emergency-contact-card/emergency-contact-card.demo"
 import FallRiskIndicatorDemo from "@/registry/medcn/fall-risk-indicator/fall-risk-indicator.demo"
 import FastingStatusBannerDemo from "@/registry/medcn/fasting-status-banner/fasting-status-banner.demo"
+import FieldDemo from "@/registry/medcn/field/field.demo"
 import GcsScoreInputDemo from "@/registry/medcn/gcs-score-input/gcs-score-input.demo"
 import GlucoseBadgeDemo from "@/registry/medcn/glucose-badge/glucose-badge.demo"
 import ImmunizationScheduleDemo from "@/registry/medcn/immunization-schedule/immunization-schedule.demo"
+import InputDemo from "@/registry/medcn/input/input.demo"
 import LabOrderStatusDemo from "@/registry/medcn/lab-order-status/lab-order-status.demo"
 import LabResultDemo from "@/registry/medcn/lab-result/lab-result.demo"
 import LabTrendPanelDemo from "@/registry/medcn/lab-trend-panel/lab-trend-panel.demo"
+import LabelDemo from "@/registry/medcn/label/label.demo"
 import MedicationTimingStripDemo from "@/registry/medcn/medication-timing-strip/medication-timing-strip.demo"
 import PainScaleDemo from "@/registry/medcn/pain-scale/pain-scale.demo"
 import PatientBannerDemo from "@/registry/medcn/patient-banner/patient-banner.demo"
@@ -32,10 +36,16 @@ import PopoverDemo from "@/registry/medcn/popover/popover.demo"
 import PregnancyWeekTrackerDemo from "@/registry/medcn/pregnancy-week-tracker/pregnancy-week-tracker.demo"
 import PrescriptionCardDemo from "@/registry/medcn/prescription-card/prescription-card.demo"
 import ProgressDemo from "@/registry/medcn/progress/progress.demo"
+import RadioGroupDemo from "@/registry/medcn/radio-group/radio-group.demo"
 import RefillCountdownDemo from "@/registry/medcn/refill-countdown/refill-countdown.demo"
+import SelectDemo from "@/registry/medcn/select/select.demo"
 import SeparatorDemo from "@/registry/medcn/separator/separator.demo"
+import SliderDemo from "@/registry/medcn/slider/slider.demo"
 import Spo2DialDemo from "@/registry/medcn/spo2-dial/spo2-dial.demo"
+import SwitchDemo from "@/registry/medcn/switch/switch.demo"
 import TelehealthCallCardDemo from "@/registry/medcn/telehealth-call-card/telehealth-call-card.demo"
+import TextareaDemo from "@/registry/medcn/textarea/textarea.demo"
+import ToggleGroupDemo from "@/registry/medcn/toggle-group/toggle-group.demo"
 import TooltipDemo from "@/registry/medcn/tooltip/tooltip.demo"
 import TrendSparklineDemo from "@/registry/medcn/trend-sparkline/trend-sparkline.demo"
 import TriageLevelIndicatorDemo from "@/registry/medcn/triage-level-indicator/triage-level-indicator.demo"
@@ -61,18 +71,22 @@ export const demos: Record<string, React.ComponentType> = {
   "care-team-list": CareTeamListDemo,
   checkbox: CheckboxDemo,
   collapsible: CollapsibleDemo,
+  "date-field": DateFieldDemo,
   "dose-checklist": DoseChecklistDemo,
   "drug-interaction-alert": DrugInteractionAlertDemo,
   "ecg-strip": EcgStripDemo,
   "emergency-contact-card": EmergencyContactCardDemo,
   "fall-risk-indicator": FallRiskIndicatorDemo,
   "fasting-status-banner": FastingStatusBannerDemo,
+  field: FieldDemo,
   "gcs-score-input": GcsScoreInputDemo,
   "glucose-badge": GlucoseBadgeDemo,
   "immunization-schedule": ImmunizationScheduleDemo,
+  input: InputDemo,
   "lab-order-status": LabOrderStatusDemo,
   "lab-result": LabResultDemo,
   "lab-trend-panel": LabTrendPanelDemo,
+  label: LabelDemo,
   "medication-timing-strip": MedicationTimingStripDemo,
   "pain-scale": PainScaleDemo,
   "patient-banner": PatientBannerDemo,
@@ -80,10 +94,16 @@ export const demos: Record<string, React.ComponentType> = {
   "pregnancy-week-tracker": PregnancyWeekTrackerDemo,
   "prescription-card": PrescriptionCardDemo,
   progress: ProgressDemo,
+  "radio-group": RadioGroupDemo,
   "refill-countdown": RefillCountdownDemo,
+  select: SelectDemo,
   separator: SeparatorDemo,
+  slider: SliderDemo,
   "spo2-dial": Spo2DialDemo,
+  switch: SwitchDemo,
   "telehealth-call-card": TelehealthCallCardDemo,
+  textarea: TextareaDemo,
+  "toggle-group": ToggleGroupDemo,
   tooltip: TooltipDemo,
   "trend-sparkline": TrendSparklineDemo,
   "triage-level-indicator": TriageLevelIndicatorDemo,

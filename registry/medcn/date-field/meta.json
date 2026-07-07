@@ -1,0 +1,20 @@
+{
+  "name": "date-field",
+  "title": "Date Field",
+  "description": "Typed segmented day/month/year date entry with real-date validation, no calendar.",
+  "category": "forms",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils"],
+  "props": [
+    { "name": "value", "type": "string", "description": "Controlled value as an ISO YYYY-MM-DD string." },
+    { "name": "defaultValue", "type": "string", "description": "Uncontrolled initial value as an ISO YYYY-MM-DD string." },
+    { "name": "onValueChange", "type": "(iso: string | undefined) => void", "description": "Fires on every edit; undefined while the entry is incomplete or not a real date." },
+    { "name": "order", "type": "\"dmy\" | \"mdy\" | \"ymd\"", "default": "\"dmy\"", "description": "Segment order." },
+    { "name": "aria-invalid", "type": "boolean", "description": "Marks all segments invalid and applies the error ring." },
+    { "name": "disabled", "type": "boolean", "description": "Disables all segments." }
+  ],
+  "clinicalNotes": "Built for dates a calendar picker handles poorly — a birth year 80 years back. Validation rejects impossible dates (31 Feb, month 13) and only emits an ISO string once all segments form a real date; callers still gate future DOBs and compute age against a caller-supplied 'as of' date. Segments auto-advance and support Backspace to the previous segment; every segment carries an aria-label for screen readers. Store the emitted ISO date; render in the patient's locale via the `order` prop.",
+  "notes": "medcn-original primitive (no shadcn/Radix counterpart). The base for DateOfBirthField and any typed date entry."
+}

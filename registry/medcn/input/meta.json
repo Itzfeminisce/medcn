@@ -1,0 +1,17 @@
+{
+  "name": "input",
+  "title": "Input",
+  "description": "Text/number input base with focus ring and aria-invalid styling.",
+  "category": "forms",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils"],
+  "links": { "shadcn": "https://ui.shadcn.com/docs/components/input" },
+  "props": [
+    { "name": "type", "type": "string", "default": "\"text\"", "description": "Native input type (text, number, email, tel, date…)." },
+    { "name": "aria-invalid", "type": "boolean", "description": "Applies the destructive error ring and border." },
+    { "name": "...props", "type": "React.ComponentProps<\"input\">", "description": "All native input attributes pass through." }
+  ],
+  "notes": "Foundational form primitive; ported from petals_ui unchanged (brand-neutral already)."
+}

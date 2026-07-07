@@ -1,0 +1,17 @@
+{
+  "name": "select",
+  "title": "Select",
+  "description": "Single-choice dropdown built on Radix, with keyboard and scroll support.",
+  "category": "forms",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["@radix-ui/react-select", "lucide-react"],
+  "registryDependencies": ["utils"],
+  "links": { "radix": "https://www.radix-ui.com/primitives/docs/components/select" },
+  "props": [
+    { "name": "value / defaultValue / onValueChange", "type": "Radix Select.Root props", "description": "Controlled/uncontrolled selected value." },
+    { "name": "SelectTrigger.size", "type": "\"sm\" | \"default\"", "default": "\"default\"", "description": "Trigger height." },
+    { "name": "...props", "type": "Radix Select.* props", "description": "Trigger, Content, Item, Group, Label, Separator subparts pass Radix props through." }
+  ],
+  "notes": "Foundational form primitive; ported from petals_ui unchanged. Compose SelectTrigger + SelectValue + SelectContent + SelectItem."
+}

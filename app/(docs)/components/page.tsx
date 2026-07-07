@@ -23,8 +23,7 @@ export default async function ComponentsIndex() {
       <div className="flex flex-col gap-2">
         <h1 className="text-3xl font-bold tracking-tight">Components</h1>
         <p className="text-muted-foreground">
-          {items.length} components — preview, copy, or install with the
-          shadcn CLI.
+          Here you can find all the components available in the library. We are working on adding more components.
         </p>
       </div>
       {[...byCategory.entries()]

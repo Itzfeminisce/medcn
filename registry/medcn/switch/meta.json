@@ -1,0 +1,16 @@
+{
+  "name": "switch",
+  "title": "Switch",
+  "description": "Boolean on/off toggle built on Radix.",
+  "category": "forms",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["@radix-ui/react-switch"],
+  "registryDependencies": ["utils"],
+  "links": { "radix": "https://www.radix-ui.com/primitives/docs/components/switch" },
+  "props": [
+    { "name": "checked / defaultChecked / onCheckedChange", "type": "Radix Switch.Root props", "description": "Controlled/uncontrolled boolean state." },
+    { "name": "...props", "type": "Radix Switch.Root props", "description": "Standard Radix Switch API passes through." }
+  ],
+  "notes": "Foundational form primitive; ported from petals_ui unchanged. Use a Field/checkbox for legally-distinct consents, not a single blanket switch."
+}

@@ -1,0 +1,16 @@
+{
+  "name": "label",
+  "title": "Label",
+  "description": "Accessible form label built on Radix, pairs with any control.",
+  "category": "forms",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["@radix-ui/react-label"],
+  "registryDependencies": ["utils"],
+  "links": { "radix": "https://www.radix-ui.com/primitives/docs/components/label" },
+  "props": [
+    { "name": "htmlFor", "type": "string", "description": "Id of the control this label describes." },
+    { "name": "...props", "type": "Radix Label.Root props", "description": "Standard Radix Label API passes through." }
+  ],
+  "notes": "Foundational form primitive; ported from petals_ui unchanged. Add a `*` span for the required marker in-content."
+}
