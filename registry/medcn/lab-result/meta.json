@@ -1,0 +1,24 @@
+{
+  "name": "lab-result",
+  "title": "Lab Result",
+  "description": "Single lab value with unit, reference range, flag badge, and range bar; LabPanel groups rows under a collected date.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "badge", "card"],
+  "props": [
+    { "name": "label", "type": "ReactNode", "description": "Analyte name, e.g. \"HbA1c\"." },
+    { "name": "value", "type": "number" },
+    { "name": "unit", "type": "ReactNode", "description": "e.g. \"%\", \"mmol/L\"." },
+    { "name": "referenceMin", "type": "number" },
+    { "name": "referenceMax", "type": "number" },
+    { "name": "flag", "type": "\"below\" | \"normal\" | \"above\" | \"critical\"", "description": "Derived from the range when omitted; critical is never derived — pass it explicitly." },
+    { "name": "showRangeBar", "type": "boolean", "default": "false", "description": "Horizontal range bar with a marker at the value." },
+    { "name": "note", "type": "ReactNode" },
+    { "name": "title", "type": "ReactNode", "description": "LabPanel: panel name, e.g. \"Lipid panel\"." },
+    { "name": "collectedDate", "type": "Date | string", "description": "LabPanel: when the sample was collected." }
+  ],
+  "clinicalNotes": "below/above flags are derived from the reference range, but `critical` never is — critical thresholds are analyte-specific and lab-defined, so the component refuses to guess; pass it explicitly from your LIS flags. The range bar is decorative (aria-hidden) and clamps the marker 20% beyond the range; the value, unit, and reference range are always present as text, and each flag badge carries a visually-hidden announcement (\"above reference range\"). Always show units — a potassium of 6.8 means nothing without mmol/L. Reference ranges vary by lab, age, sex, and pregnancy: display the range that came with the result, not a hardcoded one.",
+  "notes": "Ported from petals_ui unchanged apart from import paths. Exports LabResultRow + LabPanel."
+}

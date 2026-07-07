@@ -1,0 +1,16 @@
+{
+  "name": "popover",
+  "title": "Popover",
+  "description": "Click-triggered floating panel for rich contextual content, built on Radix.",
+  "category": "primitives",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["@radix-ui/react-popover"],
+  "registryDependencies": ["utils"],
+  "links": { "radix": "https://www.radix-ui.com/primitives/docs/components/popover" },
+  "props": [
+    { "name": "align", "type": "\"start\" | \"center\" | \"end\"", "default": "\"center\"", "description": "On PopoverContent." },
+    { "name": "sideOffset", "type": "number", "default": "4", "description": "On PopoverContent." }
+  ],
+  "notes": "Ported from petals_ui unchanged apart from import paths."
+}

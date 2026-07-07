@@ -1,0 +1,21 @@
+{
+  "name": "emergency-contact-card",
+  "title": "Emergency Contact Card",
+  "description": "Emergency contact with a prominent one-tap call button; primary contacts get a live priority ping.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "avatar", "button", "card"],
+  "props": [
+    { "name": "name", "type": "ReactNode" },
+    { "name": "relationship", "type": "ReactNode", "description": "e.g. \"Spouse\"." },
+    { "name": "phone", "type": "string", "description": "Displayed formatted; the tel: href strips to + and digits." },
+    { "name": "isPrimary", "type": "boolean", "default": "false", "description": "Destructive-toned treatment, priority ping, and PRIMARY label." },
+    { "name": "avatarSrc", "type": "string" },
+    { "name": "onEdit", "type": "() => void", "description": "Shows an edit icon button when provided." },
+    { "name": "note", "type": "ReactNode", "description": "Extra context line, e.g. availability or languages spoken." }
+  ],
+  "clinicalNotes": "The call action is a real tel: link, not an onClick — it must work in a panic, on a lock-limited phone, and for assistive tech; its accessible name includes who is being called (\"Call, Adaeze Nwosu, Spouse\"). The displayed number keeps human formatting while the href strips to digits, so what's read aloud matches what's dialed. Primary designation is triple-coded (text label, tone, ping); the ping and hover animation are motion-safe. Show the primary contact first in any list.",
+  "notes": "Ported from petals_ui unchanged apart from import paths."
+}

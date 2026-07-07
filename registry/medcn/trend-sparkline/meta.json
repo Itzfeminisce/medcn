@@ -1,0 +1,21 @@
+{
+  "name": "trend-sparkline",
+  "title": "Trend Sparkline",
+  "description": "Tiny inline SVG trend line for vitals and tracking series, with optional threshold shading.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "registryDependencies": ["utils"],
+  "props": [
+    { "name": "data", "type": "(number | { value: number; date?: string })[]" },
+    { "name": "width", "type": "number", "default": "96" },
+    { "name": "height", "type": "number", "default": "28" },
+    { "name": "thresholdMin", "type": "number", "description": "Shades the region below this value; the threshold is included in the y-domain so the band stays visible." },
+    { "name": "thresholdMax", "type": "number", "description": "Shades the region above this value." },
+    { "name": "showLastPoint", "type": "boolean", "default": "true", "description": "Highlight the most recent point with a dot." },
+    { "name": "color", "type": "\"default\" | \"success\" | \"warning\" | \"destructive\"", "default": "\"default\"" },
+    { "name": "ariaLabel", "type": "string", "description": "Overrides the auto-generated trend summary." }
+  ],
+  "clinicalNotes": "The auto aria-label summarizes direction (first vs last value, ±2% tolerance), last value, and reading count — a sparkline is a shape, so the numbers must exist in text. Threshold bands mark regions outside the acceptable range and extend the y-domain so they remain visible even when all readings are in range. This is a glanceable trend, not a chart: no axes, no interpolation claims — pair it with the actual latest value and unit in adjacent text, as in the demo.",
+  "notes": "Ported from petals_ui unchanged apart from import paths."
+}

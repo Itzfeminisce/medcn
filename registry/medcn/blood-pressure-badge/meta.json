@@ -1,0 +1,19 @@
+{
+  "name": "blood-pressure-badge",
+  "title": "Blood Pressure Badge",
+  "description": "Systolic/diastolic reading as a compact AHA-category gauge with a five-segment spectrum.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "tooltip"],
+  "props": [
+    { "name": "systolic", "type": "number" },
+    { "name": "diastolic", "type": "number" },
+    { "name": "category", "type": "\"normal\" | \"elevated\" | \"stage1\" | \"stage2\" | \"crisis\"", "description": "Overrides the auto-derived AHA category." },
+    { "name": "showCategoryLabel", "type": "boolean", "default": "true", "description": "Show the category label + spectrum gauge column." },
+    { "name": "size", "type": "\"sm\" | \"default\"", "default": "\"default\"" }
+  ],
+  "clinicalNotes": "Auto-classification follows AHA 2017 adult categories: normal <120/<80, elevated 120–129/<80, stage 1 130–139 or 80–89, stage 2 ≥140 or ≥90, crisis >180 or >120 — the higher of the two readings wins. This is informational UI, not a diagnostic: pass `category` explicitly when your clinical pipeline classifies readings itself. The crisis state pulses (reduced-motion safe) and the full reading is exposed to screen readers as text (\"132 over 84 millimetres of mercury, stage 1\"), so category is never conveyed by color alone. Units are fixed to mmHg.",
+  "notes": "Ported from petals_ui unchanged apart from import paths."
+}

@@ -1,0 +1,23 @@
+{
+  "name": "vaccination-record-row",
+  "title": "Vaccination Record Row",
+  "description": "Immunization record row with a status rail, dose-series pips, and next-due chip.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "tooltip"],
+  "props": [
+    { "name": "vaccine", "type": "ReactNode", "description": "Vaccine name, e.g. \"Tdap\"." },
+    { "name": "doseLabel", "type": "ReactNode", "description": "Free-text dose label, e.g. \"Booster\". Ignored when doseNumber/doseTotal given." },
+    { "name": "doseNumber", "type": "number", "description": "Structured dose position for the pip meter, e.g. 2 of 3." },
+    { "name": "doseTotal", "type": "number", "description": "Pip meter caps at 8 pips." },
+    { "name": "dateGiven", "type": "Date | string" },
+    { "name": "lotNumber", "type": "ReactNode", "description": "Shown monospaced with a \"Lot number\" tooltip." },
+    { "name": "provider", "type": "ReactNode" },
+    { "name": "status", "type": "\"complete\" | \"due\" | \"overdue\" | \"upcoming\"" },
+    { "name": "nextDueDate", "type": "Date | string", "description": "Rendered as a chip; hidden when status is complete." }
+  ],
+  "clinicalNotes": "A `complete` record without a `dateGiven` is flagged \"Self-reported\" — administered vs patient-recalled immunizations carry different evidential weight in a clinical record. Dose-series position is shown as pips plus text (\"2 of 3\") and announced to screen readers as text. Lot number is preserved verbatim (monospaced) because it's the traceability key in adverse-event reporting. Status is conveyed by the rail, chip label, and icon together — never color alone.",
+  "notes": "Ported from petals_ui unchanged apart from import paths."
+}

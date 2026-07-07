@@ -1,0 +1,24 @@
+{
+  "name": "prescription-card",
+  "title": "Prescription Card",
+  "description": "Prescription with drug, highlighted sig, refill and prescriber metadata, status badge, and an alert slot.",
+  "category": "medication",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "badge", "card", "separator"],
+  "props": [
+    { "name": "drugName", "type": "ReactNode", "description": "e.g. \"Amoxicillin\"." },
+    { "name": "strength", "type": "ReactNode", "description": "e.g. \"500 mg capsule\"." },
+    { "name": "sig", "type": "ReactNode", "description": "Dosage instructions, rendered as a highlighted block." },
+    { "name": "quantity", "type": "ReactNode" },
+    { "name": "refillsRemaining", "type": "number" },
+    { "name": "prescriber", "type": "ReactNode" },
+    { "name": "issuedDate", "type": "Date | string" },
+    { "name": "status", "type": "\"active\" | \"completed\" | \"cancelled\" | \"expired\"" },
+    { "name": "alert", "type": "ReactNode", "description": "Alert slot — render a DrugInteractionAlert here." },
+    { "name": "actions", "type": "ReactNode", "description": "e.g. a \"Request refill\" button, separated below the metadata." }
+  ],
+  "clinicalNotes": "The sig (dosage instructions) is the one thing patients must read, so it gets its own highlighted block rather than living in a metadata grid — pass it in patient-friendly wording, expanded from codes (\"three times daily\", not \"TDS\"). \"No refills left\" is flagged only on active prescriptions, where it's actionable; on completed/cancelled scripts it would be noise. Structured metadata renders as a definition list for screen-reader term/value pairing. The `alert` slot exists so interaction warnings appear inside the prescription context they apply to.",
+  "notes": "Ported from petals_ui unchanged apart from import paths."
+}

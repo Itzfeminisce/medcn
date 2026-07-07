@@ -1,0 +1,17 @@
+{
+  "name": "triage-level-indicator",
+  "title": "Triage Level Indicator",
+  "description": "Five-cell ESI/MTS acuity strip with the active level raised, toned, and labeled.",
+  "category": "triage",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "registryDependencies": ["utils"],
+  "props": [
+    { "name": "level", "type": "1 | 2 | 3 | 4 | 5", "description": "1 = immediate/resuscitation → 5 = non-urgent." },
+    { "name": "label", "type": "ReactNode", "description": "Overrides the default level label (Immediate, Emergent, Urgent, Less urgent, Non-urgent)." },
+    { "name": "showLevel", "type": "boolean", "default": "false", "description": "Prefix the label with \"L{n} · \"." },
+    { "name": "size", "type": "\"sm\" | \"default\" | \"lg\"", "default": "\"default\"" }
+  ],
+  "clinicalNotes": "Levels follow the common 5-point acuity convention shared by ESI and MTS (1 = immediate/resuscitation, 5 = non-urgent); pass `label` to match your scheme's terminology (e.g. MTS \"Standard\"). The level is announced as text (\"Triage level 2, emergent\") and encoded by position in the strip as well as color, so it survives color-vision deficiency. Level 1 pulses to draw attention, gated behind motion-safe. The component displays a level — assigning one is a clinical decision that stays in your triage workflow.",
+  "notes": "Ported from petals_ui unchanged apart from import paths."
+}

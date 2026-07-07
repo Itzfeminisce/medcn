@@ -1,0 +1,23 @@
+{
+  "name": "patient-banner",
+  "title": "Patient Banner",
+  "description": "Compact patient-context header with demographics, MRN, inline allergy list, and action slots.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "registryDependencies": ["utils", "allergy-badge", "avatar"],
+  "props": [
+    { "name": "name", "type": "ReactNode" },
+    { "name": "avatarSrc", "type": "string" },
+    { "name": "dob", "type": "Date | string", "description": "If given, age is derived and both are shown (\"34y · 12 Mar 1992\")." },
+    { "name": "age", "type": "number", "description": "Used when dob is not provided." },
+    { "name": "sex", "type": "\"female\" | \"male\" | \"other\" | \"unspecified\"" },
+    { "name": "mrn", "type": "ReactNode", "description": "Medical record number / patient ID, rendered monospaced." },
+    { "name": "allergies", "type": "AllergyBadgeProps[]", "description": "Renders an AllergyList inline (max 3; compact caps at 1)." },
+    { "name": "tags", "type": "ReactNode", "description": "Free slot, e.g. pregnancy status or insurance plan badges." },
+    { "name": "actions", "type": "ReactNode", "description": "Right-aligned slot." },
+    { "name": "variant", "type": "\"default\" | \"compact\"", "default": "\"default\"", "description": "compact is a single line for sticky headers." }
+  ],
+  "clinicalNotes": "Wraps in a <header aria-label=\"Patient information\"> — it's the patient-context landmark for the whole screen, the guard against wrong-patient actions. When dob is given, both derived age and full date of birth are shown: age is what clinicians reason with, DOB is the identity check. MRN stays monospaced and visible for verbal read-back verification. Allergies ride in the banner (severe-first, overflow-collapsed) because allergy status must be visible wherever orders can be placed; the compact variant still keeps one chip on ≥sm screens.",
+  "notes": "Ported from petals_ui unchanged apart from import paths. Composes AllergyList (not raw badges) per the petals_ui H01 spec."
+}

@@ -10,3 +10,5 @@ next-env.d.ts
 # generated registry output (rebuild with `pnpm registry:build`)
 public/r/
 public/llms.txt
+PRD.md
+AGENTS.md

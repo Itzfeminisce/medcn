@@ -8,7 +8,7 @@ export default async function DocsLayout({
   const groups = await getNavGroups()
 
   return (
-    <SidebarProvider className="min-h-[calc(100svh-3.5rem)]">
+    <SidebarProvider className="min-h-[calc(100svh-3.5rem)] no-scrollbar flex-1 overflow-hidden">
       <DocsSidebar groups={groups} />
       <SidebarInset className="min-w-0">
         <div className="border-border/60 bg-background/75 sticky top-14 z-30 flex h-11 items-center gap-2 border-b px-3 backdrop-blur-md md:hidden">

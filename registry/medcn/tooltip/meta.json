@@ -1,0 +1,16 @@
+{
+  "name": "tooltip",
+  "title": "Tooltip",
+  "description": "Contextual hint on hover or focus, built on Radix with a self-wrapping provider.",
+  "category": "primitives",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["@radix-ui/react-tooltip"],
+  "registryDependencies": ["utils"],
+  "links": { "radix": "https://www.radix-ui.com/primitives/docs/components/tooltip" },
+  "props": [
+    { "name": "delayDuration", "type": "number", "default": "0", "description": "On TooltipProvider; each Tooltip wraps its own provider so no app-level setup is needed." },
+    { "name": "sideOffset", "type": "number", "default": "4", "description": "On TooltipContent." }
+  ],
+  "notes": "Ported from petals_ui unchanged apart from import paths. Provider is baked into Tooltip (delayDuration 0) so consumers don't need app-level setup."
+}

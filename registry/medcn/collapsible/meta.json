@@ -1,0 +1,15 @@
+{
+  "name": "collapsible",
+  "title": "Collapsible",
+  "description": "Expandable content region for progressive disclosure, built on Radix.",
+  "category": "primitives",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["@radix-ui/react-collapsible"],
+  "registryDependencies": ["utils"],
+  "links": { "radix": "https://www.radix-ui.com/primitives/docs/components/collapsible" },
+  "props": [
+    { "name": "open / defaultOpen / onOpenChange", "type": "Radix Collapsible.Root props", "description": "Standard Radix controlled/uncontrolled API passes through." }
+  ],
+  "notes": "Ported from petals_ui unchanged apart from import paths. Pair CollapsibleContent with tw-animate-css animate-collapsible-up/down for height animation."
+}

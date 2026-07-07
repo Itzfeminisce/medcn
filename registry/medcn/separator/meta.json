@@ -1,0 +1,16 @@
+{
+  "name": "separator",
+  "title": "Separator",
+  "description": "Visual divider between content regions, horizontal or vertical, built on Radix.",
+  "category": "primitives",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["@radix-ui/react-separator"],
+  "registryDependencies": ["utils"],
+  "links": { "radix": "https://www.radix-ui.com/primitives/docs/components/separator" },
+  "props": [
+    { "name": "orientation", "type": "\"horizontal\" | \"vertical\"", "default": "\"horizontal\"" },
+    { "name": "decorative", "type": "boolean", "default": "true", "description": "When true the separator is hidden from the accessibility tree." }
+  ],
+  "notes": "Ported from petals_ui unchanged apart from import paths."
+}

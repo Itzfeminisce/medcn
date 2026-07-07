@@ -1,0 +1,19 @@
+{
+  "name": "drug-interaction-alert",
+  "title": "Drug Interaction Alert",
+  "description": "Severity-tiered interaction banner with a four-bar escalation meter and collapsible management advice.",
+  "category": "medication",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "collapsible"],
+  "props": [
+    { "name": "severity", "type": "\"minor\" | \"moderate\" | \"major\" | \"contraindicated\"" },
+    { "name": "drugs", "type": "[ReactNode, ReactNode] | ReactNode", "description": "The interacting pair, e.g. [\"Warfarin\", \"Aspirin\"], or a single node." },
+    { "name": "description", "type": "ReactNode" },
+    { "name": "detail", "type": "ReactNode", "description": "Collapsible clinical detail behind the \"Management advice\" toggle." },
+    { "name": "onDismiss", "type": "() => void", "description": "Honoured only for minor/moderate — major/contraindicated are non-dismissible." }
+  ],
+  "clinicalNotes": "Dismissibility is tiered by design: minor and moderate alerts can be dismissed (they use role=\"status\"), while major and contraindicated cannot and use role=\"alert\" so assistive tech announces them immediately — alert fatigue is real, but the top tiers must not be swipeable. Severity is conveyed redundantly: text label, icon shape, escalation-meter bar count, and tone. The component renders the alert; interaction detection and severity grading belong to your drug-knowledge source (e.g. a formulary API).",
+  "notes": "Ported from petals_ui unchanged apart from import paths. Collapsible animation classes come from tw-animate-css."
+}
