@@ -28,7 +28,7 @@ function EcgTrace() {
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-20">
+    <main className="mx-auto flex w-full max-w-6xl flex-col gap-20 px-6 py-10">
       <section className="bg-grid mask-fade relative -mx-6 flex flex-col items-center gap-6 px-6 pt-20 pb-14 text-center">
         <EcgTrace />
         <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-balance sm:text-6xl">
@@ -50,7 +50,7 @@ export default function Home() {
         </div>
         <div className="border-border/60 bg-card/80 flex items-center gap-3 rounded-lg border px-4 py-2.5 font-mono text-[13px] backdrop-blur">
           <span className="text-primary select-none">$</span>
-          <span className="text-muted-foreground overflow-x-auto whitespace-nowrap">
+          <span className="text-muted-foreground no-scrollbar overflow-x-auto whitespace-nowrap">
             {heroCommand}
           </span>
           <CopyButton value={heroCommand} />
@@ -65,6 +65,6 @@ export default function Home() {
           <DoseChecklistDemo />
         </div>
       </section>
-    </div>
+    </main>
   )
 }

@@ -40,7 +40,7 @@ export function ComponentPreview({
         ))}
       </div>
       <div className={cn(tab !== "preview" && "hidden")}>
-        <div className="border-border/60 bg-grid flex min-h-72 items-center justify-center rounded-xl border p-10">
+        <div className="border-border/60 bg-grid no-scrollbar flex min-h-72 items-center justify-center overflow-x-auto rounded-xl border p-8 sm:p-10">
           {children}
         </div>
       </div>

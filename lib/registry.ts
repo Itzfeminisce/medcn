@@ -57,6 +57,52 @@ export async function getItemDemoSource(name: string): Promise<string> {
   return fs.readFile(path.join(REGISTRY_SRC, name, `${name}.demo.tsx`), "utf8")
 }
 
+export interface NavGroup {
+  label: string
+  items: { title: string; href: string }[]
+}
+
+/**
+ * Site navigation: the Getting Started pages followed by one group per
+ * registry category, in CATEGORIES order. Feeds the docs sidebar and the
+ * ⌘K command menu.
+ */
+export async function getNavGroups(): Promise<NavGroup[]> {
+  const items = await getRegistryItems()
+  const byCategory = new Map<string, RegistryItemMeta[]>()
+  for (const item of items) {
+    const list = byCategory.get(item.category) ?? []
+    list.push(item)
+    byCategory.set(item.category, list)
+  }
+  const order = Object.keys(CATEGORIES)
+  const rank = (c: string) => {
+    const i = order.indexOf(c)
+    return i === -1 ? order.length : i
+  }
+
+  return [
+    {
+      label: "Getting Started",
+      items: [
+        { title: "Introduction", href: "/docs" },
+        { title: "Installation", href: "/docs/installation" },
+        { title: "Theming", href: "/docs/theming" },
+        { title: "For Agents", href: "/docs/agents" },
+      ],
+    },
+    ...[...byCategory.entries()]
+      .sort(([a], [b]) => rank(a) - rank(b))
+      .map(([category, list]) => ({
+        label: CATEGORIES[category] ?? category,
+        items: list.map((item) => ({
+          title: item.title,
+          href: `/components/${item.name}`,
+        })),
+      })),
+  ]
+}
+
 /** Category display order + labels for the sidebar/index. */
 export const CATEGORIES: Record<string, string> = {
   primitives: "Primitives",

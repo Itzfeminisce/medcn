@@ -39,7 +39,9 @@ animated ECG stroke (hero only, one instance per page max).
 
 - Sans: Geist; Mono: Geist Mono (commands, code, prop names).
 - Headings: tight tracking, `text-balance`. Body copy ≤ 65ch.
-- Section rhythm on doc pages: `gap-10`; page gutter `max-w-6xl px-6`.
+- Section rhythm on doc pages: `gap-10`. Gutters are small: docs content sits
+  in `max-w-5xl px-4 sm:px-6` beside the sidebar; the landing page uses
+  `max-w-6xl px-6`.
 
 ## Dogfooding (strict)
 
@@ -47,8 +49,11 @@ The doc site consumes medcn's own registry components wherever one exists —
 `Button`, `Badge`, etc. come from `registry/medcn`, never re-implemented in
 site code. When the site needs a new reusable primitive, it is added to the
 registry first, then consumed. Site-only helpers are limited to doc-site
-mechanics (CodeBlock, CommandPill, SidebarNav, ThemeToggle, ComponentPreview)
-and still follow shadcn conventions.
+mechanics (CodeBlock, CommandPill, DocsSidebar, CommandMenu, ThemeToggle,
+ComponentPreview) and still follow shadcn conventions. Site chrome that the
+registry doesn't cover (sidebar, command palette, sheet, dialog) is vendored
+from shadcn/ui into `components/ui/` and themed via the `--sidebar-*` token
+mappings in `globals.css` — never restyled inline.
 
 ## Code display
 

@@ -29,7 +29,7 @@ export async function CodeBlock({
         className="bg-code/80 text-code-foreground/60 hover:text-code-foreground absolute top-3 right-3 z-10"
       />
       <div
-        className="bg-code max-h-125 overflow-auto rounded-xl font-mono text-[13px] leading-relaxed"
+        className="bg-code no-scrollbar max-h-125 overflow-auto rounded-xl font-mono text-[13px] leading-relaxed"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>

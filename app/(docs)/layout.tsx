@@ -1,50 +1,24 @@
-import { CATEGORIES, getRegistryItems } from "@/lib/registry"
-import { SidebarNav, type SidebarGroup } from "@/components/sidebar-nav"
+import { getNavGroups } from "@/lib/registry"
+import { DocsSidebar } from "@/components/docs-sidebar"
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 
 export default async function DocsLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const items = await getRegistryItems()
-
-  const byCategory = new Map<string, typeof items>()
-  for (const item of items) {
-    const list = byCategory.get(item.category) ?? []
-    list.push(item)
-    byCategory.set(item.category, list)
-  }
-  const order = Object.keys(CATEGORIES)
-  const rank = (c: string) => {
-    const i = order.indexOf(c)
-    return i === -1 ? order.length : i
-  }
-
-  const groups: SidebarGroup[] = [
-    {
-      label: "Getting Started",
-      items: [
-        { title: "Introduction", href: "/docs" },
-        { title: "Installation", href: "/docs/installation" },
-        { title: "Theming", href: "/docs/theming" },
-        { title: "For Agents", href: "/docs/agents" },
-      ],
-    },
-    ...[...byCategory.entries()]
-      .sort(([a], [b]) => rank(a) - rank(b))
-      .map(([category, list]) => ({
-        label: CATEGORIES[category] ?? category,
-        items: list.map((item) => ({
-          title: item.title,
-          href: `/components/${item.name}`,
-        })),
-      })),
-  ]
+  const groups = await getNavGroups()
 
   return (
-    <div className="flex gap-10">
-      <aside className="sticky top-24 hidden max-h-[calc(100dvh-8rem)] w-56 shrink-0 self-start overflow-y-auto lg:block">
-        <SidebarNav groups={groups} />
-      </aside>
-      <div className="min-w-0 flex-1">{children}</div>
-    </div>
+    <SidebarProvider className="min-h-[calc(100svh-3.5rem)]">
+      <DocsSidebar groups={groups} />
+      <SidebarInset className="min-w-0">
+        <div className="border-border/60 bg-background/75 sticky top-14 z-30 flex h-11 items-center gap-2 border-b px-3 backdrop-blur-md md:hidden">
+          <SidebarTrigger className="text-muted-foreground" />
+          <span className="text-muted-foreground text-sm">Browse</span>
+        </div>
+        <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 md:py-8">
+          {children}
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
   )
 }

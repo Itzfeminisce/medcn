@@ -132,7 +132,7 @@ export default async function ComponentPage({
         {item.props?.length ? (
           <section id="api" className="flex scroll-mt-24 flex-col gap-3">
             <h2 className="text-xl font-semibold tracking-tight">API</h2>
-            <div className="border-border/60 overflow-x-auto rounded-xl border">
+            <div className="border-border/60 no-scrollbar overflow-x-auto rounded-xl border">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-border/60 bg-muted/50 border-b text-left">

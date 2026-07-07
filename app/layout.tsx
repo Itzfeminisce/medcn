@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import Link from "next/link"
 
+import { getNavGroups } from "@/lib/registry"
+import { CommandMenu } from "@/components/command-menu"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 import "./globals.css"
@@ -24,17 +26,19 @@ export const metadata: Metadata = {
 /** Dark by default; respect a stored "light" preference. Runs before paint. */
 const themeScript = `(function(){try{var t=localStorage.getItem("theme");document.documentElement.classList.toggle("dark",t!=="light")}catch(e){document.documentElement.classList.add("dark")}})()`
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const navGroups = await getNavGroups()
+
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-dvh font-sans`}
+        className={`${geistSans.variable} ${geistMono.variable} flex min-h-dvh flex-col font-sans`}
       >
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <header className="border-border/60 bg-background/75 sticky top-0 z-40 border-b backdrop-blur-md">
-          <div className="mx-auto flex h-14 max-w-6xl items-center gap-7 px-6">
+          <div className="flex h-14 items-center gap-5 px-4 sm:gap-7 sm:px-6">
             <Link href="/" className="flex items-center gap-2">
               <span className="relative flex size-2">
                 <span className="bg-primary/70 absolute inline-flex h-full w-full animate-ping rounded-full" />
@@ -58,12 +62,13 @@ export default function RootLayout({
                 Docs
               </Link>
             </nav>
+            <CommandMenu groups={navGroups} />
             <ThemeToggle />
           </div>
         </header>
-        <main className="mx-auto w-full max-w-6xl px-6 py-10">{children}</main>
-        <footer className="border-border/60 mt-16 border-t">
-          <div className="text-muted-foreground mx-auto flex max-w-6xl items-center justify-between px-6 py-6 text-xs">
+        <div className="flex-1">{children}</div>
+        <footer className="border-border/60 border-t">
+          <div className="text-muted-foreground flex items-center justify-between px-4 py-6 text-xs sm:px-6">
             <span className="font-mono">medcn</span>
             <span>MIT</span>
           </div>
