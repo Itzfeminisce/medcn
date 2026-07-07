@@ -1,0 +1,21 @@
+{
+  "name": "pain-scale",
+  "title": "Pain Scale",
+  "description": "0–10 numeric pain rating scale as a segmented radiogroup with descriptor anchors and optional faces.",
+  "category": "triage",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils"],
+  "props": [
+    { "name": "value", "type": "number | null", "description": "Controlled score, 0–10; null = not reported." },
+    { "name": "defaultValue", "type": "number | null", "default": "null" },
+    { "name": "onValueChange", "type": "(value: number) => void" },
+    { "name": "readOnly", "type": "boolean", "default": "false", "description": "Display-only mode for charts/records." },
+    { "name": "showFaces", "type": "boolean", "default": "false", "description": "Show a Wong–Baker-style face for the current score." },
+    { "name": "minLabel", "type": "React.ReactNode", "default": "\"No pain\"" },
+    { "name": "maxLabel", "type": "React.ReactNode", "default": "\"Worst possible\"" }
+  ],
+  "clinicalNotes": "Pain is self-reported and this score is never derived from other signals — the component only records what the patient selects. Descriptor anchors (\"No pain\" → \"Worst possible\") and the optional Wong–Baker-style faces matter for paediatric, low-literacy, and language-barrier patients, for whom a bare number is not enough. It exposes radiogroup semantics with arrow-key navigation and announces the value as text (\"6 out of 10\"), so the score is never conveyed by color alone. Use `readOnly` for charting historical scores. The 0–10 NRS is one instrument among several (VAS, FLACC, faces); pick the one validated for your population.",
+  "notes": "medcn-original, client (controlled radiogroup with roving tabindex). Built from primitives."
+}

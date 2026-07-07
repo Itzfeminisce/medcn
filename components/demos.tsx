@@ -2,6 +2,7 @@ import type * as React from "react"
 
 import AdherenceRingDemo from "@/registry/medcn/adherence-ring/adherence-ring.demo"
 import AllergyBadgeDemo from "@/registry/medcn/allergy-badge/allergy-badge.demo"
+import AppointmentCheckInDemo from "@/registry/medcn/appointment-check-in/appointment-check-in.demo"
 import AvatarDemo from "@/registry/medcn/avatar/avatar.demo"
 import BadgeDemo from "@/registry/medcn/badge/badge.demo"
 import BloodPressureBadgeDemo from "@/registry/medcn/blood-pressure-badge/blood-pressure-badge.demo"
@@ -14,14 +15,18 @@ import CheckboxDemo from "@/registry/medcn/checkbox/checkbox.demo"
 import CollapsibleDemo from "@/registry/medcn/collapsible/collapsible.demo"
 import DoseChecklistDemo from "@/registry/medcn/dose-checklist/dose-checklist.demo"
 import DrugInteractionAlertDemo from "@/registry/medcn/drug-interaction-alert/drug-interaction-alert.demo"
+import EcgStripDemo from "@/registry/medcn/ecg-strip/ecg-strip.demo"
 import EmergencyContactCardDemo from "@/registry/medcn/emergency-contact-card/emergency-contact-card.demo"
 import FallRiskIndicatorDemo from "@/registry/medcn/fall-risk-indicator/fall-risk-indicator.demo"
 import FastingStatusBannerDemo from "@/registry/medcn/fasting-status-banner/fasting-status-banner.demo"
+import GcsScoreInputDemo from "@/registry/medcn/gcs-score-input/gcs-score-input.demo"
 import GlucoseBadgeDemo from "@/registry/medcn/glucose-badge/glucose-badge.demo"
 import ImmunizationScheduleDemo from "@/registry/medcn/immunization-schedule/immunization-schedule.demo"
 import LabOrderStatusDemo from "@/registry/medcn/lab-order-status/lab-order-status.demo"
 import LabResultDemo from "@/registry/medcn/lab-result/lab-result.demo"
 import LabTrendPanelDemo from "@/registry/medcn/lab-trend-panel/lab-trend-panel.demo"
+import MedicationTimingStripDemo from "@/registry/medcn/medication-timing-strip/medication-timing-strip.demo"
+import PainScaleDemo from "@/registry/medcn/pain-scale/pain-scale.demo"
 import PatientBannerDemo from "@/registry/medcn/patient-banner/patient-banner.demo"
 import PopoverDemo from "@/registry/medcn/popover/popover.demo"
 import PregnancyWeekTrackerDemo from "@/registry/medcn/pregnancy-week-tracker/pregnancy-week-tracker.demo"
@@ -29,6 +34,7 @@ import PrescriptionCardDemo from "@/registry/medcn/prescription-card/prescriptio
 import ProgressDemo from "@/registry/medcn/progress/progress.demo"
 import RefillCountdownDemo from "@/registry/medcn/refill-countdown/refill-countdown.demo"
 import SeparatorDemo from "@/registry/medcn/separator/separator.demo"
+import Spo2DialDemo from "@/registry/medcn/spo2-dial/spo2-dial.demo"
 import TelehealthCallCardDemo from "@/registry/medcn/telehealth-call-card/telehealth-call-card.demo"
 import TooltipDemo from "@/registry/medcn/tooltip/tooltip.demo"
 import TrendSparklineDemo from "@/registry/medcn/trend-sparkline/trend-sparkline.demo"
@@ -44,6 +50,7 @@ import VitalsCardDemo from "@/registry/medcn/vitals-card/vitals-card.demo"
 export const demos: Record<string, React.ComponentType> = {
   "adherence-ring": AdherenceRingDemo,
   "allergy-badge": AllergyBadgeDemo,
+  "appointment-check-in": AppointmentCheckInDemo,
   avatar: AvatarDemo,
   badge: BadgeDemo,
   "blood-pressure-badge": BloodPressureBadgeDemo,
@@ -56,14 +63,18 @@ export const demos: Record<string, React.ComponentType> = {
   collapsible: CollapsibleDemo,
   "dose-checklist": DoseChecklistDemo,
   "drug-interaction-alert": DrugInteractionAlertDemo,
+  "ecg-strip": EcgStripDemo,
   "emergency-contact-card": EmergencyContactCardDemo,
   "fall-risk-indicator": FallRiskIndicatorDemo,
   "fasting-status-banner": FastingStatusBannerDemo,
+  "gcs-score-input": GcsScoreInputDemo,
   "glucose-badge": GlucoseBadgeDemo,
   "immunization-schedule": ImmunizationScheduleDemo,
   "lab-order-status": LabOrderStatusDemo,
   "lab-result": LabResultDemo,
   "lab-trend-panel": LabTrendPanelDemo,
+  "medication-timing-strip": MedicationTimingStripDemo,
+  "pain-scale": PainScaleDemo,
   "patient-banner": PatientBannerDemo,
   popover: PopoverDemo,
   "pregnancy-week-tracker": PregnancyWeekTrackerDemo,
@@ -71,6 +82,7 @@ export const demos: Record<string, React.ComponentType> = {
   progress: ProgressDemo,
   "refill-countdown": RefillCountdownDemo,
   separator: SeparatorDemo,
+  "spo2-dial": Spo2DialDemo,
   "telehealth-call-card": TelehealthCallCardDemo,
   tooltip: TooltipDemo,
   "trend-sparkline": TrendSparklineDemo,

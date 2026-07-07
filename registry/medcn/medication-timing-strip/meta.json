@@ -1,0 +1,17 @@
+{
+  "name": "medication-timing-strip",
+  "title": "Medication Timing Strip",
+  "description": "Single-day 24h strip of one medication's dose markers with a live now cursor.",
+  "category": "medication",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils", "tooltip"],
+  "props": [
+    { "name": "doses", "type": "StripDose[]", "description": "{ time, status, label? }[]; time is \"HH:MM\", \"h:mm AM/PM\", or a Date." },
+    { "name": "medication", "type": "React.ReactNode", "description": "Medication label." },
+    { "name": "hideNow", "type": "boolean", "default": "false", "description": "Hide the live now cursor." }
+  ],
+  "clinicalNotes": "Times render in the patient's local timezone — a dose strip in the wrong timezone is worse than none, so parse and display consistently. Missed and skipped are distinct: missed is a gap, skipped is a deliberate decision (nausea, held dose), and the strip shows both for information only. It offers no catch-up guidance — whether to take a late dose, double up, or skip is drug-specific (anticoagulants, insulin, and levothyroxine all differ) and belongs to the caller or the label. The now cursor is client-side and hydration-safe. Statuses are shown by shape and legend text, not color alone, and the whole day is exposed to screen readers as text. This is the glanceable one-med sibling of a full schedule timeline.",
+  "notes": "medcn-original, client (live now cursor, mount-guarded). Built from primitives + tooltip."
+}

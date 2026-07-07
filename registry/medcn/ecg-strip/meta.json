@@ -1,0 +1,23 @@
+{
+  "name": "ecg-strip",
+  "title": "ECG Strip",
+  "description": "Illustrative animated ECG rhythm strip with rate and lead labels, from a waveform or canned sinus rhythm.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils"],
+  "props": [
+    { "name": "data", "type": "number[]", "description": "Waveform samples; falls back to a canned normal-sinus rhythm." },
+    { "name": "beats", "type": "number", "default": "4", "description": "Beats to draw when using the canned rhythm." },
+    { "name": "rate", "type": "number", "description": "Heart rate label (bpm)." },
+    { "name": "lead", "type": "string", "default": "\"II\"", "description": "Lead name." },
+    { "name": "animate", "type": "boolean", "default": "true", "description": "Animate the stroke drawing on (reduced-motion safe)." },
+    { "name": "showGrid", "type": "boolean", "default": "false", "description": "Draw a calibration grid — only pass with scaled/calibrated data." },
+    { "name": "color", "type": "\"default\" | \"success\" | \"warning\" | \"destructive\"", "default": "\"default\"" },
+    { "name": "width", "type": "number", "default": "320" },
+    { "name": "height", "type": "number", "default": "72" }
+  ],
+  "clinicalNotes": "This is explicitly NOT a diagnostic trace viewer. It renders an illustrative waveform for dashboards, monitoring UI, and brand motif — the accessible label says as much (\"Not a diagnostic tracing\"). It makes no measurement claims: the calibration grid is off by default and should only be enabled when you pass real calibrated samples with a known scale, otherwise the grid would imply a measurement standard the drawing does not meet. Animation is reduced-motion safe (the stroke draws only when motion is allowed) and it is self-contained — the keyframes are inlined and scoped per instance. Render one instance per view; a wall of animated traces is noise, not information.",
+  "notes": "medcn-original. Self-contained SVG (pathLength=100 draw + inlined scoped keyframes); ties into the site ECG hero motif."
+}

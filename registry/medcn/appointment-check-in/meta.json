@@ -1,0 +1,18 @@
+{
+  "name": "appointment-check-in",
+  "title": "Appointment Check-In",
+  "description": "Patient-facing arrival flow as a vertical stepper with estimated wait and a call-by-name reassurance line.",
+  "category": "scheduling",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils"],
+  "props": [
+    { "name": "steps", "type": "CheckInStep[]", "description": "{ label, status: \"done\" | \"current\" | \"upcoming\", time? }[]." },
+    { "name": "title", "type": "React.ReactNode", "default": "\"Check-in\"" },
+    { "name": "estimatedWait", "type": "React.ReactNode", "description": "Shown as a range, e.g. \"15–25 min\"." },
+    { "name": "reassurance", "type": "React.ReactNode", "description": "Reassurance line; defaults to a call-by-name message." }
+  ],
+  "clinicalNotes": "Show only this patient's flow: on a shared waiting-room screen this must never display other patients' identifying information, so the component takes a single patient's steps and holds no queue of names. Present times as ranges, not promises — \"15–25 min\" sets expectations without turning a busy clinic into a broken commitment when it slips. The call-by-name reassurance reduces the anxious screen-watching that a bare queue number encourages. Presentation only; step status and wait estimates come from your scheduling system.",
+  "notes": "medcn-original, server component (no state). Vertical stepper from primitives; privacy-first (single patient)."
+}
