@@ -1,0 +1,18 @@
+{
+  "name": "glucose-log-input",
+  "title": "Glucose Log Input",
+  "description": "Blood-glucose entry with explicit unit toggle and context select plus a live classification badge.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils", "glucose-badge", "field", "input", "select", "toggle-group"],
+  "props": [
+    { "name": "defaultValue", "type": "{ value: number | null; unit: \"mmol/L\" | \"mg/dL\"; context: GlucoseContext }", "description": "Initial reading, unit, and measurement context." },
+    { "name": "onValueChange", "type": "(value: GlucoseLogValue) => void", "description": "Fires on every edit with the structured reading." },
+    { "name": "showBadge", "type": "boolean", "default": "true", "description": "Show the live GlucoseBadge preview." },
+    { "name": "disabled", "type": "boolean", "description": "Disables all controls." }
+  ],
+  "clinicalNotes": "Never guess the unit — the toggle is explicit and converts the entered number on change (mmol/L to one decimal, mg/dL to a whole number). Classification is informational and context-dependent: the field passes the selected context (fasting/post-meal/random/bedtime) to the badge, but diabetic targets are individual, so it asserts no control. The context is a required part of the value, not an assumption.",
+  "notes": "Round-2 form component; composes glucose-badge + field + input + select + toggle-group."
+}

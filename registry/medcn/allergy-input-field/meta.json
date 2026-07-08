@@ -1,0 +1,18 @@
+{
+  "name": "allergy-input-field",
+  "title": "Allergy Input Field",
+  "description": "Add-allergy row producing severity-coded chips, with an explicit \"No known allergies\" state.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "allergy-badge", "button", "checkbox", "field", "input", "label", "select"],
+  "props": [
+    { "name": "value / defaultValue", "type": "{ nka: boolean; allergies: AllergyEntry[] }", "description": "Controlled/uncontrolled state; AllergyEntry is { label, severity?, reaction? }." },
+    { "name": "onValueChange", "type": "(value: AllergyInputValue) => void", "description": "Fires when an allergy is added/removed or NKA is toggled." },
+    { "name": "suggestions", "type": "string[]", "description": "Optional allergen names for the datalist typeahead." },
+    { "name": "disabled", "type": "boolean", "description": "Disables all controls." }
+  ],
+  "clinicalNotes": "\"No known allergies\" must be an explicit, recorded choice — an empty allergy list is not the same as confirmed none, so NKA is a distinct affirmative flag, and adding any allergy revokes it. Capture the reaction type (rash vs anaphylaxis) alongside severity, because it changes whether a drug is absolutely contraindicated or a documented caution. Severity may be left unspecified rather than guessed.",
+  "notes": "Round-2 form component; composes allergy-badge + input + select + checkbox + field + button."
+}

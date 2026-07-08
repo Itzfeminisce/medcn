@@ -1,0 +1,19 @@
+{
+  "name": "route-of-administration-field",
+  "title": "Route of Administration Field",
+  "description": "Compact single-select for medication route with icons and a \"More\" overflow.",
+  "category": "medication",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "button", "popover", "toggle-group"],
+  "props": [
+    { "name": "value / defaultValue", "type": "string", "description": "Selected route code (controlled/uncontrolled)." },
+    { "name": "onValueChange", "type": "(value: string | undefined) => void", "description": "Fires with the selected route code, or undefined when deselected." },
+    { "name": "routes", "type": "RouteOption[]", "default": "DEFAULT_ROUTES", "description": "Available routes; override to match the formulary. Each is { value, abbr, label, icon? }." },
+    { "name": "maxVisible", "type": "number", "default": "6", "description": "How many routes show inline before the rest collapse into \"More\"." },
+    { "name": "disabled", "type": "boolean", "description": "Disables the control." }
+  ],
+  "clinicalNotes": "Label routes in full on selection (IM ≠ IV ≠ IT — wrong-route errors are catastrophic); never rely on the abbreviation or icon alone, so the full route name is always shown once a route is picked. The available routes are caller-configurable because the valid set depends on the formulary and the drug. A selected route stays visible inline even when it lives in the overflow list.",
+  "notes": "Round-2 form component; composes toggle-group + popover + button."
+}

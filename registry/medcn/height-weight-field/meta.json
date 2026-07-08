@@ -1,0 +1,19 @@
+{
+  "name": "height-weight-field",
+  "title": "Height & Weight Field",
+  "description": "Height/weight entry with metric/imperial toggle and a live BMI gauge; emits canonical kg/cm.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils", "bmi-gauge", "field", "input", "toggle-group"],
+  "props": [
+    { "name": "defaultValue", "type": "{ heightCm: number | null; weightKg: number | null }", "description": "Initial value in canonical units (cm, kg)." },
+    { "name": "onValueChange", "type": "(value: HeightWeightValue) => void", "description": "Fires with canonical kg/cm regardless of the display unit." },
+    { "name": "defaultUnit", "type": "\"metric\" | \"imperial\"", "default": "\"metric\"", "description": "Initial display unit." },
+    { "name": "showGauge", "type": "boolean", "default": "true", "description": "Show the live BmiGauge; hide for paediatric/pregnancy callers." },
+    { "name": "disabled", "type": "boolean", "description": "Disables the inputs and unit toggle." }
+  ],
+  "clinicalNotes": "BMI is a screening band, not a diagnosis (as BmiGauge itself states) — the field surfaces the number and band but never hard-blocks on either. Switching units converts the entered values rather than clearing them, and the emitted value is always canonical (cm, kg) so downstream storage is unit-stable. Paediatric and pregnancy callers should hide the gauge, where adult BMI bands do not apply.",
+  "notes": "Round-2 form component; composes bmi-gauge + field + input + toggle-group. Display strings are local so decimal entry survives; the emitted value is canonical."
+}

@@ -1,0 +1,19 @@
+{
+  "name": "blood-pressure-input",
+  "title": "Blood Pressure Input",
+  "description": "Paired systolic/diastolic entry with a live AHA-category badge from one source of truth.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils", "blood-pressure-badge", "field", "input"],
+  "props": [
+    { "name": "value", "type": "{ systolic: number | null; diastolic: number | null }", "description": "Controlled reading in mmHg." },
+    { "name": "defaultValue", "type": "BloodPressureValue", "description": "Uncontrolled initial reading." },
+    { "name": "onValueChange", "type": "(value: BloodPressureValue) => void", "description": "Fires on every edit with the current reading." },
+    { "name": "showBadge", "type": "boolean", "default": "true", "description": "Show the live BloodPressureBadge preview." },
+    { "name": "disabled", "type": "boolean", "description": "Disables both inputs." }
+  ],
+  "clinicalNotes": "The live AHA category is informational only — it must never block saving an implausible-but-real reading, because hypertensive crises exist. Out-of-bounds values and an inverted systolic/diastolic are flagged, not gated. Unit is fixed to mmHg. The badge and the inputs read from one value, so the preview can never disagree with what was entered.",
+  "notes": "Round-2 form component; composes blood-pressure-badge + field + input."
+}

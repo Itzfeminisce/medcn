@@ -1,0 +1,20 @@
+{
+  "name": "temperature-field",
+  "title": "Temperature Field",
+  "description": "Temperature entry with °C/°F toggle and an advisory hypothermia–fever band.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "field", "input", "toggle-group"],
+  "props": [
+    { "name": "defaultValue", "type": "number | null", "description": "Initial value in canonical °C." },
+    { "name": "onValueChange", "type": "(celsius: number | null) => void", "description": "Fires with the canonical °C value (null when cleared)." },
+    { "name": "defaultUnit", "type": "\"C\" | \"F\"", "default": "\"C\"", "description": "Initial display unit." },
+    { "name": "site", "type": "ReactNode", "default": "\"Oral\"", "description": "Measurement site shown alongside the band." },
+    { "name": "showBand", "type": "boolean", "default": "true", "description": "Show the advisory band feedback." },
+    { "name": "disabled", "type": "boolean", "description": "Disables the input and unit toggle." }
+  ],
+  "clinicalNotes": "Fever thresholds depend on measurement site (oral vs core vs axillary) and age, so the band is advisory only and the site is displayed beside it — a \"38.0\" means different things rectally vs axillary. Values convert on unit switch and are stored to one decimal place; output is always canonical °C. The band never blocks entry.",
+  "notes": "Round-2 form component; composes field + input + toggle-group. Band feedback is inline (no round-1 temperature preview exists)."
+}

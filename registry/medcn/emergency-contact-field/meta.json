@@ -1,0 +1,18 @@
+{
+  "name": "emergency-contact-field",
+  "title": "Emergency Contact Field",
+  "description": "Contact form with a live EmergencyContactCard preview and diallability validation.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils", "emergency-contact-card", "field", "input", "label", "switch"],
+  "props": [
+    { "name": "value / defaultValue", "type": "{ name: string; relationship: string; phone: string; isPrimary: boolean }", "description": "Controlled/uncontrolled contact." },
+    { "name": "onValueChange", "type": "(value: EmergencyContactValue) => void", "description": "Fires on every edit with the structured contact." },
+    { "name": "showPreview", "type": "boolean", "default": "true", "description": "Show the live EmergencyContactCard preview." },
+    { "name": "disabled", "type": "boolean", "description": "Disables all controls." }
+  ],
+  "clinicalNotes": "A tel-quality number matters more than a pretty one, so the field validates diallability (enough digits), not display format. When this field feeds a list, exactly one contact should be primary — selecting a new primary must demote the previous one (the parent list owns that rule; this field only sets its own isPrimary flag). The preview appears once there is a name and a diallable number.",
+  "notes": "Round-2 form component; composes emergency-contact-card + field + input + label + switch."
+}
