@@ -18,6 +18,12 @@ import {
 import type { LucideIcon } from "lucide-react"
 import Link from "next/link"
 
+import {
+  SITE_NAME,
+  addByNamespaceCommand,
+  addByUrlCommand,
+  registriesSnippet,
+} from "@/lib/env"
 import { CATEGORIES } from "@/lib/registry"
 import { Badge } from "@/registry/medcn/badge/badge"
 import { Button } from "@/registry/medcn/button/button"
@@ -36,13 +42,7 @@ import { CodeBlock } from "@/components/code-block"
 import { CommandPill } from "@/components/command-pill"
 import { CopyButton } from "@/components/copy-button"
 
-const heroCommand = "npx shadcn@latest add https://medcn.dev/r/vitals-card.json"
-
-const registriesSnippet = `{
-  "registries": {
-    "@medcn": "https://medcn.dev/r/{name}.json"
-  }
-}`
+const heroCommand = addByUrlCommand("vitals-card")
 
 function EcgTrace() {
   return (
@@ -248,7 +248,8 @@ export default function Home() {
             Register once. Add anything.
           </h2>
           <p className="text-muted-foreground max-w-xl text-balance">
-            medcn is a standard shadcn registry. Point the CLI at the namespace,
+            {SITE_NAME} is a standard shadcn registry. Point the CLI at the
+            namespace,
             then install components by name — dependency chains included.
           </p>
         </div>
@@ -269,7 +270,7 @@ export default function Home() {
               </span>
               Add a component
             </div>
-            <CommandPill command="npx shadcn@latest add @medcn/vitals-card" />
+            <CommandPill command={addByNamespaceCommand("vitals-card")} />
             <div className="mt-1 flex items-center gap-2 text-sm font-semibold">
               <span className="bg-primary/15 text-primary flex size-6 items-center justify-center rounded-full font-mono text-xs">
                 3
@@ -321,7 +322,7 @@ export default function Home() {
       {/* ── Why medcn ────────────────────────────────────────── */}
       <section className="flex flex-col gap-8">
         <div className="flex flex-col gap-3">
-          <Kicker>Why medcn</Kicker>
+          <Kicker>Why {SITE_NAME}</Kicker>
           <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
             Built the shadcn way, for health.
           </h2>

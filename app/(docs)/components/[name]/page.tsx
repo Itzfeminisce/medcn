@@ -1,6 +1,7 @@
 import { ArrowUpRightIcon, HeartPulseIcon } from "lucide-react"
 import { notFound } from "next/navigation"
 
+import { addByUrlCommand } from "@/lib/env"
 import {
   CATEGORIES,
   getItemDemoSource,
@@ -104,9 +105,7 @@ export default async function ComponentPage({
           <h2 className="text-xl font-semibold tracking-tight">
             Installation
           </h2>
-          <CommandPill
-            command={`npx shadcn@latest add https://medcn.dev/r/${name}.json`}
-          />
+          <CommandPill command={addByUrlCommand(name)} />
           <p className="text-muted-foreground text-sm">
             Manual: copy the source below into{" "}
             <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-xs">

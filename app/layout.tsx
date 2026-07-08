@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import Link from "next/link"
 
-import { SITE_URL } from "@/lib/env"
+import { SITE_NAME, SITE_URL } from "@/lib/env"
 import { getNavGroups } from "@/lib/registry"
 import { CommandMenu } from "@/components/command-menu"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "medcn — shadcn for health & medical UI",
-    template: "%s · medcn",
+    default: `${SITE_NAME} — shadcn for health & medical UI`,
+    template: `%s · ${SITE_NAME}`,
   },
   description:
     "Copy-paste, accessible React components for health products — vitals, medication, scheduling, triage. Install with the shadcn CLI. You own the code.",
@@ -36,22 +36,22 @@ export const metadata: Metadata = {
     "healthcare design system",
     "shadcn registry",
   ],
-  authors: [{ name: "medcn" }],
-  creator: "medcn",
-  applicationName: "medcn",
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  applicationName: SITE_NAME,
   category: "technology",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: SITE_URL,
-    siteName: "medcn",
-    title: "medcn — shadcn for health & medical UI",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} — shadcn for health & medical UI`,
     description:
       "Copy-paste, accessible React components for health products — vitals, medication, scheduling, triage. Install with the shadcn CLI.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "medcn — shadcn for health & medical UI",
+    title: `${SITE_NAME} — shadcn for health & medical UI`,
     description:
       "Copy-paste, accessible React components for health & medical products. Install with the shadcn CLI.",
   },
@@ -108,7 +108,7 @@ export default async function RootLayout({
         <div className="flex-1">{children}</div>
         <footer className="border-border/60 border-t">
           <div className="text-muted-foreground flex items-center justify-between px-4 py-6 text-xs sm:px-6">
-            <span className="font-mono">medcn</span>
+            <span className="font-mono">{SITE_NAME}</span>
             <span>MIT</span>
           </div>
         </footer>

@@ -1,3 +1,9 @@
+import {
+  REGISTRY_NAMESPACE,
+  addByNamespaceCommand,
+  addByUrlCommand,
+  registriesSnippet,
+} from "@/lib/env"
 import { CodeBlock } from "@/components/code-block"
 import { CommandPill, InlineCode } from "@/components/command-pill"
 
@@ -25,7 +31,7 @@ export default function InstallationPage() {
         <h2 className="text-xl font-semibold tracking-tight">
           Install a component
         </h2>
-        <CommandPill command="npx shadcn@latest add https://medcn.dev/r/vitals-card.json" />
+        <CommandPill command={addByUrlCommand("vitals-card")} />
         <p className="text-muted-foreground text-sm leading-relaxed">
           Dependencies resolve automatically —{" "}
           <InlineCode>vitals-card</InlineCode> brings its{" "}
@@ -36,21 +42,14 @@ export default function InstallationPage() {
 
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-semibold tracking-tight">
-          The @medcn namespace
+          The {REGISTRY_NAMESPACE} namespace
         </h2>
         <p className="text-muted-foreground text-sm leading-relaxed">
           Register the registry once in <InlineCode>components.json</InlineCode>{" "}
           for shorter commands:
         </p>
-        <CodeBlock
-          lang="json"
-          code={`{
-  "registries": {
-    "@medcn": "https://medcn.dev/r/{name}.json"
-  }
-}`}
-        />
-        <CommandPill command="npx shadcn@latest add @medcn/vitals-card" />
+        <CodeBlock lang="json" code={registriesSnippet} />
+        <CommandPill command={addByNamespaceCommand("vitals-card")} />
       </section>
     </article>
   )
