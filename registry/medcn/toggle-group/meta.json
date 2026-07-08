@@ -4,7 +4,7 @@
   "description": "Segmented single- or multi-select control built on Radix.",
   "category": "forms",
   "type": "registry:ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "dependencies": ["@radix-ui/react-toggle-group", "class-variance-authority"],
   "registryDependencies": ["utils"],
   "links": { "radix": "https://www.radix-ui.com/primitives/docs/components/toggle-group" },
@@ -14,5 +14,5 @@
     { "name": "variant", "type": "\"default\" | \"outline\"", "default": "\"default\"", "description": "Item styling; inherited by items via context." },
     { "name": "size", "type": "\"sm\" | \"default\" | \"lg\"", "default": "\"default\"", "description": "Item height; inherited by items via context." }
   ],
-  "notes": "Foundational form primitive; ideal for unit switches, route selection, ROS toggles. Ported from petals_ui unchanged."
+  "notes": "Foundational form primitive; ideal for unit switches, route selection, ROS toggles. Selected styling keys off data-state plus aria-checked/aria-pressed so active state survives when an item is wrapped as a Radix Slot trigger (e.g. Tooltip), which overrides data-state."
 }

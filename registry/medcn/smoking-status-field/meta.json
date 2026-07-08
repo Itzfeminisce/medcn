@@ -1,0 +1,17 @@
+{
+  "name": "smoking-status-field",
+  "title": "Smoking Status Field",
+  "description": "Structured never/former/current smoking status with pack-years and quit date.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils", "date-field", "field", "input", "label", "radio-group"],
+  "props": [
+    { "name": "value / defaultValue", "type": "{ status: \"never\" | \"former\" | \"current\"; cigsPerDay: number | null; years: number | null; quitDate?: string }", "description": "Controlled/uncontrolled smoking status." },
+    { "name": "onValueChange", "type": "(value: SmokingStatusValue) => void", "description": "Fires on any change with the structured status." },
+    { "name": "disabled", "type": "boolean", "description": "Disables all controls." }
+  ],
+  "clinicalNotes": "Model smoking as structured status + quantity, not free text — \"social smoker\" is unquantifiable downstream. Pack-years (cigs/day ÷ 20 × years) drives screening eligibility, so the computed value and its inputs are both shown. Former smokers keep a quit date; selecting \"never\" clears the quantity and quit fields so no stale data lingers.",
+  "notes": "Round-2 form component; composes radio-group + input + date-field + field + label."
+}

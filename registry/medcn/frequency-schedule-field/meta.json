@@ -1,0 +1,17 @@
+{
+  "name": "frequency-schedule-field",
+  "title": "Frequency Schedule Field",
+  "description": "Dose frequency (OD/BD/TDS/QDS/custom) as an editable list of dose times.",
+  "category": "scheduling",
+  "type": "registry:ui",
+  "version": "0.1.1",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "button", "field", "input", "toggle-group", "tooltip"],
+  "props": [
+    { "name": "value / defaultValue", "type": "{ frequency: \"OD\" | \"BD\" | \"TDS\" | \"QDS\" | \"custom\"; times: string[] }", "description": "Controlled/uncontrolled schedule; times are \"HH:MM\" strings." },
+    { "name": "onValueChange", "type": "(value: FrequencyScheduleValue) => void", "description": "Fires with the frequency and concrete times." },
+    { "name": "disabled", "type": "boolean", "description": "Disables all controls." }
+  ],
+  "clinicalNotes": "Render and store times in the patient's local timezone explicitly. Some frequencies imply clinically meaningful spacing (Q8H is not the same as TDS-with-meals), so the chosen frequency is kept alongside the concrete times rather than discarded once times exist. Presets seed a sensible default schedule the user can then adjust; \"custom\" lets times be placed and removed directly. Ties into the platform's multi-dose medication times[] model.",
+  "notes": "Round-2 form component; composes toggle-group + input(type=time) + field + button + tooltip. Emits times: string[]. Frequency abbreviations carry a tooltip with the full meaning (aria-label as fallback)."
+}

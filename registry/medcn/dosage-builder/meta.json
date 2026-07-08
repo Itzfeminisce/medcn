@@ -1,0 +1,17 @@
+{
+  "name": "dosage-builder",
+  "title": "Dosage Builder",
+  "description": "Structured sig builder (dose, route, frequency, PRN) that assembles a canonical sig and English string.",
+  "category": "medication",
+  "type": "registry:ui",
+  "version": "0.1.1",
+  "dependencies": [],
+  "registryDependencies": ["utils", "field", "input", "label", "route-of-administration-field", "select", "switch", "toggle-group", "tooltip"],
+  "props": [
+    { "name": "value / defaultValue", "type": "DosageSig", "description": "Controlled/uncontrolled sig parts: { amount, unit, route, frequency, prn, indication }." },
+    { "name": "onValueChange", "type": "(value: DosageValue) => void", "description": "Fires with the sig parts plus the assembled `text` and a `complete` flag." },
+    { "name": "disabled", "type": "boolean", "description": "Disables all controls." }
+  ],
+  "clinicalNotes": "Build the sig from structured parts, not free text — free-text sigs are a known error source. The assembled English sig ('1 tab PO TDS PRN pain') is shown back for verification. A PRN order requires an indication field: an as-needed order without a reason is incomplete, and the field flags it. The `complete` flag lets the caller gate ordering until every required part is present.",
+  "notes": "Round-2 form component; composes field + input + select + toggle-group + switch + label + tooltip and reuses route-of-administration-field. Frequency abbreviations carry a tooltip with the full meaning (aria-label as fallback)."
+}

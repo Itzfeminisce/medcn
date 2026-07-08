@@ -1,0 +1,20 @@
+{
+  "name": "consent-checklist",
+  "title": "Consent Checklist",
+  "description": "Per-item consent affirmations that gate a submit action and record each text version.",
+  "category": "forms",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "button", "checkbox"],
+  "props": [
+    { "name": "items", "type": "ConsentItem[]", "description": "Consent items: { id, label, description?, href?, required?, version? }." },
+    { "name": "value / defaultValue", "type": "ConsentAcceptance[]", "description": "Accepted items as { id, version }[] (controlled/uncontrolled)." },
+    { "name": "onValueChange", "type": "(accepted: ConsentAcceptance[]) => void", "description": "Fires when any item is toggled." },
+    { "name": "onSubmit", "type": "(accepted: ConsentAcceptance[]) => void", "description": "If provided, renders a submit button gated until all required items are affirmed." },
+    { "name": "submitLabel", "type": "ReactNode", "default": "\"Agree & continue\"", "description": "Submit button label." },
+    { "name": "disabled", "type": "boolean", "description": "Disables all controls." }
+  ],
+  "clinicalNotes": "Consent must be an explicit affirmative action per item — items are never pre-checked, and legally distinct consents are never collapsed into a single blanket toggle. Each acceptance records which version of the consent text was agreed to (a caller-supplied `version`), since wording changes over time and prior consents must remain attributable. Optional items are clearly marked and never block submission; only required items gate it.",
+  "notes": "Round-2 form component; composes checkbox + button. Records { id, version } per acceptance."
+}

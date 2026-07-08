@@ -1,0 +1,21 @@
+{
+  "name": "date-of-birth-field",
+  "title": "Date of Birth Field",
+  "description": "Typed DOB entry with a live age readout and a configurable minimum-age gate.",
+  "category": "forms",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils", "date-field", "field"],
+  "props": [
+    { "name": "value / defaultValue", "type": "string", "description": "DOB as an ISO YYYY-MM-DD string (controlled/uncontrolled)." },
+    { "name": "onValueChange", "type": "(iso: string | undefined) => void", "description": "Fires with the ISO date, or undefined while incomplete/invalid." },
+    { "name": "minAge", "type": "number", "description": "Minimum age in years; below it the field flags (does not block)." },
+    { "name": "asOf", "type": "Date", "default": "new Date()", "description": "Date to compute age against." },
+    { "name": "order", "type": "\"dmy\" | \"mdy\" | \"ymd\"", "default": "\"dmy\"", "description": "Segment order passed to the underlying DateField." },
+    { "name": "label", "type": "ReactNode", "default": "\"Date of birth\"", "description": "Field label." },
+    { "name": "disabled", "type": "boolean", "description": "Disables entry." }
+  ],
+  "clinicalNotes": "Validates real dates (no 31 Feb via DateField, no future DOB here) and computes age at a caller-supplied \"as of\" date, not just today — important for age-at-encounter and eligibility. The minimum-age gate flags rather than silently blocking, so the reason is visible to the user and staff; the caller still decides whether to hard-stop. A typed day/month/year entry beats a calendar for a birth year decades back.",
+  "notes": "Round-2 form component; composes date-field + field. Mirrors the platform's 18+ NDPR age gate."
+}

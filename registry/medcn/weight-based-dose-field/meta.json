@@ -1,0 +1,20 @@
+{
+  "name": "weight-based-dose-field",
+  "title": "Weight-Based Dose Field",
+  "description": "mg/kg × weight dose calculator that shows its working, cap, and rounding.",
+  "category": "medication",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "field", "input"],
+  "props": [
+    { "name": "defaultValue", "type": "{ mgPerKg?: number | null; weightKg?: number | null }", "description": "Initial dose rate and weight." },
+    { "name": "onValueChange", "type": "(value: WeightBasedDoseValue) => void", "description": "Fires with { mgPerKg, weightKg, dose, capped }." },
+    { "name": "maxDose", "type": "number", "description": "Cap in `unit`; the computed dose never exceeds it." },
+    { "name": "roundTo", "type": "number", "description": "Round the dose down to the nearest dispensable increment." },
+    { "name": "unit", "type": "string", "default": "\"mg\"", "description": "Dose unit label." },
+    { "name": "disabled", "type": "boolean", "description": "Disables the inputs." }
+  ],
+  "clinicalNotes": "Always show the calculation, the weight used, and whether a cap was applied — a bare computed number hides the weight-entry error that causes paediatric overdoses, so the full working is rendered ('15 mg/kg × 18 kg = 270 mg, capped at 200 mg'). The component computes arithmetic only and is not a dosing authority; the prescriber confirms. Rounding is floor-to-increment so it never rounds a dose up past a safe amount.",
+  "notes": "Round-2 form component; composes field + input. Emits the structured result plus a capped flag."
+}

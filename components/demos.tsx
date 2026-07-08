@@ -15,7 +15,10 @@ import CardDemo from "@/registry/medcn/card/card.demo"
 import CareTeamListDemo from "@/registry/medcn/care-team-list/care-team-list.demo"
 import CheckboxDemo from "@/registry/medcn/checkbox/checkbox.demo"
 import CollapsibleDemo from "@/registry/medcn/collapsible/collapsible.demo"
+import ConsentChecklistDemo from "@/registry/medcn/consent-checklist/consent-checklist.demo"
 import DateFieldDemo from "@/registry/medcn/date-field/date-field.demo"
+import DateOfBirthFieldDemo from "@/registry/medcn/date-of-birth-field/date-of-birth-field.demo"
+import DosageBuilderDemo from "@/registry/medcn/dosage-builder/dosage-builder.demo"
 import DoseChecklistDemo from "@/registry/medcn/dose-checklist/dose-checklist.demo"
 import DrugInteractionAlertDemo from "@/registry/medcn/drug-interaction-alert/drug-interaction-alert.demo"
 import EcgStripDemo from "@/registry/medcn/ecg-strip/ecg-strip.demo"
@@ -24,6 +27,7 @@ import EmergencyContactFieldDemo from "@/registry/medcn/emergency-contact-field/
 import FallRiskIndicatorDemo from "@/registry/medcn/fall-risk-indicator/fall-risk-indicator.demo"
 import FastingStatusBannerDemo from "@/registry/medcn/fasting-status-banner/fasting-status-banner.demo"
 import FieldDemo from "@/registry/medcn/field/field.demo"
+import FrequencyScheduleFieldDemo from "@/registry/medcn/frequency-schedule-field/frequency-schedule-field.demo"
 import GcsScoreInputDemo from "@/registry/medcn/gcs-score-input/gcs-score-input.demo"
 import GlucoseBadgeDemo from "@/registry/medcn/glucose-badge/glucose-badge.demo"
 import GlucoseLogInputDemo from "@/registry/medcn/glucose-log-input/glucose-log-input.demo"
@@ -47,6 +51,7 @@ import RouteOfAdministrationFieldDemo from "@/registry/medcn/route-of-administra
 import SelectDemo from "@/registry/medcn/select/select.demo"
 import SeparatorDemo from "@/registry/medcn/separator/separator.demo"
 import SliderDemo from "@/registry/medcn/slider/slider.demo"
+import SmokingStatusFieldDemo from "@/registry/medcn/smoking-status-field/smoking-status-field.demo"
 import Spo2DialDemo from "@/registry/medcn/spo2-dial/spo2-dial.demo"
 import SwitchDemo from "@/registry/medcn/switch/switch.demo"
 import TelehealthCallCardDemo from "@/registry/medcn/telehealth-call-card/telehealth-call-card.demo"
@@ -59,6 +64,7 @@ import TriageLevelIndicatorDemo from "@/registry/medcn/triage-level-indicator/tr
 import TriageQueueRowDemo from "@/registry/medcn/triage-queue-row/triage-queue-row.demo"
 import VaccinationRecordRowDemo from "@/registry/medcn/vaccination-record-row/vaccination-record-row.demo"
 import VitalsCardDemo from "@/registry/medcn/vitals-card/vitals-card.demo"
+import WeightBasedDoseFieldDemo from "@/registry/medcn/weight-based-dose-field/weight-based-dose-field.demo"
 
 /**
  * name → demo component. Hand-maintained for the proving slice;
@@ -80,7 +86,10 @@ export const demos: Record<string, React.ComponentType> = {
   "care-team-list": CareTeamListDemo,
   checkbox: CheckboxDemo,
   collapsible: CollapsibleDemo,
+  "consent-checklist": ConsentChecklistDemo,
   "date-field": DateFieldDemo,
+  "date-of-birth-field": DateOfBirthFieldDemo,
+  "dosage-builder": DosageBuilderDemo,
   "dose-checklist": DoseChecklistDemo,
   "drug-interaction-alert": DrugInteractionAlertDemo,
   "ecg-strip": EcgStripDemo,
@@ -89,6 +98,7 @@ export const demos: Record<string, React.ComponentType> = {
   "fall-risk-indicator": FallRiskIndicatorDemo,
   "fasting-status-banner": FastingStatusBannerDemo,
   field: FieldDemo,
+  "frequency-schedule-field": FrequencyScheduleFieldDemo,
   "gcs-score-input": GcsScoreInputDemo,
   "glucose-badge": GlucoseBadgeDemo,
   "glucose-log-input": GlucoseLogInputDemo,
@@ -112,6 +122,7 @@ export const demos: Record<string, React.ComponentType> = {
   select: SelectDemo,
   separator: SeparatorDemo,
   slider: SliderDemo,
+  "smoking-status-field": SmokingStatusFieldDemo,
   "spo2-dial": Spo2DialDemo,
   switch: SwitchDemo,
   "telehealth-call-card": TelehealthCallCardDemo,
@@ -124,4 +135,5 @@ export const demos: Record<string, React.ComponentType> = {
   "triage-queue-row": TriageQueueRowDemo,
   "vaccination-record-row": VaccinationRecordRowDemo,
   "vitals-card": VitalsCardDemo,
+  "weight-based-dose-field": WeightBasedDoseFieldDemo,
 }
