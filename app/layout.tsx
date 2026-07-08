@@ -14,13 +14,53 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://medcn.dev"
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "medcn — health & medical UI components",
+    default: "medcn — shadcn for health & medical UI",
     template: "%s · medcn",
   },
   description:
-    "Beautiful, accessible UI components for health & medical products. Install with the shadcn CLI. You own the code.",
+    "Copy-paste, accessible React components for health products — vitals, medication, scheduling, triage. Install with the shadcn CLI. You own the code.",
+  keywords: [
+    "shadcn",
+    "health UI",
+    "medical UI components",
+    "React components",
+    "Tailwind CSS",
+    "Radix UI",
+    "vitals",
+    "EHR components",
+    "clinical UI",
+    "healthcare design system",
+    "shadcn registry",
+  ],
+  authors: [{ name: "medcn" }],
+  creator: "medcn",
+  applicationName: "medcn",
+  category: "technology",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "medcn",
+    title: "medcn — shadcn for health & medical UI",
+    description:
+      "Copy-paste, accessible React components for health products — vitals, medication, scheduling, triage. Install with the shadcn CLI.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "medcn — shadcn for health & medical UI",
+    description:
+      "Copy-paste, accessible React components for health & medical products. Install with the shadcn CLI.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
 }
 
 /** Dark by default; respect a stored "light" preference. Runs before paint. */
@@ -34,7 +74,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-dvh flex-col font-sans`}
+        className={`${geistSans.variable} ${geistMono.variable} flex min-h-dvh flex-col overflow-x-clip font-sans`}
       >
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <header className="border-border/60 bg-background/75 sticky top-0 z-40 border-b backdrop-blur-md">
