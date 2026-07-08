@@ -163,16 +163,6 @@ export default function Home() {
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className="bg-grid mask-fade relative -mx-6 flex flex-col items-center gap-6 px-6 pt-24 pb-8 text-center">
         <EcgTrace />
-        <Badge
-          variant="soft"
-          className="gap-1.5 rounded-full px-3 py-1 text-[13px]"
-        >
-          <span className="relative flex size-1.5">
-            <span className="bg-primary absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" />
-            <span className="bg-primary relative inline-flex size-1.5 rounded-full" />
-          </span>
-          Open-source · shadcn-native
-        </Badge>
         <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-balance sm:text-6xl">
           The component library for{" "}
           <span className="text-primary">health</span>.
@@ -293,9 +283,8 @@ export default function Home() {
       {/* ── Categories ───────────────────────────────────────── */}
       <section className="flex flex-col gap-8">
         <div className="flex flex-col gap-3">
-          <Kicker>Eight categories</Kicker>
           <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-            Domain-aware, head to toe.
+            Domain-aware.
           </h2>
           <p className="text-muted-foreground max-w-xl text-balance">
             From base primitives to triage acuity — the pieces health products
@@ -334,7 +323,7 @@ export default function Home() {
         <div className="flex flex-col gap-3">
           <Kicker>Why medcn</Kicker>
           <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-            Built the shadcn way, for medicine.
+            Built the shadcn way, for health.
           </h2>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
@@ -363,7 +352,7 @@ export default function Home() {
         <div className="flex flex-col gap-4 sm:max-w-2xl">
           <div className="flex items-center gap-2">
             <Bot className="text-primary size-5" />
-            <Kicker>Built for coding agents</Kicker>
+            <Kicker>For coding agents</Kicker>
           </div>
           <h2 className="text-2xl font-bold tracking-tight text-balance sm:text-3xl">
             Machine-readable to the core.

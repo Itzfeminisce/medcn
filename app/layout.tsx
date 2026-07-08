@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import Link from "next/link"
 
+import { SITE_URL } from "@/lib/env"
 import { getNavGroups } from "@/lib/registry"
 import { CommandMenu } from "@/components/command-menu"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -13,8 +14,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 })
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://medcn.dev"
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

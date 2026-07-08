@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next"
 
+import { SITE_URL } from "@/lib/env"
 import { getRegistryItems } from "@/lib/registry"
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://medcn.dev"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const items = await getRegistryItems()

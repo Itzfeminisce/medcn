@@ -18,10 +18,12 @@
 import { promises as fs } from "node:fs"
 import path from "node:path"
 
+import { REGISTRY_URL } from "../lib/env"
+
 const ROOT = path.resolve(import.meta.dirname, "..")
 const REGISTRY_SRC = path.join(ROOT, "registry", "medcn")
 const OUT_DIR = path.join(ROOT, "public", "r")
-const BASE_URL = process.env.REGISTRY_URL ?? "https://medcn.dev/r"
+const BASE_URL = REGISTRY_URL
 const SITE_URL = BASE_URL.replace(/\/r$/, "")
 
 interface Meta {
