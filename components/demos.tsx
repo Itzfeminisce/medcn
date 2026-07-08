@@ -10,6 +10,7 @@ import BloodPressureBadgeDemo from "@/registry/medcn/blood-pressure-badge/blood-
 import BloodPressureInputDemo from "@/registry/medcn/blood-pressure-input/blood-pressure-input.demo"
 import BloodTypeBadgeDemo from "@/registry/medcn/blood-type-badge/blood-type-badge.demo"
 import BmiGaugeDemo from "@/registry/medcn/bmi-gauge/bmi-gauge.demo"
+import BodyMapSelectorDemo from "@/registry/medcn/body-map-selector/body-map-selector.demo"
 import ButtonDemo from "@/registry/medcn/button/button.demo"
 import CardDemo from "@/registry/medcn/card/card.demo"
 import CareTeamListDemo from "@/registry/medcn/care-team-list/care-team-list.demo"
@@ -38,6 +39,7 @@ import LabOrderStatusDemo from "@/registry/medcn/lab-order-status/lab-order-stat
 import LabResultDemo from "@/registry/medcn/lab-result/lab-result.demo"
 import LabTrendPanelDemo from "@/registry/medcn/lab-trend-panel/lab-trend-panel.demo"
 import LabelDemo from "@/registry/medcn/label/label.demo"
+import MedicationSearchFieldDemo from "@/registry/medcn/medication-search-field/medication-search-field.demo"
 import MedicationTimingStripDemo from "@/registry/medcn/medication-timing-strip/medication-timing-strip.demo"
 import PainScaleDemo from "@/registry/medcn/pain-scale/pain-scale.demo"
 import PatientBannerDemo from "@/registry/medcn/patient-banner/patient-banner.demo"
@@ -45,15 +47,19 @@ import PopoverDemo from "@/registry/medcn/popover/popover.demo"
 import PregnancyWeekTrackerDemo from "@/registry/medcn/pregnancy-week-tracker/pregnancy-week-tracker.demo"
 import PrescriptionCardDemo from "@/registry/medcn/prescription-card/prescription-card.demo"
 import ProgressDemo from "@/registry/medcn/progress/progress.demo"
+import QuestionnaireScaleDemo from "@/registry/medcn/questionnaire-scale/questionnaire-scale.demo"
 import RadioGroupDemo from "@/registry/medcn/radio-group/radio-group.demo"
 import RefillCountdownDemo from "@/registry/medcn/refill-countdown/refill-countdown.demo"
+import ReviewOfSystemsFormDemo from "@/registry/medcn/review-of-systems-form/review-of-systems-form.demo"
 import RouteOfAdministrationFieldDemo from "@/registry/medcn/route-of-administration-field/route-of-administration-field.demo"
 import SelectDemo from "@/registry/medcn/select/select.demo"
 import SeparatorDemo from "@/registry/medcn/separator/separator.demo"
+import SignaturePadDemo from "@/registry/medcn/signature-pad/signature-pad.demo"
 import SliderDemo from "@/registry/medcn/slider/slider.demo"
 import SmokingStatusFieldDemo from "@/registry/medcn/smoking-status-field/smoking-status-field.demo"
 import Spo2DialDemo from "@/registry/medcn/spo2-dial/spo2-dial.demo"
 import SwitchDemo from "@/registry/medcn/switch/switch.demo"
+import SymptomMultiSelectDemo from "@/registry/medcn/symptom-multi-select/symptom-multi-select.demo"
 import TelehealthCallCardDemo from "@/registry/medcn/telehealth-call-card/telehealth-call-card.demo"
 import TemperatureFieldDemo from "@/registry/medcn/temperature-field/temperature-field.demo"
 import TextareaDemo from "@/registry/medcn/textarea/textarea.demo"
@@ -64,6 +70,7 @@ import TriageLevelIndicatorDemo from "@/registry/medcn/triage-level-indicator/tr
 import TriageQueueRowDemo from "@/registry/medcn/triage-queue-row/triage-queue-row.demo"
 import VaccinationRecordRowDemo from "@/registry/medcn/vaccination-record-row/vaccination-record-row.demo"
 import VitalsCardDemo from "@/registry/medcn/vitals-card/vitals-card.demo"
+import VitalsEntryFormDemo from "@/registry/medcn/vitals-entry-form/vitals-entry-form.demo"
 import WeightBasedDoseFieldDemo from "@/registry/medcn/weight-based-dose-field/weight-based-dose-field.demo"
 
 /**
@@ -81,6 +88,7 @@ export const demos: Record<string, React.ComponentType> = {
   "blood-pressure-input": BloodPressureInputDemo,
   "blood-type-badge": BloodTypeBadgeDemo,
   "bmi-gauge": BmiGaugeDemo,
+  "body-map-selector": BodyMapSelectorDemo,
   button: ButtonDemo,
   card: CardDemo,
   "care-team-list": CareTeamListDemo,
@@ -109,6 +117,7 @@ export const demos: Record<string, React.ComponentType> = {
   "lab-result": LabResultDemo,
   "lab-trend-panel": LabTrendPanelDemo,
   label: LabelDemo,
+  "medication-search-field": MedicationSearchFieldDemo,
   "medication-timing-strip": MedicationTimingStripDemo,
   "pain-scale": PainScaleDemo,
   "patient-banner": PatientBannerDemo,
@@ -116,15 +125,19 @@ export const demos: Record<string, React.ComponentType> = {
   "pregnancy-week-tracker": PregnancyWeekTrackerDemo,
   "prescription-card": PrescriptionCardDemo,
   progress: ProgressDemo,
+  "questionnaire-scale": QuestionnaireScaleDemo,
   "radio-group": RadioGroupDemo,
   "refill-countdown": RefillCountdownDemo,
+  "review-of-systems-form": ReviewOfSystemsFormDemo,
   "route-of-administration-field": RouteOfAdministrationFieldDemo,
   select: SelectDemo,
   separator: SeparatorDemo,
+  "signature-pad": SignaturePadDemo,
   slider: SliderDemo,
   "smoking-status-field": SmokingStatusFieldDemo,
   "spo2-dial": Spo2DialDemo,
   switch: SwitchDemo,
+  "symptom-multi-select": SymptomMultiSelectDemo,
   "telehealth-call-card": TelehealthCallCardDemo,
   "temperature-field": TemperatureFieldDemo,
   textarea: TextareaDemo,
@@ -135,5 +148,6 @@ export const demos: Record<string, React.ComponentType> = {
   "triage-queue-row": TriageQueueRowDemo,
   "vaccination-record-row": VaccinationRecordRowDemo,
   "vitals-card": VitalsCardDemo,
+  "vitals-entry-form": VitalsEntryFormDemo,
   "weight-based-dose-field": WeightBasedDoseFieldDemo,
 }

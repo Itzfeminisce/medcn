@@ -67,6 +67,8 @@ export interface TemperatureFieldProps
   /** Fires with the canonical °C value (or null when cleared). */
   onValueChange?: (celsius: number | null) => void
   defaultUnit?: TemperatureUnit
+  /** Field label; pass null to omit (e.g. when a parent supplies the heading). */
+  label?: React.ReactNode
   /** Measurement site shown alongside the band, e.g. "Oral", "Axillary". */
   site?: React.ReactNode
   /** Hide the advisory band feedback. */
@@ -83,6 +85,7 @@ function TemperatureField({
   defaultValue,
   onValueChange,
   defaultUnit = "C",
+  label = "Temperature",
   site = "Oral",
   showBand = true,
   disabled,
@@ -127,7 +130,7 @@ function TemperatureField({
       className={cn("flex w-full max-w-xs flex-col gap-3", className)}
       {...props}
     >
-      <Field label="Temperature">
+      <Field label={label}>
         {(controlProps) => (
           <div className="flex items-center gap-2">
             <Input

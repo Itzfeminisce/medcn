@@ -4,13 +4,14 @@
   "description": "Temperature entry with °C/°F toggle and an advisory hypothermia–fever band.",
   "category": "vitals",
   "type": "registry:ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "dependencies": ["lucide-react"],
   "registryDependencies": ["utils", "field", "input", "toggle-group"],
   "props": [
     { "name": "defaultValue", "type": "number | null", "description": "Initial value in canonical °C." },
     { "name": "onValueChange", "type": "(celsius: number | null) => void", "description": "Fires with the canonical °C value (null when cleared)." },
     { "name": "defaultUnit", "type": "\"C\" | \"F\"", "default": "\"C\"", "description": "Initial display unit." },
+    { "name": "label", "type": "ReactNode", "default": "\"Temperature\"", "description": "Field label; pass null to omit when a parent supplies the heading." },
     { "name": "site", "type": "ReactNode", "default": "\"Oral\"", "description": "Measurement site shown alongside the band." },
     { "name": "showBand", "type": "boolean", "default": "true", "description": "Show the advisory band feedback." },
     { "name": "disabled", "type": "boolean", "description": "Disables the input and unit toggle." }

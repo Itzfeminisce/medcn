@@ -1,0 +1,21 @@
+{
+  "name": "questionnaire-scale",
+  "title": "Questionnaire Scale",
+  "description": "Generalised Likert instrument (PHQ-9, GAD-7) with running score, completion, and banded result.",
+  "category": "triage",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "progress", "radio-group"],
+  "props": [
+    { "name": "items", "type": "ScaleItem[]", "description": "Questions: { id, text, critical? }." },
+    { "name": "options", "type": "ScaleOption[]", "description": "Shared answer options with point values, applied to every item." },
+    { "name": "value / defaultValue", "type": "Record<string, number>", "description": "Selected point value per item id (controlled/uncontrolled)." },
+    { "name": "onValueChange", "type": "(value: Record<string, number>) => void", "description": "Fires on each answer." },
+    { "name": "bands", "type": "ScaleBand[]", "description": "Result bands { min, max, label, variant } shown only when complete." },
+    { "name": "criticalWhen", "type": "(value: number) => boolean", "default": "(v) => v > 0", "description": "When a critical item counts as flagged." },
+    { "name": "disabled", "type": "boolean", "description": "Disables all items." }
+  ],
+  "clinicalNotes": "Show the item breakdown and require every item before presenting a total — a partial PHQ-9 total is meaningless, so the banded result appears only when all items are answered. Any critical-item flag (e.g. the self-harm item) is surfaced separately from the aggregate score; the total must never bury it. Point values and bands are caller-supplied so the same component serves different validated instruments. The generic sibling of pain-scale.",
+  "notes": "Round-2 form component; composes radio-group + progress. Each item is a fieldset/legend with a labelled radio row."
+}

@@ -1,0 +1,18 @@
+{
+  "name": "vitals-entry-form",
+  "title": "Vitals Entry Form",
+  "description": "A full vitals set in one card, each row a single-vital field, with completeness and a live summary.",
+  "category": "forms",
+  "type": "registry:ui",
+  "version": "0.1.1",
+  "dependencies": [],
+  "registryDependencies": ["utils", "blood-pressure-badge", "blood-pressure-input", "card", "date-field", "field", "glucose-log-input", "input", "progress", "spo2-dial", "temperature-field"],
+  "props": [
+    { "name": "defaultValue", "type": "Partial<VitalsSet>", "description": "Initial values; any subset of { takenAt, bp, hr, rr, temp, spo2, glucose }." },
+    { "name": "onValueChange", "type": "(value: VitalsSet) => void", "description": "Fires on any edit with the whole observation set." },
+    { "name": "title", "type": "ReactNode", "default": "\"Record vitals\"", "description": "Card title." },
+    { "name": "disabled", "type": "boolean", "description": "Disables all rows." }
+  ],
+  "clinicalNotes": "Partial vitals are valid and common — the form never requires the full set, and the completeness indicator reports coverage without gating. The whole set is timestamped (takenAt) rather than assuming \"now\", and per-row context (e.g. glucose fasting/post-meal, temperature site) is captured by the reused single-vital fields rather than assumed. Emits one structured observation set; canonical units follow each field (°C, kg/cm, mmHg).",
+  "notes": "Round-2 composite; reuses blood-pressure-input, temperature-field (label suppressed), glucose-log-input + spo2-dial/blood-pressure-badge for the live summary, in a card with a progress completeness bar. \"Taken at\" is a themed DateField + time input (not native datetime-local)."
+}

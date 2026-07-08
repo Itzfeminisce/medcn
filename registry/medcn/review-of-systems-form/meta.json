@@ -1,0 +1,18 @@
+{
+  "name": "review-of-systems-form",
+  "title": "Review of Systems Form",
+  "description": "Collapsible systems with yes/no/unknown symptom toggles, all-negative quick-set, and positives summary.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "badge", "collapsible", "toggle-group"],
+  "props": [
+    { "name": "systems", "type": "RosSystem[]", "description": "Systems with symptoms: { id, label, symptoms: { id, label }[] }." },
+    { "name": "value / defaultValue", "type": "Record<string, \"yes\" | \"no\" | \"unknown\">", "description": "Answers keyed by symptom id; absent = not asked." },
+    { "name": "onValueChange", "type": "(value: RosValue) => void", "description": "Fires on any answer or quick-set." },
+    { "name": "disabled", "type": "boolean", "description": "Disables all controls." }
+  ],
+  "clinicalNotes": "\"Unknown\" is a first-class state distinct from \"no\", and an absent answer (not asked) must never silently read as negative — the three states are kept separate. The \"all negative\" shortcut records an explicit \"no\" for every item in the system rather than leaving blanks. Positive findings are summarised on top so a reviewer sees them without expanding every system.",
+  "notes": "Round-2 form component; composes collapsible + toggle-group + badge."
+}

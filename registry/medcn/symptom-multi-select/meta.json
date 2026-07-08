@@ -1,0 +1,19 @@
+{
+  "name": "symptom-multi-select",
+  "title": "Symptom Multi-Select",
+  "description": "Searchable multi-select of symptoms as removable chips with per-symptom severity and duration.",
+  "category": "triage",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "badge", "button", "checkbox", "input", "popover", "toggle-group"],
+  "props": [
+    { "name": "options", "type": "SymptomOption[]", "description": "Symptom catalog: { id, label }[]." },
+    { "name": "value / defaultValue", "type": "SelectedSymptom[]", "description": "Selected symptoms: { id, label, severity?, duration?, custom? }." },
+    { "name": "onValueChange", "type": "(value: SelectedSymptom[]) => void", "description": "Fires on add/remove or per-symptom edit." },
+    { "name": "placeholder", "type": "ReactNode", "default": "\"Add symptoms\"", "description": "Trigger label." },
+    { "name": "disabled", "type": "boolean", "description": "Disables all controls." }
+  ],
+  "clinicalNotes": "Keep an \"other\" path — a fixed symptom list that forces the patient to mis-map their complaint loses signal, so free-text symptoms are added as custom entries and marked as such. Onset/duration and severity per symptom matter for triage and are offered, not required. Selection is structured data, not free text: each chip carries an id the caller can reconcile against a coding system.",
+  "notes": "Round-2 form component; composes popover + input + checkbox + badge + toggle-group + button. Each chip opens a popover to set severity/duration."
+}

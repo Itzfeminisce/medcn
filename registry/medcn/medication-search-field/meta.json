@@ -1,0 +1,21 @@
+{
+  "name": "medication-search-field",
+  "title": "Medication Search Field",
+  "description": "Async typeahead drug picker with a keyboard-navigable listbox and structured selection.",
+  "category": "medication",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "input", "popover"],
+  "props": [
+    { "name": "onSearch", "type": "(query: string) => Promise<MedicationOption[]>", "description": "Async candidate lookup; pair with the /drug-catalog API." },
+    { "name": "value", "type": "MedicationOption | null", "description": "Selected drug (controlled)." },
+    { "name": "onSelect", "type": "(drug: MedicationOption) => void", "description": "Fires with the structured drug object on selection." },
+    { "name": "placeholder", "type": "string", "default": "\"Search medications…\"", "description": "Input placeholder." },
+    { "name": "minChars", "type": "number", "default": "1", "description": "Minimum characters before searching." },
+    { "name": "debounceMs", "type": "number", "default": "250", "description": "Search debounce." },
+    { "name": "disabled", "type": "boolean", "description": "Disables the field." }
+  ],
+  "clinicalNotes": "Show enough to disambiguate look-alike/sound-alike drugs — strength and form, generic vs brand — because a bare name is a prescribing-error risk (each result renders name + strength + form + brand/generic). Selection yields structured data, not free text; the caller still confirms the choice. The listbox is fully keyboard-operable (arrow keys, Enter, Escape) with aria-activedescendant, and async lookups are debounced and race-safe (last query wins).",
+  "notes": "Round-2 form component; composes popover (anchor) + input as an ARIA combobox. Focus stays in the input; the listbox is navigated via aria-activedescendant."
+}
