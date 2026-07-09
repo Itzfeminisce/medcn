@@ -1,0 +1,21 @@
+{
+  "name": "triage-board-block",
+  "title": "Triage / ED Board",
+  "description": "A full-width ED wallboard — the acuity-sorted roster leading, a risk-scores panel for the selected patient, and a vitals overview. No sidebar (shared display). DashboardShell + DashboardGrid.",
+  "category": "blocks",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": [
+    "utils", "dashboard-shell", "dashboard-grid",
+    "patient-roster-table", "risk-scores-panel", "vitals-overview-panel"
+  ],
+  "props": [
+    { "name": "roster", "type": "PatientRosterTableProps", "description": "Waiting patients; sorts by acuity then wait." },
+    { "name": "risk", "type": "RiskScoresPanelProps", "description": "Risk scores for the selected patient." },
+    { "name": "vitals", "type": "VitalsOverviewPanelProps" },
+    { "name": "title / headerActions / header", "type": "ReactNode" }
+  ],
+  "clinicalNotes": "Designed for a shared wall display, so it runs full-bleed (no sidebar) and leans on the roster's acuity sort + wait-target chips to be legible at distance — the two things that drive ED flow. Keep the risk and vitals panels tied to the currently-selected/most-critical patient. Because it may be always-on, honor prefers-reduced-motion (the underlying components already gate pulses behind motion-safe) and avoid color-only signals — every acuity and status carries a text label.",
+  "notes": "Layer-M3 block (B-4). Client component. Composes 3 M2 panels; strong differentiator vs generic kits."
+}

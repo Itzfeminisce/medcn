@@ -13,7 +13,7 @@ export type LabResultEntry = React.ComponentProps<typeof LabTrendRow> & {
 }
 
 export interface LabResultsPanelProps
-  extends Omit<React.ComponentProps<typeof WidgetPanel>, "children"> {
+  extends Omit<React.ComponentProps<typeof WidgetPanel>, "children" | "results"> {
   results: LabResultEntry[]
   /** Optional pending orders shown below the results. */
   pendingOrders?: (React.ComponentProps<typeof LabOrderStatus> & {

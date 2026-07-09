@@ -193,12 +193,22 @@ M2 panels, shipped as one installable item.
 
 | ID   | Block                          | Status      | Panels used | Audience / why |
 |------|--------------------------------|-------------|-------------|----------------|
-| B-1  | Patient Chart / 360 Summary ⭐  | not-started | P-1,P-2,P-3,P-4,P-5,P-6,P-13 | Single-patient clinical face-sheet. Densest, most reusable, best proof-of-concept — **recommended first block.** |
-| B-2  | Provider / Clinician Dashboard | not-started | P-15,P-8,P-9,P-10,P-16 | Multi-patient census: roster + agenda + tasks + alerts + inbox. |
-| B-3  | Patient / Consumer Health      | not-started | P-2,P-3,P-8,P-7,P-16 | Patient-facing; directly reusable upstream in the Petals user app. |
-| B-4  | Triage / ED Board              | not-started | P-15,P-11,P-2 | Acuity + vitals + wait times. Leans on existing triage atoms; strong differentiator. |
-| B-5  | Medication Management          | not-started | P-3,P-8 (+ dose-checklist, medication-timing-strip) | Meds + adherence + interactions + refills + schedule. |
-| B-6  | Telehealth Visit Console       | not-started | telehealth-call-card, P-1, P-2, clinical-note-card(A-7) | Live-visit console: call + summary + vitals + notes. |
+| B-1  | Patient Chart / 360 Summary ⭐  | completed   | P-1,P-2,P-3,P-4,P-5,P-6,P-13 | Single-patient clinical face-sheet. Densest, most reusable, best proof-of-concept — **recommended first block.** |
+| B-2  | Provider / Clinician Dashboard | completed   | P-15,P-8,P-9,P-10,P-16 | Multi-patient census: roster + agenda + tasks + alerts + inbox. |
+| B-3  | Patient / Consumer Health      | completed   | P-2,P-3,P-8,P-7,P-16 | Patient-facing; directly reusable upstream in the Petals user app. |
+| B-4  | Triage / ED Board              | completed   | P-15,P-11,P-2 | Acuity + vitals + wait times. Leans on existing triage atoms; strong differentiator. |
+| B-5  | Medication Management          | completed   | P-3,P-8 (+ dose-checklist, medication-timing-strip) | Meds + adherence + interactions + refills + schedule. |
+| B-6  | Telehealth Visit Console       | completed   | telehealth-call-card, P-1, P-2, clinical-note-card(A-7) | Live-visit console: call + summary + vitals + notes. |
+
+> **M3 completed 2026-07-09.** All 6 blocks emitted (`type: registry:block`, category
+> `blocks`, all `"use client"`) — registry now **110 items**; demos registered; `tsc --noEmit`
+> **clean** (also fixed 3 latent type errors that had shipped in the M2 commit: the
+> `lab-results-panel` `results` reserved-attr collision, a `patient-summary-panel`
+> `action`→`actions` typo, and `noUncheckedIndexedAccess` on adherence demo arrays);
+> `registry:build` green; **all 6 `/components/<name>` pages verified rendering live**. Each
+> block takes each panel's own props object (`React.ComponentProps<typeof Panel>`) and arranges
+> them in a `dashboard-shell` + `dashboard-grid`, with a built-in nav/header (overridable).
+> **The full atoms→panels→blocks layer (M0–M3) is now complete.** Uncommitted.
 
 ### Freemium mapping (proposal, not locked)
 - **Free:** all of M0 (layout) + all M1 atoms + 2 starter panels (suggest P-2 Vitals,

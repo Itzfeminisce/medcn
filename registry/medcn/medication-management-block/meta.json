@@ -1,0 +1,22 @@
+{
+  "name": "medication-management-block",
+  "title": "Medication Management",
+  "description": "Active medications with interactions and adherence, today's dose checklist, per-drug dosing schedule, and related appointments. DashboardShell + DashboardGrid.",
+  "category": "blocks",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": [
+    "utils", "dashboard-shell", "dashboard-grid", "widget-panel",
+    "medication-list-panel", "appointments-panel", "dose-checklist", "medication-timing-strip"
+  ],
+  "props": [
+    { "name": "medications", "type": "MedicationListPanelProps" },
+    { "name": "doses", "type": "DoseChecklistProps", "description": "Today's doses + onToggle." },
+    { "name": "schedule", "type": "MedicationTimingStripProps[]", "description": "Per-medication timing strips." },
+    { "name": "appointments", "type": "AppointmentsPanelProps" },
+    { "name": "brand / sidebar / header", "type": "ReactNode" }
+  ],
+  "clinicalNotes": "Brings the whole medication picture into one view: the reconciled list (with interaction warnings first and an adherence ring), plus the operational 'what's due now' via the dose checklist and per-drug timing strips. This pairing is the point — a list tells you what is prescribed, the checklist/strips tell you what was actually taken, and the gap between them is where adherence problems and double-dosing hide. Keep dose toggles wired to your source of truth.",
+  "notes": "Layer-M3 block (B-5). Client component. Composes 2 M2 panels + dose-checklist + medication-timing-strip."
+}

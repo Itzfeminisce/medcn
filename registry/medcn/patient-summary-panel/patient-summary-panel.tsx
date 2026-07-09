@@ -30,7 +30,7 @@ function Section({
 }) {
   return (
     <section className="flex flex-col gap-3 px-4 py-4 sm:px-5">
-      <SectionHeader as="h3" title={title} action={action} className="gap-0" />
+      <SectionHeader as="h3" title={title} actions={action} className="gap-0" />
       {children}
     </section>
   )

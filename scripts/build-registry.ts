@@ -18,10 +18,10 @@
 import { promises as fs } from "node:fs"
 import path from "node:path"
 
-import { REGISTRY_URL } from "../lib/env"
+import { REGISTRY_NAMESPACE, REGISTRY_URL, SITE_NAME } from "../lib/env"
 
 const ROOT = path.resolve(import.meta.dirname, "..")
-const REGISTRY_SRC = path.join(ROOT, "registry", "medcn")
+const REGISTRY_SRC = path.join(ROOT, "registry", SITE_NAME)
 const OUT_DIR = path.join(ROOT, "public", "r")
 const BASE_URL = REGISTRY_URL
 const SITE_URL = BASE_URL.replace(/\/r$/, "")
@@ -46,10 +46,10 @@ const SHADCN_BUILTINS = new Set(["utils"])
 
 function rewriteImports(source: string): string {
   return source
-    .replaceAll('"@/registry/medcn/lib/utils"', '"@/lib/utils"')
+    .replaceAll(`"@/registry/${SITE_NAME}/lib/utils"`, `["@/lib/utils"]`)
     .replace(
-      /"@\/registry\/medcn\/[a-z0-9-]+\/([a-z0-9-]+)"/g,
-      '"@/components/ui/$1"'
+      new RegExp(`"@\/registry\/${SITE_NAME}\/[a-z0-9-]+\/([a-z0-9-]+)"`, "g"),
+      `["@/components/ui/$1"]`
     )
 }
 
@@ -93,7 +93,7 @@ async function main() {
       registryDependencies,
       files: [
         {
-          path: `registry/medcn/${meta.name}/${meta.name}.tsx`,
+          path: `registry/${SITE_NAME}/${meta.name}/${meta.name}.tsx`,
           type: meta.type,
           target: `components/ui/${meta.name}.tsx`,
           content: rewriteImports(componentSource),
@@ -143,7 +143,7 @@ async function main() {
 /** llms.txt — machine-readable catalog for coding agents. */
 async function writeLlmsTxt(items: { name: string; description: string }[]) {
   const lines = [
-    "# medcn",
+    `# ${SITE_NAME}`,
     "",
     "> Copy-paste UI components for health & medical products (vitals, medication, scheduling, triage, records). Distributed as source through the shadcn registry — shadcn/ui conventions (Tailwind CSS, Radix, cva); the code lands in your project and you own it.",
     "",
@@ -151,7 +151,7 @@ async function writeLlmsTxt(items: { name: string; description: string }[]) {
     "",
     `    npx shadcn@latest add ${BASE_URL}/<name>.json`,
     "",
-    `Or register the namespace in components.json — "registries": { "@medcn": "${BASE_URL}/{name}.json" } — then \`npx shadcn@latest add @medcn/<name>\`.`,
+    `Or register the namespace in components.json — "registries": { "${REGISTRY_NAMESPACE}": "${BASE_URL}/{name}.json" } — then \`npx shadcn@latest add ${REGISTRY_NAMESPACE}/<name>\`.`,
     "",
     `Each registry item (${BASE_URL}/<name>.json) contains the full source, npm dependencies, registry dependencies, and under \`meta\`: props, version, docs URL, and clinical notes. Read the clinical notes before wiring data.`,
     "",

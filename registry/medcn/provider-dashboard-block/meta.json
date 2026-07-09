@@ -1,0 +1,25 @@
+{
+  "name": "provider-dashboard-block",
+  "title": "Provider Dashboard",
+  "description": "A multi-patient clinician command center — an optional KPI strip over the roster, today's agenda, task worklist, alerts feed, and inbox. DashboardShell + DashboardGrid of M2 panels.",
+  "category": "blocks",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": [
+    "utils", "button", "dashboard-shell", "dashboard-grid", "stat-tile",
+    "patient-roster-table", "appointments-panel", "task-worklist-panel",
+    "clinical-alerts-feed", "messages-inbox-panel"
+  ],
+  "props": [
+    { "name": "roster", "type": "PatientRosterTableProps" },
+    { "name": "appointments", "type": "AppointmentsPanelProps" },
+    { "name": "tasks", "type": "TaskWorklistPanelProps" },
+    { "name": "alerts", "type": "ClinicalAlertsFeedProps" },
+    { "name": "inbox", "type": "MessagesInboxPanelProps" },
+    { "name": "stats", "type": "StatTileProps[]", "description": "Optional KPI strip across the top." },
+    { "name": "sidebar / header / brand", "type": "ReactNode" }
+  ],
+  "clinicalNotes": "This is the shift-start view, so it foregrounds triage: the acuity-sorted roster leads, the alerts feed sits beside it, and the KPI strip answers 'how busy am I' at a glance. Each embedded panel keeps its own safety ordering (roster by acuity, alerts by severity, tasks by priority, inbox by unread) — the block never re-sorts clinical data, it only arranges the panels. Wire the alert/task/message handlers to your store so acknowledged work leaves the surface.",
+  "notes": "Layer-M3 block (B-2). Client component. Composes 5 M2 panels + a StatTile strip."
+}

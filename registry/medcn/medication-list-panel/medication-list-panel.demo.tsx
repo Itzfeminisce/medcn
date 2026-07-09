@@ -3,9 +3,9 @@
 import { Button } from "@/registry/medcn/button/button"
 import { MedicationListPanel } from "@/registry/medcn/medication-list-panel/medication-list-panel"
 
-const week = Array.from({ length: 7 }, (_, i) => ({
+const week = [2, 1, 2, 2, 2, 1, 2].map((taken, i) => ({
   date: `2026-07-0${i + 1}`,
-  taken: [2, 1, 2, 2, 2, 1, 2][i],
+  taken,
   scheduled: 2,
 }))
 

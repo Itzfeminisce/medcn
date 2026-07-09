@@ -1,0 +1,24 @@
+{
+  "name": "consumer-health-block",
+  "title": "Consumer Health Dashboard",
+  "description": "A friendly patient-facing home — upcoming appointments (with check-in), open care gaps, my vitals, my medications + adherence, and messages. DashboardShell + DashboardGrid of M2 panels.",
+  "category": "blocks",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": [
+    "utils", "dashboard-shell", "dashboard-grid",
+    "vitals-overview-panel", "medication-list-panel", "appointments-panel",
+    "care-gaps-panel", "messages-inbox-panel"
+  ],
+  "props": [
+    { "name": "vitals", "type": "VitalsOverviewPanelProps" },
+    { "name": "medications", "type": "MedicationListPanelProps" },
+    { "name": "appointments", "type": "AppointmentsPanelProps", "description": "Supports the check-in tracker for the current visit." },
+    { "name": "careGaps", "type": "CareGapsPanelProps" },
+    { "name": "messages", "type": "MessagesInboxPanelProps" },
+    { "name": "greeting / brand / sidebar / header", "type": "ReactNode" }
+  ],
+  "clinicalNotes": "The patient-facing counterpart to the provider view: same panels, gentler framing. Lead with what the patient can act on — the next appointment (with a live check-in tracker) and open care gaps — then their own vitals and medications with an adherence ring that reframes 'non-compliance' as missed doses. Keep the language plain; the panels already avoid jargon-only status (color + text). Directly reusable upstream in the Petals patient app.",
+  "notes": "Layer-M3 block (B-3). Client component. Composes 5 M2 panels."
+}

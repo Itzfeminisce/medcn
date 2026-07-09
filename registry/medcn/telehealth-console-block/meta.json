@@ -1,0 +1,22 @@
+{
+  "name": "telehealth-console-block",
+  "title": "Telehealth Visit Console",
+  "description": "The live-visit workspace — the call card beside the patient's vitals, with the summary chart and a visit note below for documenting in-encounter. DashboardShell + DashboardGrid.",
+  "category": "blocks",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": [
+    "utils", "dashboard-shell", "dashboard-grid",
+    "telehealth-call-card", "patient-summary-panel", "vitals-overview-panel", "clinical-note-card"
+  ],
+  "props": [
+    { "name": "call", "type": "TelehealthCallCardProps" },
+    { "name": "summary", "type": "PatientSummaryPanelProps" },
+    { "name": "vitals", "type": "VitalsOverviewPanelProps", "description": "Home/patient-reported vitals for the visit." },
+    { "name": "note", "type": "ClinicalNoteCardProps", "description": "The in-progress visit note (status=\"draft\")." },
+    { "name": "title / headerActions / header", "type": "ReactNode" }
+  ],
+  "clinicalNotes": "A visit console must keep the clinician oriented while on camera: the call sits beside the patient summary and vitals so identity, allergies, and the reason for visit stay in view, and the note is a draft until signed (the ClinicalNoteCard marks unsigned notes as not part of the legal record). For telehealth, prefer patient-reported/home vitals and label them as such — they are not equivalent to in-clinic measurements.",
+  "notes": "Layer-M3 block (B-6). Client component. Composes telehealth-call-card + 2 M2 panels + clinical-note-card."
+}

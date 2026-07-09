@@ -1,0 +1,28 @@
+{
+  "name": "patient-chart-block",
+  "title": "Patient Chart",
+  "description": "A single-patient clinical face sheet — a PatientSummaryPanel hero over deep-dive vitals, medications, problems, allergies, labs, and encounter sections, in a DashboardShell + DashboardGrid.",
+  "category": "blocks",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": [
+    "utils", "button", "dashboard-shell", "dashboard-grid",
+    "patient-summary-panel", "vitals-overview-panel", "medication-list-panel",
+    "problem-list-panel", "allergy-panel", "lab-results-panel", "encounter-timeline-panel"
+  ],
+  "props": [
+    { "name": "summary", "type": "PatientSummaryPanelProps", "description": "Hero snapshot (patient + vitals/problems/meds)." },
+    { "name": "vitals", "type": "VitalsOverviewPanelProps" },
+    { "name": "medications", "type": "MedicationListPanelProps" },
+    { "name": "problems", "type": "ProblemListPanelProps" },
+    { "name": "allergies", "type": "AllergyPanelProps" },
+    { "name": "labs", "type": "LabResultsPanelProps" },
+    { "name": "encounters", "type": "EncounterTimelinePanelProps" },
+    { "name": "sidebar", "type": "ReactNode", "description": "Override the built-in nav." },
+    { "name": "header", "type": "ReactNode", "description": "Override the built-in header." },
+    { "name": "brand", "type": "ReactNode", "default": "\"Petals Health\"" }
+  ],
+  "clinicalNotes": "The flagship read-view: a curated summary hero pins identity + allergies at the top (sticky-header pattern) while the deep-dive panels below carry the full record. Redundancy between the summary snapshot and the detailed panels is intentional and matches real EHRs — the 5-second read and the full section coexist. Each panel keeps its own clinical semantics (status tones, reference ranges, sort order); the block only owns layout. Pass each panel its own props object so your data wiring stays local to the panel it feeds.",
+  "notes": "Layer-M3 block (B-1) — the freemium flagship. Client component. Composes 7 M2 panels."
+}

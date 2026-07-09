@@ -105,6 +105,13 @@ import ProblemListPanelDemo from "@/registry/medcn/problem-list-panel/problem-li
 import RiskScoresPanelDemo from "@/registry/medcn/risk-scores-panel/risk-scores-panel.demo"
 import TaskWorklistPanelDemo from "@/registry/medcn/task-worklist-panel/task-worklist-panel.demo"
 import VitalsOverviewPanelDemo from "@/registry/medcn/vitals-overview-panel/vitals-overview-panel.demo"
+// M3 dashboard blocks
+import ConsumerHealthBlockDemo from "@/registry/medcn/consumer-health-block/consumer-health-block.demo"
+import MedicationManagementBlockDemo from "@/registry/medcn/medication-management-block/medication-management-block.demo"
+import PatientChartBlockDemo from "@/registry/medcn/patient-chart-block/patient-chart-block.demo"
+import ProviderDashboardBlockDemo from "@/registry/medcn/provider-dashboard-block/provider-dashboard-block.demo"
+import TelehealthConsoleBlockDemo from "@/registry/medcn/telehealth-console-block/telehealth-console-block.demo"
+import TriageBoardBlockDemo from "@/registry/medcn/triage-board-block/triage-board-block.demo"
 
 /**
  * name → demo component. Hand-maintained for the proving slice;
@@ -127,6 +134,12 @@ export const demos: Record<string, React.ComponentType> = {
   "risk-scores-panel": RiskScoresPanelDemo,
   "task-worklist-panel": TaskWorklistPanelDemo,
   "vitals-overview-panel": VitalsOverviewPanelDemo,
+  "consumer-health-block": ConsumerHealthBlockDemo,
+  "medication-management-block": MedicationManagementBlockDemo,
+  "patient-chart-block": PatientChartBlockDemo,
+  "provider-dashboard-block": ProviderDashboardBlockDemo,
+  "telehealth-console-block": TelehealthConsoleBlockDemo,
+  "triage-board-block": TriageBoardBlockDemo,
   "adherence-ring": AdherenceRingDemo,
   "allergy-badge": AllergyBadgeDemo,
   "allergy-input-field": AllergyInputFieldDemo,
