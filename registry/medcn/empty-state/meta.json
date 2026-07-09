@@ -1,0 +1,19 @@
+{
+  "name": "empty-state",
+  "title": "Empty State",
+  "description": "Neutral placeholder for no-data / no-results / not-available panels, with icon, title, description, and an action slot.",
+  "category": "layout",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["class-variance-authority", "lucide-react"],
+  "registryDependencies": ["utils", "button"],
+  "props": [
+    { "name": "icon", "type": "ReactNode", "description": "Illustrative icon, framed in a muted circle." },
+    { "name": "title", "type": "ReactNode", "description": "Required. Short statement of what is missing." },
+    { "name": "description", "type": "ReactNode", "description": "Optional supporting sentence and what to do next." },
+    { "name": "action", "type": "ReactNode", "description": "Primary/secondary action buttons." },
+    { "name": "size", "type": "\"sm\" | \"default\" | \"lg\"", "default": "\"default\"" }
+  ],
+  "clinicalNotes": "An empty panel in a clinical dashboard is ambiguous — it can mean 'no data recorded' OR 'data failed to load'. Always give the empty state a title that states which, and where possible an action to record the first entry. Never leave a vitals/meds/labs panel visually blank; a blank panel reads as a system error to a clinician under time pressure.",
+  "notes": "Layer-M0 scaffolding. Referenced by widget-panel's empty state and by dashboard tables."
+}

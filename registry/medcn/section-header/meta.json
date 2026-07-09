@@ -1,0 +1,21 @@
+{
+  "name": "section-header",
+  "title": "Section Header",
+  "description": "Title + description + right-aligned actions row for dashboard panels and page sections, with heading semantics and an optional count badge.",
+  "category": "layout",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "button", "badge", "tooltip"],
+  "props": [
+    { "name": "icon", "type": "ReactNode", "description": "Leading muted icon." },
+    { "name": "title", "type": "ReactNode", "description": "Required section title, rendered as a heading." },
+    { "name": "description", "type": "ReactNode" },
+    { "name": "badge", "type": "ReactNode", "description": "Count/status pill beside the title." },
+    { "name": "info", "type": "ReactNode", "description": "Info affordance beside the title — an icon button with a Tooltip." },
+    { "name": "actions", "type": "ReactNode", "description": "Right-aligned filters, sort, buttons." },
+    { "name": "as", "type": "\"h1\" | \"h2\" | \"h3\" | \"h4\"", "default": "\"h2\"", "description": "Heading level for the a11y tree." }
+  ],
+  "clinicalNotes": "Choose the `as` heading level to keep a correct document outline — a screen-reader user navigating a chart by headings depends on it (page title h1 → panel headers h2). The count badge is announced with the title, so keep it meaningful (e.g. number of active problems), not decorative.",
+  "notes": "Layer-M0 scaffolding. Used by widget-panel and directly in list panels."
+}

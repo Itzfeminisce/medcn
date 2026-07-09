@@ -1,0 +1,22 @@
+{
+  "name": "problem-list-item",
+  "title": "Problem List Item",
+  "description": "One entry on a patient's problem list — status dot, diagnosis name, an ICD-10 code chip with a Tooltip, onset, and severity. Resolved problems are de-emphasized, never hidden.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "badge", "tooltip"],
+  "props": [
+    { "name": "name", "type": "ReactNode", "description": "Problem / diagnosis name." },
+    { "name": "code", "type": "ReactNode", "description": "Coded identifier (e.g. ICD-10), shown as a mono chip with a Tooltip." },
+    { "name": "codeSystem", "type": "ReactNode", "default": "\"ICD-10\"", "description": "Coding system named in the code Tooltip." },
+    { "name": "status", "type": "\"active\" | \"resolved\" | \"inactive\"", "default": "\"active\"" },
+    { "name": "severity", "type": "\"mild\" | \"moderate\" | \"severe\"" },
+    { "name": "onset", "type": "ReactNode", "description": "Onset date/age." },
+    { "name": "lastReviewed", "type": "ReactNode" },
+    { "name": "actions", "type": "ReactNode", "description": "Right-aligned action slot." }
+  ],
+  "clinicalNotes": "The problem list is the clinical spine of the chart — resolved and inactive problems are de-emphasized (muted + strikethrough) but must remain visible for history, never removed. Status is carried by a labeled dot with a Tooltip AND a text badge, never color alone. The code is presented as data (mono, tabular) with the coding system disclosed on hover so ICD-10 vs SNOMED is never ambiguous. Severity maps to the shared badge tones (mild=secondary, moderate=warning, severe=destructive).",
+  "notes": "Layer-M1 atom (core EHR gap). Feeds ProblemListPanel and PatientSummaryPanel (M2)."
+}

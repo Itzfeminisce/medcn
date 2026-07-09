@@ -1,0 +1,24 @@
+{
+  "name": "appointment-row",
+  "title": "Appointment Row",
+  "description": "One appointment on an agenda — a fixed time column, a status-tinted left rail, patient avatar + name, visit type, location (with a Tooltip), a status badge, and an action slot.",
+  "category": "scheduling",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "avatar", "badge", "tooltip"],
+  "props": [
+    { "name": "time", "type": "ReactNode", "description": "Start time." },
+    { "name": "duration", "type": "ReactNode", "description": "e.g. \"30 min\"." },
+    { "name": "patient", "type": "{ name: string; avatarSrc?: string }" },
+    { "name": "title", "type": "ReactNode", "description": "Used when no patient." },
+    { "name": "type", "type": "ReactNode", "description": "Visit type." },
+    { "name": "status", "type": "\"scheduled\" | \"checked-in\" | \"in-room\" | \"completed\" | \"cancelled\" | \"no-show\"", "default": "\"scheduled\"" },
+    { "name": "location", "type": "ReactNode" },
+    { "name": "telehealth", "type": "boolean", "default": "false", "description": "Use a video pin + telehealth Tooltip." },
+    { "name": "interactive", "type": "boolean", "default": "false" },
+    { "name": "actions", "type": "ReactNode" }
+  ],
+  "clinicalNotes": "The visit lifecycle is carried by the left-rail tint AND a text badge (scheduled → checked-in → in-room → completed; no-show=destructive) so a day can be scanned for who has arrived. Time and duration are tabular-nums in a fixed column so rows align into a readable agenda. The status badge hides below sm to protect the layout on phones — the rail keeps the state visible. Telehealth swaps the location pin for a video icon with an explicit Tooltip. Pair with appointment-check-in for the arrival flow.",
+  "notes": "Layer-M1 atom. Feeds AppointmentsPanel (M2), the Provider and Consumer blocks."
+}

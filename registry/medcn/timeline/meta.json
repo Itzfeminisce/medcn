@@ -1,0 +1,21 @@
+{
+  "name": "timeline",
+  "title": "Timeline",
+  "description": "Vertical event rail (Timeline + TimelineItem) with colored markers, titles, timestamps, and content — for encounter history, activity feeds, and care-plan steps.",
+  "category": "layout",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "tooltip"],
+  "props": [
+    { "name": "TimelineItem.marker", "type": "ReactNode", "description": "Icon inside the marker; falls back to a dot." },
+    { "name": "TimelineItem.color", "type": "\"default\" | \"primary\" | \"success\" | \"warning\" | \"destructive\"", "default": "\"default\"" },
+    { "name": "TimelineItem.title", "type": "ReactNode" },
+    { "name": "TimelineItem.time", "type": "ReactNode", "description": "Right-aligned timestamp." },
+    { "name": "TimelineItem.markerTooltip", "type": "ReactNode", "description": "Tooltip on the marker — e.g. the event type/category." },
+    { "name": "TimelineItem.interactive", "type": "boolean", "default": "false", "description": "Hover-highlight + pointer affordance for a clickable event." },
+    { "name": "TimelineItem.last", "type": "boolean", "default": "false", "description": "Hide the connector below (set on the final item)." }
+  ],
+  "clinicalNotes": "Order events most-recent-first for a chart history so the latest encounter is read first; marker color should encode event class (visit, lab, medication, immunization, acute event) consistently across a product, and never carry meaning by color alone — the title always states the event type. Timestamps are tabular-nums for clean vertical scanning.",
+  "notes": "Layer-M0 scaffolding. Consumed by EncounterTimelinePanel (M2)."
+}

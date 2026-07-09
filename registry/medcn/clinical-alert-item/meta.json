@@ -1,0 +1,24 @@
+{
+  "name": "clinical-alert-item",
+  "title": "Clinical Alert Item",
+  "description": "One clinical alert in a feed — severity-tinted with an icon chip, title + message, a category chip with a source Tooltip, timestamp, and acknowledge / dismiss affordances.",
+  "category": "triage",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "tooltip"],
+  "props": [
+    { "name": "severity", "type": "\"critical\" | \"warning\" | \"info\" | \"success\"", "default": "\"info\"" },
+    { "name": "title", "type": "ReactNode" },
+    { "name": "message", "type": "ReactNode" },
+    { "name": "category", "type": "ReactNode", "description": "e.g. \"Drug interaction\", \"Critical lab\"." },
+    { "name": "source", "type": "ReactNode", "description": "Rule/source disclosed via a Tooltip on the category chip." },
+    { "name": "time", "type": "ReactNode" },
+    { "name": "icon", "type": "ReactNode", "description": "Override the severity icon." },
+    { "name": "onAcknowledge", "type": "() => void", "description": "Shows an Acknowledge button." },
+    { "name": "onDismiss", "type": "() => void", "description": "Shows a dismiss (×) button." },
+    { "name": "actions", "type": "ReactNode" }
+  ],
+  "clinicalNotes": "Severity drives both tone and ARIA: critical & warning render role=\"alert\" (assertive) while info & success use role=\"status\" (polite), so screen readers interrupt only for the former — matching alarm-fatigue guidance. Critical pulses (motion-safe). Alerts are never dismissed silently — expose Acknowledge for auditable sign-off and keep the source rule one hover away, since an unexplained alert is an ignored alert. Color always pairs with an icon + text label.",
+  "notes": "Layer-M1 atom. Client component (handlers). Feeds ClinicalAlertsFeed (M2) and every block header."
+}

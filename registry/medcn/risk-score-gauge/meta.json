@@ -1,0 +1,21 @@
+{
+  "name": "risk-score-gauge",
+  "title": "Risk Score Gauge",
+  "description": "A single clinical risk score as a semicircular gauge — the arc fills and colors by band (low → critical) with the value read large in the well, and a Tooltip disclosing the scale.",
+  "category": "triage",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "card", "tooltip"],
+  "props": [
+    { "name": "label", "type": "ReactNode", "description": "Score name, e.g. \"ASCVD 10-yr\"." },
+    { "name": "value", "type": "ReactNode", "description": "Displayed value, e.g. \"12.4%\" or \"3\"." },
+    { "name": "band", "type": "\"low\" | \"moderate\" | \"high\" | \"critical\"", "description": "Drives arc color and the band chip." },
+    { "name": "percent", "type": "number", "description": "Arc fill 0–100. Defaults from a numeric value, else 0." },
+    { "name": "scale", "type": "ReactNode", "description": "Model + cut-points, shown in a Tooltip on the label." },
+    { "name": "caption", "type": "ReactNode", "description": "Small caption, e.g. \"Updated 14 Jul\"." },
+    { "name": "interactive", "type": "boolean", "default": "false", "description": "Hover-lift, press, focus for drill-down." }
+  ],
+  "clinicalNotes": "`percent` (arc fill) and `band` (color + label) are intentionally independent: many scores are categorical (qSOFA 0–3, Braden) where the raw number and its risk cut-point don't map linearly — the caller sets both. Bands use the shared tone system (low=success … critical=destructive-solid) and are always labeled in text, not color alone. Always disclose the underlying model and its thresholds via `scale` — a risk number is meaningless without the instrument that produced it. The gauge has role=img with an accessible band label.",
+  "notes": "Layer-M1 atom (core gap). Feeds RiskScoresPanel (M2) and the Triage/ED board."
+}

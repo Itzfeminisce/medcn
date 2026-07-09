@@ -1,0 +1,23 @@
+{
+  "name": "stat-tile",
+  "title": "Stat Tile",
+  "description": "Big-number KPI tile with label, value + unit, an intent-colored delta, and an optional inline sparkline — for dashboard header strips.",
+  "category": "layout",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "card", "trend-sparkline", "tooltip"],
+  "props": [
+    { "name": "label", "type": "ReactNode", "description": "Metric name." },
+    { "name": "value", "type": "ReactNode", "description": "The number/statistic." },
+    { "name": "unit", "type": "ReactNode", "description": "e.g. \"%\", \"bpm\"." },
+    { "name": "icon", "type": "ReactNode", "description": "Rendered in a tinted chip." },
+    { "name": "delta", "type": "{ value: ReactNode; direction?: \"up\" | \"down\" | \"flat\"; intent?: \"good\" | \"bad\" | \"neutral\"; tooltip?: ReactNode }", "description": "Change vs. a prior period. direction is which way the number moved; intent is whether that is good; tooltip explains the comparison." },
+    { "name": "trend", "type": "TrendPoint[]", "description": "Optional sparkline series." },
+    { "name": "caption", "type": "ReactNode", "description": "Small supporting caption, e.g. \"vs. yesterday\"." },
+    { "name": "info", "type": "ReactNode", "description": "Info affordance beside the label — an icon button with a Tooltip." },
+    { "name": "interactive", "type": "boolean", "default": "false", "description": "Hover-lift, press, focus-ring, and pointer affordances for drill-down tiles." }
+  ],
+  "clinicalNotes": "`direction` and `intent` are deliberately independent, mirroring vitals-card: a falling readmission rate is good, a falling patient census may not be — the component never infers meaning from the number. Values are tabular-nums for aligned scanning across a KPI row. Deltas are never conveyed by color alone; the arrow and the +/- value carry the direction too.",
+  "notes": "Layer-M0 scaffolding. Feeds dashboard header strips and VitalsOverviewPanel (M2)."
+}

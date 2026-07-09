@@ -1,0 +1,22 @@
+{
+  "name": "clinical-note-card",
+  "title": "Clinical Note Card",
+  "description": "A clinical note (SOAP / progress / consult) as a card — author avatar, note type, timestamp, a status badge, and a lock affordance whose Tooltip carries the signature. Drafts are visually distinct.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "card", "avatar", "badge", "tooltip"],
+  "props": [
+    { "name": "noteType", "type": "ReactNode", "default": "\"Progress note\"" },
+    { "name": "author", "type": "{ name: string; role?: ReactNode; avatarSrc?: string }" },
+    { "name": "time", "type": "ReactNode" },
+    { "name": "status", "type": "\"signed\" | \"draft\" | \"addendum\"", "default": "\"signed\"" },
+    { "name": "signedBy", "type": "ReactNode", "description": "Signature line disclosed via a Tooltip on the lock." },
+    { "name": "clamp", "type": "number", "description": "Clamp the body to N lines." },
+    { "name": "actions", "type": "ReactNode", "description": "Footer actions." },
+    { "name": "children", "type": "ReactNode", "description": "Note body." }
+  ],
+  "clinicalNotes": "Signed vs. draft is a medico-legal distinction, not a style choice: draft notes render with a dashed border and a pen icon whose Tooltip warns they are not part of the legal record, while signed notes expose the full attestation (who/when) on hover. Status uses the shared badge tones (signed=success, draft=warning, addendum=info). Use `clamp` in dense chart views and pair it with a 'View full note' action so nothing is truncated without a way to read it.",
+  "notes": "Layer-M1 atom. Feeds the Patient Chart and Telehealth blocks."
+}

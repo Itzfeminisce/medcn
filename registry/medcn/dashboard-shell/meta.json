@@ -1,0 +1,19 @@
+{
+  "name": "dashboard-shell",
+  "title": "Dashboard Shell",
+  "description": "App frame for clinical dashboards: an optional fixed sidebar, a sticky header, and a centered scrolling content region. Compose a DashboardGrid inside.",
+  "category": "layout",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "dashboard-grid", "widget-panel"],
+  "props": [
+    { "name": "sidebar", "type": "ReactNode", "description": "Left nav column; hidden below lg (render a mobile nav in header)." },
+    { "name": "header", "type": "ReactNode", "description": "Sticky top bar — patient banner, search, user menu." },
+    { "name": "sidebarWidth", "type": "string", "default": "\"16rem\"" },
+    { "name": "contained", "type": "boolean", "default": "true", "description": "Center + max-width the content column." },
+    { "name": "contentClassName", "type": "string" }
+  ],
+  "clinicalNotes": "The header is sticky so the patient banner (name, MRN, allergies) stays on screen while a clinician scrolls a long chart — a core patient-safety pattern. The sidebar collapses below lg for bedside tablet use; provide an equivalent mobile nav in the header so navigation is never lost. Bring your own routing/active state — the shell is presentational.",
+  "notes": "Layer-M0 scaffolding. The outer frame of every M3 block."
+}

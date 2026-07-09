@@ -106,6 +106,7 @@ export async function getNavGroups(): Promise<NavGroup[]> {
 /** Category display order + labels for the sidebar/index. */
 export const CATEGORIES: Record<string, string> = {
   primitives: "Primitives",
+  layout: "Layout",
   forms: "Forms",
   data: "Data",
   vitals: "Vitals",
@@ -113,4 +114,6 @@ export const CATEGORIES: Record<string, string> = {
   scheduling: "Scheduling",
   records: "Records",
   triage: "Triage",
+  dashboard: "Dashboard",
+  blocks: "Blocks",
 }

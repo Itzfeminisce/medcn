@@ -1,0 +1,23 @@
+{
+  "name": "clinical-task-row",
+  "title": "Clinical Task Row",
+  "description": "One item on a task / order worklist — a completion checkbox, title + detail, a priority badge, an overdue-aware due line, and an assignee avatar with a Tooltip.",
+  "category": "scheduling",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils", "checkbox", "avatar", "badge", "tooltip"],
+  "props": [
+    { "name": "title", "type": "ReactNode", "description": "Task title." },
+    { "name": "detail", "type": "ReactNode", "description": "Order detail, patient, location." },
+    { "name": "priority", "type": "\"routine\" | \"urgent\" | \"stat\"", "default": "\"routine\"" },
+    { "name": "due", "type": "ReactNode" },
+    { "name": "overdue", "type": "boolean", "default": "false", "description": "Render the due line as overdue (destructive)." },
+    { "name": "assignee", "type": "{ name: string; avatarSrc?: string }", "description": "Shown as an avatar with a name Tooltip." },
+    { "name": "completed", "type": "boolean", "default": "false" },
+    { "name": "onCompletedChange", "type": "(completed: boolean) => void" },
+    { "name": "actions", "type": "ReactNode" }
+  ],
+  "clinicalNotes": "Priority uses the shared tone system (routine=secondary, urgent=warning, STAT=destructive) and STAT pulses (motion-safe) to draw the eye on a busy board; routine priority is not badged to reduce noise. The due line turns destructive only while overdue AND incomplete. Completing a task strikes + dims it in place rather than removing it, so a worklist stays stable and auditable during a shift. The checkbox carries an explicit aria-label that reflects the toggle direction.",
+  "notes": "Layer-M1 atom. Client component (checkbox state). Feeds TaskWorklistPanel (M2) and the Provider block."
+}

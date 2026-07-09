@@ -1,0 +1,28 @@
+{
+  "name": "widget-panel",
+  "title": "Widget Panel",
+  "description": "The titled container every dashboard panel sits in — header (icon, title, description, actions), a body that swaps between ready / loading / empty / error, and an optional footer.",
+  "category": "layout",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "card", "empty-state", "tooltip", "button"],
+  "props": [
+    { "name": "icon", "type": "ReactNode", "description": "Leading header icon, rendered in a tone-tinted chip." },
+    { "name": "title", "type": "ReactNode" },
+    { "name": "description", "type": "ReactNode" },
+    { "name": "tone", "type": "\"primary\" | \"success\" | \"warning\" | \"destructive\" | \"info\" | \"muted\"", "default": "\"primary\"", "description": "Accent color for the icon chip and top rule." },
+    { "name": "accent", "type": "boolean", "default": "false", "description": "Draw a thin colored accent rule along the top edge." },
+    { "name": "info", "type": "ReactNode", "description": "Info affordance beside the title — an icon button with a Tooltip." },
+    { "name": "action", "type": "ReactNode", "description": "Right-aligned header controls." },
+    { "name": "footer", "type": "ReactNode" },
+    { "name": "state", "type": "\"ready\" | \"loading\" | \"empty\" | \"error\"", "default": "\"ready\"", "description": "Which body is shown." },
+    { "name": "loadingRows", "type": "number", "default": "3", "description": "Skeleton rows while loading." },
+    { "name": "empty", "type": "ReactNode", "description": "Empty body; a string renders a default EmptyState." },
+    { "name": "error", "type": "ReactNode", "description": "Error body; a string renders a default alert." },
+    { "name": "flush", "type": "boolean", "default": "false", "description": "Remove content padding for edge-to-edge tables/lists." },
+    { "name": "contentClassName", "type": "string" }
+  ],
+  "clinicalNotes": "Every clinical panel must be able to express loading, empty, and error distinctly — a blank card is dangerous ambiguity at the point of care (no data vs. failed fetch vs. still loading). `state=\"error\"` renders with role=\"alert\" and loading sets aria-busy so assistive tech announces the transition. Keep the header title stable while the body swaps so a clinician doesn't lose their place.",
+  "notes": "Layer-M0 keystone. Every M2 panel composes this."
+}

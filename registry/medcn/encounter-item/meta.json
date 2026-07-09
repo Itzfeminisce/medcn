@@ -1,0 +1,24 @@
+{
+  "name": "encounter-item",
+  "title": "Encounter Item",
+  "description": "One visit/encounter as a self-contained row — a type-tinted icon chip with a Tooltip, reason, provider · location · date meta, a status badge, and an optional summary.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "badge", "tooltip"],
+  "props": [
+    { "name": "type", "type": "\"office\" | \"ed\" | \"inpatient\" | \"telehealth\" | \"procedure\" | \"lab\" | \"immunization\" | \"other\"", "default": "\"office\"" },
+    { "name": "title", "type": "ReactNode", "description": "Encounter reason; falls back to the type label." },
+    { "name": "provider", "type": "ReactNode" },
+    { "name": "location", "type": "ReactNode" },
+    { "name": "date", "type": "ReactNode" },
+    { "name": "status", "type": "\"completed\" | \"scheduled\" | \"in-progress\" | \"cancelled\"", "default": "\"completed\"" },
+    { "name": "summary", "type": "ReactNode", "description": "One-line impression." },
+    { "name": "icon", "type": "ReactNode", "description": "Override the type icon." },
+    { "name": "interactive", "type": "boolean", "default": "false" },
+    { "name": "actions", "type": "ReactNode" }
+  ],
+  "clinicalNotes": "Encounter type is encoded by a consistent icon + tint (ED=destructive, lab/immunization=success, inpatient=info…) with the type name always available on hover, so a history is scannable by care setting. Cancelled encounters are struck + dimmed but retained for the record. The same type taxonomy maps directly onto the Timeline marker colors, so an EncounterItem list and an EncounterTimelinePanel stay visually consistent.",
+  "notes": "Layer-M1 atom. Feeds EncounterTimelinePanel (M2) and the Patient Chart block."
+}

@@ -1,0 +1,19 @@
+{
+  "name": "care-gap-item",
+  "title": "Care Gap Item",
+  "description": "One open care gap / health-maintenance item — a status-tinted rail, the measure name (with a Tooltip naming the program), a due line, and a quick action. Overdue reads first.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "badge", "tooltip"],
+  "props": [
+    { "name": "name", "type": "ReactNode", "description": "The measure, e.g. \"HbA1c test\"." },
+    { "name": "status", "type": "\"overdue\" | \"due\" | \"scheduled\" | \"satisfied\"", "default": "\"due\"" },
+    { "name": "due", "type": "ReactNode", "description": "Due/last date line." },
+    { "name": "measure", "type": "ReactNode", "description": "Measure program/code (e.g. HEDIS/USPSTF), disclosed in a Tooltip on the name." },
+    { "name": "action", "type": "ReactNode", "description": "Right-aligned action (Order, Schedule, Dismiss)." }
+  ],
+  "clinicalNotes": "Care gaps drive preventive and value-based care, so the visual weight is deliberately ordered: overdue = destructive, due = warning, scheduled = info, satisfied = success — the same shared tone system used across medcn. The colored left rail lets a long list be scanned for overdue items at a glance, and status is always doubled with a text badge (never color alone). The underlying quality measure (HEDIS/USPSTF/CMS) is disclosed on hover so the clinician can see why the gap is flagged.",
+  "notes": "Layer-M1 atom (core gap). Feeds CareGapsPanel (M2) and the Consumer dashboard block."
+}
