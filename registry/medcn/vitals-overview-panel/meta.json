@@ -1,0 +1,17 @@
+{
+  "name": "vitals-overview-panel",
+  "title": "Vitals Overview Panel",
+  "description": "A vitals overview — a responsive grid of VitalsCard tiles plus an optional slot for dial/gauge widgets (SpO₂, BMI). Composes WidgetPanel + VitalsCard.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "vitals-card", "spo2-dial"],
+  "props": [
+    { "name": "vitals", "type": "VitalsCardProps[]", "description": "Vital tiles; each is a VitalsCard's props (value, unit, status, trend, range)." },
+    { "name": "extras", "type": "ReactNode", "description": "Dial/gauge widgets (Spo2Dial, BmiGauge) beside the tiles." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps" }
+  ],
+  "clinicalNotes": "Every tile inherits VitalsCard's discipline: status and trend-goodness are caller-supplied, never inferred, and units + reference ranges travel with the value. Keep the abnormal ones visible — do not hide normal vitals to save space, because the absence of a vital is itself clinically meaningful. The extras slot is for shaped widgets (an SpO₂ dial, a BMI gauge) that read better than a plain tile.",
+  "notes": "Layer-M2 panel. Client component. The most-requested clinical widget; feeds every block."
+}

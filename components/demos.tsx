@@ -88,12 +88,45 @@ import VitalsCardDemo from "@/registry/medcn/vitals-card/vitals-card.demo"
 import VitalsEntryFormDemo from "@/registry/medcn/vitals-entry-form/vitals-entry-form.demo"
 import WeightBasedDoseFieldDemo from "@/registry/medcn/weight-based-dose-field/weight-based-dose-field.demo"
 import WidgetPanelDemo from "@/registry/medcn/widget-panel/widget-panel.demo"
+// M2 dashboard panels
+import AllergyPanelDemo from "@/registry/medcn/allergy-panel/allergy-panel.demo"
+import AppointmentsPanelDemo from "@/registry/medcn/appointments-panel/appointments-panel.demo"
+import CareGapsPanelDemo from "@/registry/medcn/care-gaps-panel/care-gaps-panel.demo"
+import CareTeamPanelDemo from "@/registry/medcn/care-team-panel/care-team-panel.demo"
+import ClinicalAlertsFeedDemo from "@/registry/medcn/clinical-alerts-feed/clinical-alerts-feed.demo"
+import EncounterTimelinePanelDemo from "@/registry/medcn/encounter-timeline-panel/encounter-timeline-panel.demo"
+import ImmunizationPanelDemo from "@/registry/medcn/immunization-panel/immunization-panel.demo"
+import LabResultsPanelDemo from "@/registry/medcn/lab-results-panel/lab-results-panel.demo"
+import MedicationListPanelDemo from "@/registry/medcn/medication-list-panel/medication-list-panel.demo"
+import MessagesInboxPanelDemo from "@/registry/medcn/messages-inbox-panel/messages-inbox-panel.demo"
+import PatientRosterTableDemo from "@/registry/medcn/patient-roster-table/patient-roster-table.demo"
+import PatientSummaryPanelDemo from "@/registry/medcn/patient-summary-panel/patient-summary-panel.demo"
+import ProblemListPanelDemo from "@/registry/medcn/problem-list-panel/problem-list-panel.demo"
+import RiskScoresPanelDemo from "@/registry/medcn/risk-scores-panel/risk-scores-panel.demo"
+import TaskWorklistPanelDemo from "@/registry/medcn/task-worklist-panel/task-worklist-panel.demo"
+import VitalsOverviewPanelDemo from "@/registry/medcn/vitals-overview-panel/vitals-overview-panel.demo"
 
 /**
  * name → demo component. Hand-maintained for the proving slice;
  * candidate for generation once the catalog grows.
  */
 export const demos: Record<string, React.ComponentType> = {
+  "allergy-panel": AllergyPanelDemo,
+  "appointments-panel": AppointmentsPanelDemo,
+  "care-gaps-panel": CareGapsPanelDemo,
+  "care-team-panel": CareTeamPanelDemo,
+  "clinical-alerts-feed": ClinicalAlertsFeedDemo,
+  "encounter-timeline-panel": EncounterTimelinePanelDemo,
+  "immunization-panel": ImmunizationPanelDemo,
+  "lab-results-panel": LabResultsPanelDemo,
+  "medication-list-panel": MedicationListPanelDemo,
+  "messages-inbox-panel": MessagesInboxPanelDemo,
+  "patient-roster-table": PatientRosterTableDemo,
+  "patient-summary-panel": PatientSummaryPanelDemo,
+  "problem-list-panel": ProblemListPanelDemo,
+  "risk-scores-panel": RiskScoresPanelDemo,
+  "task-worklist-panel": TaskWorklistPanelDemo,
+  "vitals-overview-panel": VitalsOverviewPanelDemo,
   "adherence-ring": AdherenceRingDemo,
   "allergy-badge": AllergyBadgeDemo,
   "allergy-input-field": AllergyInputFieldDemo,

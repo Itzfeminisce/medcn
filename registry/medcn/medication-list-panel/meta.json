@@ -1,0 +1,18 @@
+{
+  "name": "medication-list-panel",
+  "title": "Medication List Panel",
+  "description": "The medication list as a panel — interaction warnings on top, then active prescriptions, with an optional adherence ring in the header. Composes WidgetPanel + PrescriptionCard + DrugInteractionAlert + AdherenceRing.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "section-header", "prescription-card", "drug-interaction-alert", "adherence-ring"],
+  "props": [
+    { "name": "medications", "type": "PrescriptionCardProps[]", "description": "Active prescriptions." },
+    { "name": "interactions", "type": "DrugInteractionAlertProps[]", "description": "Interaction warnings shown above the list." },
+    { "name": "adherence", "type": "AdherenceRingProps", "description": "Adherence summary shown in the header." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps" }
+  ],
+  "clinicalNotes": "Interaction warnings render ABOVE the med list, not buried beside a drug, because an interaction is a property of the combination and must be seen before acting on any single order. Adherence lives in the header as an at-a-glance ring — low adherence reframes 'treatment failure' as 'not taken', a critical distinction before escalating therapy. Keep discontinued meds out of the active list (or clearly separated) to avoid dosing from a stopped order.",
+  "notes": "Layer-M2 panel. Client component. Feeds the Patient Chart, Consumer, and Medication Management blocks."
+}

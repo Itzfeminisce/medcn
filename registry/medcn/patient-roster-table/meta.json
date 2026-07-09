@@ -1,0 +1,17 @@
+{
+  "name": "patient-roster-table",
+  "title": "Patient Roster Table",
+  "description": "A multi-patient census / queue as a panel — acuity-sorted rows of patients. Composes WidgetPanel + TriageQueueRow.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "triage-queue-row"],
+  "props": [
+    { "name": "patients", "type": "TriageQueueRowProps[]", "description": "Roster rows; each is a TriageQueueRow's props (+ optional id)." },
+    { "name": "byAcuity", "type": "boolean", "default": "true", "description": "Sort by triage level (1 first), then longest wait." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps" }
+  ],
+  "clinicalNotes": "Roster ordering is a safety decision: the highest-acuity patient must sort to the top regardless of arrival order, with wait time breaking ties against per-level targets (carried by TriageQueueRow). This is the census/worklist a clinician scans first each shift — keep the row legible at wallboard distance and let the acuity color and wait chip do the triage.",
+  "notes": "Layer-M2 panel. Client component. Feeds the Provider and Triage/ED blocks (B-2, B-4)."
+}

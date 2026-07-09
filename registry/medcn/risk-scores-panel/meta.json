@@ -1,0 +1,17 @@
+{
+  "name": "risk-scores-panel",
+  "title": "Risk Scores Panel",
+  "description": "A row of clinical risk gauges as a panel, with an extras slot for a FallRiskIndicator or similar. Composes WidgetPanel + RiskScoreGauge.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "risk-score-gauge", "fall-risk-indicator"],
+  "props": [
+    { "name": "scores", "type": "RiskScoreGaugeProps[]", "description": "Risk gauges to display." },
+    { "name": "extras", "type": "ReactNode", "description": "Extra content after the gauges, e.g. a FallRiskIndicator." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps" }
+  ],
+  "clinicalNotes": "Grouping a patient's risk scores in one panel supports the shift-handover and rounding view where relative risk drives prioritization. Each gauge must keep its own scale disclosure (via RiskScoreGauge's `scale` tooltip) — risk numbers from different instruments are not comparable, so never let the shared layout imply a common axis. The extras slot keeps specialized, non-gauge indicators (fall risk, pressure-injury) alongside without forcing them into the gauge shape.",
+  "notes": "Layer-M2 panel. Client component. Feeds the Patient Chart and Triage blocks."
+}

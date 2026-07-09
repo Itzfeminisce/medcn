@@ -1,0 +1,17 @@
+{
+  "name": "task-worklist-panel",
+  "title": "Task Worklist Panel",
+  "description": "A task / order worklist as a panel — STAT/urgent and incomplete work sort to the top. Composes WidgetPanel + ClinicalTaskRow.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "clinical-task-row"],
+  "props": [
+    { "name": "items", "type": "ClinicalTaskRowProps[]", "description": "Tasks; each is a ClinicalTaskRow's props (+ optional id). Include onCompletedChange to make rows checkable." },
+    { "name": "prioritize", "type": "boolean", "default": "true", "description": "Sort STAT → urgent → routine, incomplete before complete." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps" }
+  ],
+  "clinicalNotes": "A worklist's value is triage order: this panel floats incomplete + highest-priority tasks to the top so nothing urgent is buried, while completed tasks sink but remain visible and auditable during a shift. Keep the row's completion controlled by your own state (onCompletedChange) so completion persists to the source of truth, not just the UI.",
+  "notes": "Layer-M2 panel. Client component. Feeds the Provider dashboard block (B-2)."
+}

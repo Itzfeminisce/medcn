@@ -1,0 +1,17 @@
+{
+  "name": "problem-list-panel",
+  "title": "Problem List Panel",
+  "description": "The patient's problem list as a dashboard panel — active problems first, resolved ones de-emphasized below. Composes WidgetPanel + ProblemListItem with a derived empty state.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "problem-list-item"],
+  "props": [
+    { "name": "items", "type": "ProblemListItemProps[]", "description": "Problems to render; each is a ProblemListItem's props (+ optional id)." },
+    { "name": "activeFirst", "type": "boolean", "default": "true", "description": "Sort active problems before resolved/inactive." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps", "description": "title, icon, action, info, state, empty, footer, tone all pass through." }
+  ],
+  "clinicalNotes": "Ordering is clinical: active problems must lead so the reader sees what is currently being managed, with resolved/inactive retained but muted for context — this panel enforces that with `activeFirst`. Empty state is derived from `items` so an empty list reads as 'no problems recorded', never as a failed load. Pass `state=\"loading\"|\"error\"` explicitly while fetching.",
+  "notes": "Layer-M2 panel. Client component. Feeds the Patient Chart block (B-1)."
+}

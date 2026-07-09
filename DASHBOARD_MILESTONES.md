@@ -157,22 +157,31 @@ Each panel is **controlled + presentational**: props in, atoms rendered, no fetc
 
 | ID   | Panel                   | Status      | Composes (deps) | Why it's needed |
 |------|-------------------------|-------------|-----------------|-----------------|
-| P-1  | PatientSummaryPanel ⭐   | not-started | patient-banner, vitals-card, allergy-badge, problem-list-item(A-1), prescription-card, widget-panel | The "at-a-glance" chart face — the flagship. One panel = a clinician's first 5-second read of a patient. |
-| P-2  | VitalsOverviewPanel     | not-started | blood-pressure-badge, glucose-badge, spo2-dial, bmi-gauge, temperature-field(display), trend-sparkline, stat-tile(L-4), widget-panel | Grid of vital tiles with trends + abnormal flagging. The single most-requested clinical widget. |
-| P-3  | MedicationListPanel     | not-started | prescription-card, adherence-ring, drug-interaction-alert, refill-countdown, widget-panel | Active/discontinued med list with adherence + interaction warnings + refills in one place. |
-| P-4  | ProblemListPanel        | not-started | problem-list-item(A-1), section-header(L-5), widget-panel | Active/resolved diagnoses, sortable. Core chart section. |
-| P-5  | AllergyPanel            | not-started | allergy-badge, widget-panel | Allergies with reaction + severity; safety-critical, deserves its own panel. |
-| P-6  | LabResultsPanel         | not-started | lab-result, lab-trend-panel, lab-order-status, widget-panel | Results + trends + pending orders + reference ranges + abnormal flags. |
-| P-7  | CareGapsPanel           | not-started | care-gap-item(A-2), section-header(L-5), widget-panel | Overdue-first list of open care gaps with quick action. Drives preventive care. |
-| P-8  | AppointmentsPanel       | not-started | appointment-row(A-8), appointment-check-in, widget-panel | Today's / upcoming agenda with check-in. |
-| P-9  | TaskWorklistPanel       | not-started | clinical-task-row(A-4), section-header(L-5), widget-panel | Filterable task/order worklist by status. |
-| P-10 | ClinicalAlertsFeed      | not-started | clinical-alert-item(A-5), widget-panel | Acknowledge/dismiss stream of clinical alerts. |
-| P-11 | RiskScoresPanel         | not-started | risk-score-gauge(A-3), fall-risk-indicator, widget-panel | Row of risk gauges for a patient. |
-| P-12 | CareTeamPanel           | not-started | care-team-list, emergency-contact-card, widget-panel | Care team + emergency contacts, contactable. |
-| P-13 | EncounterTimelinePanel  | not-started | timeline(L-7), encounter-item(A-6), widget-panel | Chronological visit history on the timeline rail. |
-| P-14 | ImmunizationPanel       | not-started | immunization-schedule, vaccination-record-row, widget-panel | Vaccine history + schedule status (atoms already exist). |
-| P-15 | PatientRosterTable      | not-started | triage-queue-row, patient rows, section-header(L-5), widget-panel | Sortable/filterable multi-patient census. Basis of the Provider + Triage blocks. |
-| P-16 | MessagesInboxPanel      | not-started | message-inbox-row(A-9), section-header(L-5), widget-panel | Secure-message / result inbox. |
+| P-1  | PatientSummaryPanel ⭐   | completed   | patient-banner, vitals-card, allergy-badge, problem-list-item(A-1), prescription-card, widget-panel | The "at-a-glance" chart face — the flagship. One panel = a clinician's first 5-second read of a patient. |
+| P-2  | VitalsOverviewPanel     | completed   | blood-pressure-badge, glucose-badge, spo2-dial, bmi-gauge, temperature-field(display), trend-sparkline, stat-tile(L-4), widget-panel | Grid of vital tiles with trends + abnormal flagging. The single most-requested clinical widget. |
+| P-3  | MedicationListPanel     | completed   | prescription-card, adherence-ring, drug-interaction-alert, refill-countdown, widget-panel | Active/discontinued med list with adherence + interaction warnings + refills in one place. |
+| P-4  | ProblemListPanel        | completed   | problem-list-item(A-1), section-header(L-5), widget-panel | Active/resolved diagnoses, sortable. Core chart section. |
+| P-5  | AllergyPanel            | completed   | allergy-badge, widget-panel | Allergies with reaction + severity; safety-critical, deserves its own panel. |
+| P-6  | LabResultsPanel         | completed   | lab-result, lab-trend-panel, lab-order-status, widget-panel | Results + trends + pending orders + reference ranges + abnormal flags. |
+| P-7  | CareGapsPanel           | completed   | care-gap-item(A-2), section-header(L-5), widget-panel | Overdue-first list of open care gaps with quick action. Drives preventive care. |
+| P-8  | AppointmentsPanel       | completed   | appointment-row(A-8), appointment-check-in, widget-panel | Today's / upcoming agenda with check-in. |
+| P-9  | TaskWorklistPanel       | completed   | clinical-task-row(A-4), section-header(L-5), widget-panel | Filterable task/order worklist by status. |
+| P-10 | ClinicalAlertsFeed      | completed   | clinical-alert-item(A-5), widget-panel | Acknowledge/dismiss stream of clinical alerts. |
+| P-11 | RiskScoresPanel         | completed   | risk-score-gauge(A-3), fall-risk-indicator, widget-panel | Row of risk gauges for a patient. |
+| P-12 | CareTeamPanel           | completed   | care-team-list, emergency-contact-card, widget-panel | Care team + emergency contacts, contactable. |
+| P-13 | EncounterTimelinePanel  | completed   | timeline(L-7), encounter-item(A-6), widget-panel | Chronological visit history on the timeline rail. |
+| P-14 | ImmunizationPanel       | completed   | immunization-schedule, vaccination-record-row, widget-panel | Vaccine history + schedule status (atoms already exist). |
+| P-15 | PatientRosterTable      | completed   | triage-queue-row, patient rows, section-header(L-5), widget-panel | Sortable/filterable multi-patient census. Basis of the Provider + Triage blocks. |
+| P-16 | MessagesInboxPanel      | completed   | message-inbox-row(A-9), section-header(L-5), widget-panel | Secure-message / result inbox. |
+
+> **M2 completed 2026-07-09** to the Interaction & polish bar. All 16 emitted
+> (registry now **104 items**); demos registered; `tsc --noEmit` clean; `registry:build`
+> green; **all 16 `/components/<name>` pages verified rendering live (HTTP 200 + content)**.
+> `type: registry:block`, category `dashboard`, all `"use client"`. Each panel is a thin,
+> typed WidgetPanel composition (item arrays via `React.ComponentProps<typeof Atom>`) with a
+> derived empty state and sensible sort order. One bug caught in live verify + fixed: a demo
+> passing an `onDismiss` fn from a Server Component needed `"use client"`. Uncommitted.
+> **M3 blocks are next** — they arrange these panels in a `dashboard-shell` + `dashboard-grid`.
 
 ---
 

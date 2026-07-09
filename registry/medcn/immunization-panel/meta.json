@@ -1,0 +1,17 @@
+{
+  "name": "immunization-panel",
+  "title": "Immunization Panel",
+  "description": "Immunization status by schedule group, with an optional recently-administered list. Composes WidgetPanel + ImmunizationSchedule + VaccinationRecordRow.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "section-header", "immunization-schedule", "vaccination-record-row"],
+  "props": [
+    { "name": "groups", "type": "ImmunizationScheduleProps[\"groups\"]", "description": "Schedule groups (childhood, adolescent, seasonal…) with rows." },
+    { "name": "recent", "type": "VaccinationRecordRowProps[]", "description": "Recently administered doses (with lot/provider)." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps" }
+  ],
+  "clinicalNotes": "Grouping by schedule (childhood / adolescent / seasonal) mirrors how immunization status is actually assessed and makes due/overdue vaccines pop for catch-up. Pair the forward-looking schedule with a recently-administered list that carries lot number and provider — the details required for adverse-event traceability and record reconciliation.",
+  "notes": "Layer-M2 panel. Client component. Feeds the Patient Chart and Consumer blocks."
+}

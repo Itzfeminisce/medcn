@@ -1,0 +1,19 @@
+{
+  "name": "patient-summary-panel",
+  "title": "Patient Summary Panel",
+  "description": "The at-a-glance patient snapshot — a flush PatientBanner over condensed vitals, problems, and medications sections. Composes PatientBanner + VitalsCard + ProblemListItem + PrescriptionCard.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": [],
+  "registryDependencies": ["utils", "patient-banner", "section-header", "vitals-card", "problem-list-item", "prescription-card"],
+  "props": [
+    { "name": "patient", "type": "PatientBannerProps", "description": "Identity + allergies + tags + actions for the banner." },
+    { "name": "vitals", "type": "VitalsCardProps[]", "description": "A few recent vitals." },
+    { "name": "problems", "type": "ProblemListItemProps[]", "description": "Top active problems." },
+    { "name": "medications", "type": "PrescriptionCardProps[]", "description": "Key active medications." },
+    { "name": "className", "type": "string" }
+  ],
+  "clinicalNotes": "This is the clinician's first five-second read, so it is deliberately a curated snapshot, not the whole chart — pass the top few vitals/problems/meds and link out to the full record (the B-1 Patient Chart block). Allergies ride in the PatientBanner, which keeps the single most safety-critical fact pinned at the top with the patient's identity. Every embedded atom keeps its own semantics (status colors, tooltips, reference ranges), so the summary never dumbs the data down.",
+  "notes": "Layer-M2 flagship panel. Client component. The centerpiece of the Patient Chart block (B-1)."
+}

@@ -1,0 +1,18 @@
+{
+  "name": "care-team-panel",
+  "title": "Care Team Panel",
+  "description": "The care team plus emergency contacts as a panel. Composes WidgetPanel + CareTeamList + EmergencyContactCard.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "section-header", "care-team-list", "emergency-contact-card"],
+  "props": [
+    { "name": "members", "type": "CareTeamListProps[\"members\"]", "description": "Care team members (name, role, specialty, status, contact)." },
+    { "name": "max", "type": "number", "description": "Collapse the team to N before a \"+N more\"." },
+    { "name": "emergencyContacts", "type": "EmergencyContactCardProps[]", "description": "Contacts shown below the care team." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps" }
+  ],
+  "clinicalNotes": "Consolidating who is on the team and how to reach them supports care coordination and rapid escalation — presence status (online/busy/away) tells a nurse who is reachable now. Keeping emergency contacts in the same panel means the 'who do we call' answer is one glance away during an acute event, which is exactly when people struggle to find it.",
+  "notes": "Layer-M2 panel. Client component. Feeds the Patient Chart block (B-1)."
+}

@@ -1,0 +1,17 @@
+{
+  "name": "allergy-panel",
+  "title": "Allergy Panel",
+  "description": "Allergies & intolerances as a safety-tinted panel. Composes WidgetPanel + AllergyList, which renders its own \"No known allergies\" state.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "allergy-badge"],
+  "props": [
+    { "name": "allergies", "type": "AllergyListProps[\"allergies\"]", "description": "Allergy entries (label, severity, reaction)." },
+    { "name": "max", "type": "number", "description": "Collapse to N before a \"+N more\"." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps", "description": "title, action, info, state pass through." }
+  ],
+  "clinicalNotes": "Allergies are safety-critical, so the panel uses the destructive tone and deserves a dedicated, always-visible slot in any summary. Crucially, an empty allergy list is NOT the same as unknown — AllergyList renders an explicit 'No known allergies' state, which this panel surfaces rather than a blank body, so absence of data is never mistaken for a safe negative. Surface the verification date via `info`.",
+  "notes": "Layer-M2 panel. Client component. Feeds PatientSummaryPanel (P-1) and the Patient Chart block."
+}

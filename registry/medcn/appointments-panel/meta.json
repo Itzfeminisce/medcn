@@ -1,0 +1,17 @@
+{
+  "name": "appointments-panel",
+  "title": "Appointments Panel",
+  "description": "An agenda / appointments panel with an optional live check-in tracker pinned above the list. Composes WidgetPanel + AppointmentRow + AppointmentCheckIn.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "appointment-row", "appointment-check-in"],
+  "props": [
+    { "name": "items", "type": "AppointmentRowProps[]", "description": "Appointments; each is an AppointmentRow's props (+ optional id)." },
+    { "name": "checkIn", "type": "AppointmentCheckInProps", "description": "Optional live check-in tracker pinned above the agenda." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps" }
+  ],
+  "clinicalNotes": "Keep appointments in chronological order (don't re-sort by status) so the agenda reads as a timeline of the day; the AppointmentRow's status rail carries who has arrived. The optional check-in tracker is for the patient-facing view — pin the patient's own visit progress above the schedule. Empty state accounts for the tracker so a waiting patient never sees 'no appointments'.",
+  "notes": "Layer-M2 panel. Client component. Feeds the Provider and Consumer blocks."
+}

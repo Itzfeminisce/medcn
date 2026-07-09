@@ -1,0 +1,17 @@
+{
+  "name": "lab-results-panel",
+  "title": "Lab Results Panel",
+  "description": "Recent labs with in-row trends plus any pending orders. Composes WidgetPanel + LabTrendRow + LabOrderStatus.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "section-header", "lab-trend-panel", "lab-order-status"],
+  "props": [
+    { "name": "results", "type": "LabTrendRowProps[]", "description": "Resulted labs with value, reference range, and history." },
+    { "name": "pendingOrders", "type": "LabOrderStatusProps[]", "description": "In-flight orders shown below the results." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps" }
+  ],
+  "clinicalNotes": "Always pair each value with its reference range and an in-row trend — a single lab number is uninterpretable without its range and direction of travel, which is why the panel uses LabTrendRow (value + range bar + sparkline) rather than bare numbers. Separating resulted values from pending orders prevents the classic error of assuming a result is final when the sample is still in the lab. Critical flags carry through from LabTrendRow.",
+  "notes": "Layer-M2 panel. Client component. Feeds the Patient Chart block (B-1)."
+}

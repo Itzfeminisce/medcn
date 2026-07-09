@@ -1,0 +1,17 @@
+{
+  "name": "clinical-alerts-feed",
+  "title": "Clinical Alerts Feed",
+  "description": "A feed of clinical alerts as a panel, most-severe first. Composes WidgetPanel + ClinicalAlertItem with acknowledge / dismiss wiring.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "clinical-alert-item"],
+  "props": [
+    { "name": "items", "type": "ClinicalAlertItemProps[]", "description": "Alerts; each is a ClinicalAlertItem's props (+ optional id). Provide onAcknowledge / onDismiss." },
+    { "name": "severityFirst", "type": "boolean", "default": "true", "description": "Sort critical → warning → info → success." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps" }
+  ],
+  "clinicalNotes": "Severity ordering is a safety property — critical alerts must surface at the top regardless of arrival time, which this panel enforces. Pair with real acknowledge/dismiss handlers so alerts leave the feed only when actioned (the underlying item exposes an auditable Acknowledge). Beware alarm fatigue: keep the feed to genuinely actionable alerts and let info/success settle to the bottom.",
+  "notes": "Layer-M2 panel. Client component. Feeds the Provider and Triage blocks."
+}

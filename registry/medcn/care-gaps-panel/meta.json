@@ -1,0 +1,17 @@
+{
+  "name": "care-gaps-panel",
+  "title": "Care Gaps Panel",
+  "description": "Open care gaps as a panel, overdue-first so the most actionable items lead. Composes WidgetPanel + CareGapItem.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "care-gap-item"],
+  "props": [
+    { "name": "items", "type": "CareGapItemProps[]", "description": "Care gaps; each is a CareGapItem's props (+ optional id)." },
+    { "name": "urgentFirst", "type": "boolean", "default": "true", "description": "Sort overdue → due → scheduled → satisfied." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps", "description": "title, icon, action, info, state, empty pass through." }
+  ],
+  "clinicalNotes": "Sort order is the whole point of a gaps panel — overdue must lead so a clinician closes the highest-value items first; this panel sorts by status automatically. Uses the warning tone to signal 'attention needed' without alarming. The empty state ('all up to date') is a genuinely positive signal in preventive care, so it is derived and shown rather than leaving a blank card.",
+  "notes": "Layer-M2 panel. Client component. Feeds the Consumer and Provider blocks."
+}

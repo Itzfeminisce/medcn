@@ -1,0 +1,16 @@
+{
+  "name": "encounter-timeline-panel",
+  "title": "Encounter Timeline Panel",
+  "description": "A patient's encounter history on a vertical timeline rail — the marker's color and icon encode the encounter type (with a Tooltip). Composes WidgetPanel + Timeline + TimelineItem.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "timeline"],
+  "props": [
+    { "name": "items", "type": "EncounterTimelineEntry[]", "description": "Encounters newest-first: { type, title, meta, date, summary, onClick }." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps" }
+  ],
+  "clinicalNotes": "Pass encounters newest-first so the latest contact reads at the top — the way a clinician scans a history. Marker color + icon encode care setting (ED=destructive, lab/immunization=success, procedure=warning) using the same taxonomy as EncounterItem, so a chart's list view and timeline view stay consistent. Each marker's type is disclosed via Tooltip, never color alone.",
+  "notes": "Layer-M2 panel. Client component. Feeds the Patient Chart block (B-1)."
+}

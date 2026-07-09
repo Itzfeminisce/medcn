@@ -1,0 +1,17 @@
+{
+  "name": "messages-inbox-panel",
+  "title": "Messages Inbox Panel",
+  "description": "A secure-message / results inbox as a panel, floating unread and higher-priority messages up. Composes WidgetPanel + MessageInboxRow.",
+  "category": "dashboard",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "widget-panel", "message-inbox-row"],
+  "props": [
+    { "name": "items", "type": "MessageInboxRowProps[]", "description": "Messages; each is a MessageInboxRow's props (+ optional id)." },
+    { "name": "unreadFirst", "type": "boolean", "default": "true", "description": "Sort unread + higher-priority to the top." },
+    { "name": "...WidgetPanel", "type": "WidgetPanelProps" }
+  ],
+  "clinicalNotes": "In a clinical inbox, ordering is triage: unread and urgent items (critical results, urgent patient messages) must not be buried under routine mail, so the panel sorts by unread then priority. Keep an accurate unread count in the header/action — an inbox that under-reports unread items is a patient-safety risk in result-management workflows.",
+  "notes": "Layer-M2 panel. Client component. Feeds the Provider and Consumer blocks."
+}
