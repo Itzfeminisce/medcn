@@ -43,9 +43,9 @@ function RiskScoresPanel({
       className={className}
       {...props}
     >
-      <div className="flex flex-col gap-3">
+      <div className="@container/rpanel flex flex-col gap-3">
         {scores.length > 0 && (
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 @lg/rpanel:grid-cols-3">
             {scores.map(({ id, ...s }, i) => (
               <RiskScoreGauge key={id ?? i} {...s} />
             ))}

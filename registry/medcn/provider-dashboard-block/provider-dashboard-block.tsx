@@ -99,9 +99,9 @@ function ProviderDashboardBlock({
         )
       }
     >
-      <div className="flex flex-col gap-4">
+      <div className="@container/pdash flex flex-col gap-4">
         {stats && stats.length > 0 && (
-          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 @3xl/pdash:grid-cols-4">
             {stats.map(({ id, ...s }, i) => (
               <StatTile key={id ?? i} {...s} />
             ))}

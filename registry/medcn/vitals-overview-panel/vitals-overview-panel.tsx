@@ -43,9 +43,9 @@ function VitalsOverviewPanel({
       className={className}
       {...props}
     >
-      <div className="flex flex-col gap-4">
+      <div className="@container/vpanel flex flex-col gap-4">
         {vitals.length > 0 && (
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-3 @md/vpanel:grid-cols-2">
             {vitals.map(({ id, ...v }, i) => (
               <VitalsCard key={id ?? i} {...v} className="w-full" />
             ))}

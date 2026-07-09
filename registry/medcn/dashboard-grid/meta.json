@@ -10,6 +10,6 @@
   "props": [
     { "name": "DashboardGridItem.span", "type": "\"quarter\" | \"third\" | \"half\" | \"twoThirds\" | \"threeQuarters\" | \"full\"", "default": "\"half\"", "description": "Column width at lg (of 12). Below lg items stack / go 2-up." }
   ],
-  "clinicalNotes": "Dashboards are used on wide clinical workstations and on tablets at the bedside — the grid stacks to a single column on small screens so no panel is truncated or side-scrolled during a patient encounter. Named spans (rather than raw column counts) keep block layouts readable and consistent; place the highest-priority panel (patient summary, active alerts) first so it leads on every viewport.",
-  "notes": "Layer-M0 scaffolding. Uses static Tailwind span classes (no dynamic class names) so the JIT compiler always emits them. Arranges M2 panels inside M3 blocks."
+  "clinicalNotes": "Driven by CONTAINER queries, not the viewport: spans resolve against the grid's own width, so a block reflows correctly whether it's full-page, in a split pane, or in a narrow preview — never squeezing a 12-column layout into a small box. Dashboards run on wide workstations and bedside tablets alike, so the grid stacks to a single column when its container is narrow. Named spans (rather than raw column counts) keep block layouts readable; place the highest-priority panel (patient summary, active alerts) first so it leads at every size.",
+  "notes": "Layer-M0 scaffolding. Static Tailwind container-variant span classes (no dynamic names) so the compiler always emits them. Arranges M2 panels inside M3 blocks."
 }

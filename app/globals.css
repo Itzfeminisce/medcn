@@ -225,3 +225,13 @@
     }
   }
 }
+
+/* Full-bleed preview route (loaded in the BlockPreview iframe): hide the site
+   chrome so only the demo renders inside the frame. */
+body:has([data-preview-root]) > header,
+body:has([data-preview-root]) > footer {
+  display: none !important;
+}
+body:has([data-preview-root]) {
+  min-height: 100svh;
+}

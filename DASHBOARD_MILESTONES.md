@@ -210,6 +210,18 @@ M2 panels, shipped as one installable item.
 > them in a `dashboard-shell` + `dashboard-grid`, with a built-in nav/header (overridable).
 > **The full atoms→panels→blocks layer (M0–M3) is now complete.** Uncommitted.
 
+> **Responsiveness + preview refit 2026-07-09** (after the blocks looked squeezed in the docs
+> preview): root cause was *viewport* breakpoints firing at desktop while the preview column is
+> narrow. Fixed at the source, not the demo — (1) `dashboard-grid` + `dashboard-shell` + the
+> multi-col panel grids (vitals/risk/summary/provider-stats) now use **Tailwind v4 container
+> queries** (`@container` + `@xl/@3xl/@4xl`), so blocks reflow by their own width anywhere they're
+> embedded; (2) `dashboard-shell` is now **collapsible** (`"use client"`): static sidebar when
+> wide, hamburger + off-canvas drawer when narrow; (3) docs give `category: "blocks"` a
+> **resizable iframe preview** (`components/block-preview.tsx` → `app/preview/[name]` full-bleed
+> route, chrome hidden via a `:has([data-preview-root])` rule in globals.css) with Desktop/Tablet/
+> Mobile toggles + drag handle. tsc clean; registry 110 items; verified live: block pages iframe →
+> /preview, atoms unchanged, shell toggle renders when narrow. Uncommitted.
+
 ### Freemium mapping (proposal, not locked)
 - **Free:** all of M0 (layout) + all M1 atoms + 2 starter panels (suggest P-2 Vitals,
   P-3 Medications). Keeps the open registry genuinely useful and drives adoption.

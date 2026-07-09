@@ -54,7 +54,7 @@ function PatientSummaryPanel({
     <div
       data-slot="patient-summary-panel"
       className={cn(
-        "w-full overflow-hidden rounded-2xl border border-border/60 bg-card shadow-soft",
+        "@container/psum w-full overflow-hidden rounded-2xl border border-border/60 bg-card shadow-soft",
         className
       )}
       {...props}
@@ -70,7 +70,7 @@ function PatientSummaryPanel({
       <div className="divide-y divide-border/60">
         {vitals && vitals.length > 0 && (
           <Section title="Vitals">
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 @lg/psum:grid-cols-2">
               {vitals.map(({ id, ...v }, i) => (
                 <VitalsCard key={id ?? i} {...v} className="w-full" />
               ))}

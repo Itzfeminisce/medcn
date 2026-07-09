@@ -10,6 +10,7 @@ import {
   getRegistryItems,
 } from "@/lib/registry"
 import { Badge } from "@/registry/medcn/badge/badge"
+import { BlockPreview } from "@/components/block-preview"
 import { CodeBlock } from "@/components/code-block"
 import { CommandPill } from "@/components/command-pill"
 import { ComponentPreview } from "@/components/component-preview"
@@ -94,9 +95,16 @@ export default async function ComponentPage({
           ) : null}
         </header>
 
-        <ComponentPreview codeView={<CodeBlock code={demoSource} />}>
-          <Demo />
-        </ComponentPreview>
+        {item.category === "blocks" ? (
+          <BlockPreview
+            name={name}
+            codeView={<CodeBlock code={demoSource} />}
+          />
+        ) : (
+          <ComponentPreview codeView={<CodeBlock code={demoSource} />}>
+            <Demo />
+          </ComponentPreview>
+        )}
 
         <section
           id="installation"

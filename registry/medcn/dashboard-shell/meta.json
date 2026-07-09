@@ -8,12 +8,13 @@
   "dependencies": ["lucide-react"],
   "registryDependencies": ["utils", "dashboard-grid", "widget-panel"],
   "props": [
-    { "name": "sidebar", "type": "ReactNode", "description": "Left nav column; hidden below lg (render a mobile nav in header)." },
+    { "name": "sidebar", "type": "ReactNode", "description": "Left nav column. Static when the shell is wide; a toggled drawer (with a header hamburger) when narrow." },
     { "name": "header", "type": "ReactNode", "description": "Sticky top bar — patient banner, search, user menu." },
     { "name": "sidebarWidth", "type": "string", "default": "\"16rem\"" },
+    { "name": "collapsible", "type": "boolean", "default": "true", "description": "Enable the narrow-width drawer + header toggle." },
     { "name": "contained", "type": "boolean", "default": "true", "description": "Center + max-width the content column." },
     { "name": "contentClassName", "type": "string" }
   ],
-  "clinicalNotes": "The header is sticky so the patient banner (name, MRN, allergies) stays on screen while a clinician scrolls a long chart — a core patient-safety pattern. The sidebar collapses below lg for bedside tablet use; provide an equivalent mobile nav in the header so navigation is never lost. Bring your own routing/active state — the shell is presentational.",
-  "notes": "Layer-M0 scaffolding. The outer frame of every M3 block."
+  "clinicalNotes": "Sized by CONTAINER queries, not the viewport, so the shell adapts to the width it's embedded in — a split pane, a modal, or the docs preview — not just the browser size. When the container is wide the sidebar is static; when narrow it collapses to a toggled drawer with a hamburger in the header, so navigation is never lost on a bedside tablet. The header is sticky so the patient banner (name, MRN, allergies) stays on screen while a clinician scrolls a long chart — a core patient-safety pattern. Client component (drawer state); bring your own routing/active state.",
+  "notes": "Layer-M0 scaffolding. Client component. The container-query outer frame of every M3 block."
 }
