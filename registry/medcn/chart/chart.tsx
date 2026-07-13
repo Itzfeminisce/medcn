@@ -142,13 +142,29 @@ ${colored.map(([key, item]) => `  --color-${key}: ${item.color};`).join("\n")}
 
 const ChartTooltip = RechartsPrimitive.Tooltip
 
-interface ChartTooltipContentProps
-  extends
-    React.ComponentProps<"div">,
-    Pick<
-      React.ComponentProps<typeof RechartsPrimitive.Tooltip>,
-      "active" | "payload" | "label" | "labelFormatter"
-    > {
+/**
+ * One row Recharts hands the tooltip. Declared here rather than picked off
+ * `Tooltip`'s own props: Recharts passes these to the *content* component at
+ * render time, so they never appear on the Tooltip element a caller writes.
+ */
+export interface ChartTooltipPayloadItem {
+  dataKey?: string | number
+  name?: string | number
+  value?: string | number | null
+  color?: string
+  /** The original data row this mark came from. */
+  payload?: Record<string, unknown>
+}
+
+interface ChartTooltipContentProps extends React.ComponentProps<"div"> {
+  /** Supplied by Recharts. */
+  active?: boolean
+  payload?: ChartTooltipPayloadItem[]
+  label?: React.ReactNode
+  labelFormatter?: (
+    label: React.ReactNode,
+    payload: ChartTooltipPayloadItem[]
+  ) => React.ReactNode
   hideLabel?: boolean
   hideIndicator?: boolean
   indicator?: "dot" | "line"
@@ -240,15 +256,24 @@ function ChartTooltipContent({
 
 const ChartLegend = RechartsPrimitive.Legend
 
+/** One entry Recharts hands the legend. Same reasoning as the tooltip payload. */
+export interface ChartLegendPayloadItem {
+  dataKey?: string | number
+  value?: unknown
+  color?: string
+}
+
+interface ChartLegendContentProps extends React.ComponentProps<"div"> {
+  /** Supplied by Recharts. */
+  payload?: ChartLegendPayloadItem[]
+  verticalAlign?: "top" | "middle" | "bottom"
+}
+
 function ChartLegendContent({
   className,
   payload,
   verticalAlign = "bottom",
-}: React.ComponentProps<"div"> &
-  Pick<
-    React.ComponentProps<typeof RechartsPrimitive.Legend>,
-    "payload" | "verticalAlign"
-  >) {
+}: ChartLegendContentProps) {
   const { config } = useChart()
 
   if (!payload?.length) return null

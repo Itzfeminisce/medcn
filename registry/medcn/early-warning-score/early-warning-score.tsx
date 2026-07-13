@@ -181,7 +181,7 @@ function EarlyWarningScore({
                 { key: "time", label: "Time" },
                 { key: "score", label: `${system} score` },
               ]}
-              rows={history}
+              rows={history as unknown as Record<string, React.ReactNode>[]}
             />
           }
         >

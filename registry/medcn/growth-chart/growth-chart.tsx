@@ -15,6 +15,8 @@ import { Badge } from "@/registry/medcn/badge/badge"
 import {
   ChartContainer,
   ChartDataTable,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
@@ -231,15 +233,13 @@ function GrowthChart({
               activeDot={false}
               connectNulls
               isAnimationActive={false}
-              label={{
-                value: curve.label,
-                position: "right",
-                fontSize: 9,
-                fill: "var(--muted-foreground)",
-              }}
             />
           ))}
 
+          {/* The curves are named in the legend rather than labelled per point:
+              Recharts' line label draws on every data point, which would stamp a
+              number on each centile and bury the child's own series. */}
+          <ChartLegend content={<ChartLegendContent />} />
           <ChartTooltip content={<ChartTooltipContent />} />
 
           <Line

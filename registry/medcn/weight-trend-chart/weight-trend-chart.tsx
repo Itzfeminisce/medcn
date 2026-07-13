@@ -65,6 +65,8 @@ function WeightTrendChart({
     const window = deltaWindow ?? measured.length
     const from = measured[Math.max(0, measured.length - window)]
     const to = measured[measured.length - 1]
+    if (!from || !to) return null
+
     const change = to.weight - from.weight
 
     return {
@@ -89,7 +91,7 @@ function WeightTrendChart({
               { key: "date", label: "Date" },
               { key: "weight", label: "Weight", unit },
             ]}
-            rows={data}
+            rows={data as unknown as Record<string, React.ReactNode>[]}
           />
         }
         {...props}

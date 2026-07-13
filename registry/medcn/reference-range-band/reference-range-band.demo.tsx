@@ -73,6 +73,8 @@ export default function ReferenceRangeBandDemo() {
           strokeWidth={2}
           dot={(props) => {
             const { cx, cy, key, payload } = props
+            if (cx == null || cy == null) return <g key={key} />
+
             const critical = payload.potassium < 2.5
             // Critical points are a different shape, not just a different colour.
             return critical ? (

@@ -59,28 +59,41 @@ function TimeInRangeBar({
   className,
   ...props
 }: TimeInRangeBarProps) {
-  const segments: TimeInRangeSegment[] = [
+  // Annotated before `.filter`, so each `key` keeps its literal type instead of
+  // widening to `string`.
+  const bands: TimeInRangeSegment[] = [
     {
       key: "veryLow",
       label: "Very low",
       percent: veryBelow,
       color: "var(--chart-critical)",
     },
-    { key: "low", label: "Below target", percent: below, color: "var(--chart-4)" },
+    {
+      key: "low",
+      label: "Below target",
+      percent: below,
+      color: "var(--chart-4)",
+    },
     {
       key: "inRange",
       label: "In target",
       percent: inRange,
       color: "var(--chart-2)",
     },
-    { key: "high", label: "Above target", percent: above, color: "var(--chart-3)" },
+    {
+      key: "high",
+      label: "Above target",
+      percent: above,
+      color: "var(--chart-3)",
+    },
     {
       key: "veryHigh",
       label: "Very high",
       percent: veryAbove,
       color: "var(--chart-critical)",
     },
-  ].filter((segment) => segment.percent > 0)
+  ]
+  const segments = bands.filter((segment) => segment.percent > 0)
 
   const total = segments.reduce((sum, segment) => sum + segment.percent, 0)
 

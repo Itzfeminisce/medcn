@@ -164,6 +164,10 @@ function GlucoseTrendChart({
           isAnimationActive={false}
           dot={(dotProps) => {
             const { cx, cy, key, payload } = dotProps
+            // Recharts omits the coordinates for a point it did not place
+            // (a null reading). Nothing to draw there — and nothing to invent.
+            if (cx == null || cy == null) return <g key={key} />
+
             const value = payload.glucose as number | null
             const urgent =
               value != null &&

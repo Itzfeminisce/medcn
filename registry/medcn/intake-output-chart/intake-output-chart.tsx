@@ -177,14 +177,15 @@ function IntakeOutputChart({
             isAnimationActive={false}
             // Incomplete periods are drawn hollow: a short bar that means
             // "not charted" must not read as a short bar that means "little out".
-            shape={(shapeProps: Record<string, unknown>) => {
-              const { x, y, width, height, payload } = shapeProps as {
-                x: number
-                y: number
-                width: number
-                height: number
-                payload: FluidPeriod
-              }
+            shape={(shapeProps) => {
+              const { x, y, width, height, payload } =
+                shapeProps as unknown as {
+                  x: number
+                  y: number
+                  width: number
+                  height: number
+                  payload: FluidPeriod
+                }
               const hollow = payload.outputIncomplete
               return (
                 <rect

@@ -103,7 +103,7 @@ function LabResultChart({
         .filter(
           (point, index) =>
             index > 0 &&
-            (point.assay ?? "default") !== (data[index - 1].assay ?? "default")
+            (point.assay ?? "default") !== (data[index - 1]?.assay ?? "default")
         )
         .map((point) => ({ date: point.date, assay: point.assay })),
     [data]
@@ -240,6 +240,10 @@ function LabResultChart({
               isAnimationActive={false}
               dot={(dotProps) => {
                 const { cx, cy, key, index } = dotProps
+                // No coordinates means Recharts placed no point here — a gap in
+                // the series, or a result belonging to a different assay.
+                if (cx == null || cy == null) return <g key={key} />
+
                 const point = data[index]
                 const critical = point?.flag === "critical"
 
