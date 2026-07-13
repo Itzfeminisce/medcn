@@ -1,3 +1,5 @@
+"use client"
+
 import { AiAttachmentCard } from "@/registry/medcn/ai-attachment-card/ai-attachment-card"
 
 export default function AiAttachmentCardDemo() {
