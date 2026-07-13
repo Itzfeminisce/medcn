@@ -264,6 +264,32 @@
       opacity: 0;
     }
   }
+
+  /* Showcase marquee. The track holds two identical copies of the row, so
+     travelling exactly -50% lands on the start of the copy and the loop is
+     seamless at any width — no fixed pixel distance to keep in sync with the
+     tiles. Reduced-motion users get a plain scrollable row instead (see the
+     `motion-reduce` classes on the row). */
+  .marquee-track {
+    animation: marquee-scroll 60s linear infinite;
+  }
+  .marquee-track[data-direction="right"] {
+    animation-direction: reverse;
+  }
+  .marquee-row:hover .marquee-track,
+  .marquee-row:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+  @keyframes marquee-scroll {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
 }
 
 /* Full-bleed preview route (loaded in the BlockPreview iframe): hide the site
