@@ -1,0 +1,109 @@
+{
+  "name": "ai-note-draft",
+  "title": "AI Note Draft",
+  "description": "Editable, sectioned note draft with an original-versus-generated comparison slot and deliberate accept, edit, discard, and copy actions.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "ai-answer-card",
+    "card",
+    "badge",
+    "button",
+    "label",
+    "separator",
+    "textarea"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "default": "\"Note draft\""
+    },
+    {
+      "name": "sections",
+      "type": "AiNoteDraftSection[]",
+      "description": "{ id, heading, content, edited?, placeholder?, provenance?, readOnly? }. Controlled — the component holds no text of its own."
+    },
+    {
+      "name": "sections[].edited",
+      "type": "boolean",
+      "default": "false",
+      "description": "Marks the section as changed by the reviewer. Caller-owned, so the indicator cannot claim an edit the caller never recorded."
+    },
+    {
+      "name": "sections[].provenance",
+      "type": "ReactNode",
+      "description": "Per-section sources — AiCitation elements or an AiEvidencePanel."
+    },
+    {
+      "name": "status",
+      "type": "\"draft\" | \"accepted\" | \"discarded\"",
+      "default": "\"draft\"",
+      "description": "Position in the review flow. Only the caller advances it; the component never accepts on its own."
+    },
+    {
+      "name": "editing",
+      "type": "boolean",
+      "default": "false",
+      "description": "Content is read-only until this is true. Controlled."
+    },
+    {
+      "name": "onEditingChange",
+      "type": "(editing: boolean) => void",
+      "description": "Omit to remove the edit control."
+    },
+    {
+      "name": "onSectionChange",
+      "type": "(id: string, content: string) => void"
+    },
+    {
+      "name": "comparison",
+      "type": "ReactNode",
+      "description": "Original-versus-generated view — a diff, two columns, whatever the caller has. Rendered above the sections."
+    },
+    {
+      "name": "comparisonLabel",
+      "type": "ReactNode",
+      "default": "\"Original vs generated\""
+    },
+    {
+      "name": "onAccept",
+      "type": "() => void",
+      "description": "Caller writes to the record. Omit to hide the accept control entirely — for example, without permission."
+    },
+    {
+      "name": "onDiscard",
+      "type": "() => void",
+      "description": "Discards the draft. Must not touch the underlying record."
+    },
+    {
+      "name": "onCopy",
+      "type": "() => void"
+    },
+    {
+      "name": "confirmAccept",
+      "type": "boolean",
+      "default": "true",
+      "description": "Accept is a two-step confirmation, and is disabled while editing."
+    },
+    {
+      "name": "extraActions",
+      "type": "ReactNode",
+      "description": "Extra footer controls, after the built-in review actions."
+    },
+    {
+      "name": "…",
+      "type": "AiAnswerCardProps",
+      "description": "metadata, confidence, limitations, and evidence pass through to AiAnswerCard; actions is owned by this component."
+    }
+  ],
+  "clinicalNotes": "A note is a legal record, and the failure mode this component exists to prevent is generated prose sliding into it without anyone deciding that it should. So the draft is inert by default: text is read-only until the reviewer explicitly enters edit mode, the draft is labelled \"not filed\", and a standing line under the content says it is not part of the record. Accepting is deliberate and separated from reading — accept is disabled while editing (the text you accept is the text that is filed), and it takes a second, confirming click, so a mis-click cannot document a patient. `onAccept` is caller-owned: this component never writes, and a caller who omits it has no accept button at all, which is how you model a user without documentation rights. Discard is non-destructive — it drops the draft and leaves the underlying record untouched — and the discarded state says so, because a reviewer must never wonder whether rejecting a draft deleted a real note. Edits are surfaced rather than absorbed: a section the reviewer changed is marked, and the whole draft shows an edited indicator, so a later reader can see that the filed text is no longer what the model produced. Provenance is per-section, and the comparison slot exists so the reviewer can see the draft against what the record already says before choosing to overwrite it.",
+  "notes": "Composes AiAnswerCard (owns its actions slot; pass extras via extraActions). Fully controlled: sections, editing, and status all live with the caller. Section variants exported as aiNoteDraftSectionVariants."
+}

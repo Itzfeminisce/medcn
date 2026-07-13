@@ -1,0 +1,20 @@
+{
+  "name": "data-freshness-stamp",
+  "title": "Data Freshness Stamp",
+  "description": "How old a reading is, and whether its source is still reporting — fresh, stale, or disconnected.",
+  "category": "data",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "badge", "tooltip"],
+  "props": [
+    { "name": "age", "type": "ReactNode", "description": "How old, in the caller's words: \"4 min ago\", \"09:12\", \"6 h ago\"." },
+    { "name": "status", "type": "\"fresh\" | \"stale\" | \"disconnected\"", "default": "\"fresh\"", "description": "`disconnected` says the source went silent — never the same claim as \"unchanged\"." },
+    { "name": "datetime", "type": "string", "description": "Machine-readable timestamp for <time datetime>." },
+    { "name": "label", "type": "string", "default": "\"Last reading\"", "description": "What the age refers to — \"Last synced\", \"Last charted\". Read out to assistive tech." },
+    { "name": "detail", "type": "ReactNode", "description": "Why it is stale or disconnected. Renders in a tooltip." }
+  ],
+  "clinicalNotes": "A chart quietly showing yesterday's values looks exactly like one showing this morning's, so the age of the data is part of the reading rather than chrome. The `disconnected` state exists because a monitor that has stopped reporting and a patient whose values have stopped changing produce the same flat line — the UI must distinguish them, and a caller should prefer `disconnected` over `stale` whenever the source itself is known to be silent. The component reports the age it is given; it does not decide when a reading becomes stale, because that threshold is clinical (a blood pressure from four hours ago is routine on a ward and unacceptable in theatre).",
+  "notes": "Sits beside charts, flowsheet headers, and vitals panels. Composes badge + tooltip."
+}

@@ -1,0 +1,20 @@
+{
+  "name": "temperature-curve",
+  "title": "Temperature Curve",
+  "description": "The fever curve, with one series per measurement route and antipyretic doses marked.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["recharts"],
+  "registryDependencies": ["chart", "reference-range-band"],
+  "props": [
+    { "name": "data", "type": "TemperatureReading[]", "description": "`{ time, temperature, route }`. Route is required on every reading." },
+    { "name": "unit", "type": "\"°C\" | \"°F\"", "default": "\"°C\"" },
+    { "name": "antipyretics", "type": "AntipyreticMarker[]", "description": "Administrations aligned to the x axis." },
+    { "name": "range", "type": "{ low, high, label? }", "description": "Normal range for the route in use — caller-supplied." },
+    { "name": "feverThreshold", "type": "number", "description": "The caller's febrile threshold, drawn as a labelled line." }
+  ],
+  "clinicalNotes": "Every reading carries its route, and each route is plotted as its own series. Oral, tympanic, axillary, rectal, and core readings are not interchangeable — an axillary temperature runs roughly half a degree below a core one — so one line through mixed routes manufactures a defervescence out of a change in measurement method. Note the single deliberate exception to this round's no-bridging rule: nulls *within* a route are connected, because there a null means the row was measured by a different route, not that nothing was measured; leaving them broken would shatter each route into isolated dots. A fall after an antipyretic is alignment in time, not proof of effect.",
+  "notes": "Composes chart + reference-range-band."
+}

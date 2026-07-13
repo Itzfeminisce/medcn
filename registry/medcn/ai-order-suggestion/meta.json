@@ -1,0 +1,94 @@
+{
+  "name": "ai-order-suggestion",
+  "title": "AI Order Suggestion",
+  "description": "Review card for a caller-supplied proposed order, with structured fields, rationale, constraints, and a required acknowledgement that gates submission.",
+  "category": "medication",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "ai-answer-card",
+    "badge",
+    "button",
+    "checkbox",
+    "label"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "default": "\"Proposed order — awaiting review\""
+    },
+    {
+      "name": "orderLabel",
+      "type": "ReactNode",
+      "description": "The proposal in one line, e.g. \"Amoxicillin 500 mg oral, TDS, 5 days\"."
+    },
+    {
+      "name": "orderType",
+      "type": "ReactNode",
+      "default": "\"Proposed order\""
+    },
+    {
+      "name": "fields",
+      "type": "AiOrderField[]",
+      "description": "{ label, value, emphasis? } — the structured proposal, rendered verbatim. `emphasis` marks a field the reviewer most likely needs to change."
+    },
+    {
+      "name": "rationale",
+      "type": "ReactNode",
+      "description": "Why the order was proposed. Caller-supplied."
+    },
+    {
+      "name": "constraints",
+      "type": "ReactNode[]",
+      "description": "Cautions the reviewer must satisfy before signing — allergy status, renal dosing, unchecked interactions."
+    },
+    {
+      "name": "acknowledgementLabel",
+      "type": "ReactNode",
+      "description": "Overrides the default acknowledgement wording. It must remain an assumption of clinical responsibility, not a dismissal."
+    },
+    {
+      "name": "acknowledged",
+      "type": "boolean",
+      "description": "Controlled acknowledgement. Omit for internal state."
+    },
+    {
+      "name": "onAcknowledgedChange",
+      "type": "(acknowledged: boolean) => void"
+    },
+    {
+      "name": "submitLabel",
+      "type": "ReactNode",
+      "default": "\"Sign and submit\""
+    },
+    {
+      "name": "onSubmit",
+      "type": "() => void",
+      "description": "Caller-provided signing handler. Without it, submit stays disabled — the component cannot place an order."
+    },
+    {
+      "name": "canSubmit",
+      "type": "boolean",
+      "default": "true",
+      "description": "Additional caller gate: authorisation, local protocol checks, an open encounter. Submit requires acknowledgement AND this."
+    },
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "description": "Secondary actions rendered beside submit: edit, discard, send to a prescriber."
+    },
+    {
+      "name": "limitations",
+      "type": "ReactNode",
+      "description": "Overrides the default limitations line passed to AiAnswerCard."
+    }
+  ],
+  "clinicalNotes": "A generated order is the point where a UI stops describing and starts acting, so this component is designed so that it cannot act. It performs no dose calculation, no allergy check, no interaction screening, and no protocol validation — every field is rendered verbatim from the caller, and the card says so in its limitations. Submission is locked behind two independent gates: an explicit acknowledgement checkbox in which the reviewer states they have checked the proposal against the record and their local protocol and take clinical responsibility for it, and a caller-provided `onSubmit` handler. With no handler wired, the submit button is permanently disabled and the card says outright that it cannot place an order; `canSubmit` exists so the host can add authorisation or an open-encounter requirement on top. The acknowledgement is deliberately worded as an assumption of responsibility rather than a dismissal — a checkbox that reads \"OK\" trains people to click through, and one-click accept on a generated order is exactly the automation-bias failure that kills patients. The card is labelled \"Not submitted\" in both the provenance badge and beside the order line so that its state is never ambiguous in a screenshot or a handover. `constraints` is where the caller names what has NOT been checked — allergy status not asked, renal dosing unconfirmed, interactions unscreened — because the reviewer's real risk is assuming a check happened silently. Consumers must connect an authorised ordering workflow, local protocol checks, and audit logging explicitly; none of that lives here.",
+  "notes": "Composes AiAnswerCard for the shell, checkbox + label for the acknowledgement gate, and button for the caller-owned submit. Acknowledgement supports controlled and uncontrolled use."
+}

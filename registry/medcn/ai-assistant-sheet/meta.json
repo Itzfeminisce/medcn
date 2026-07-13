@@ -1,0 +1,61 @@
+{
+  "name": "ai-assistant-sheet",
+  "title": "AI Assistant Sheet",
+  "description": "Responsive assistant panel — side sheet on desktop, bottom sheet on mobile — with a guarded close path.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "registryDependencies": [
+    "utils",
+    "sheet"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "default": "\"Clinical assistant\"",
+      "description": "Accessible title. Stays as a hidden label when `header` replaces the visual block."
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "description": "Sub-line under the default title."
+    },
+    {
+      "name": "header",
+      "type": "ReactNode",
+      "description": "Replaces the default title block — typically ai-chat-header."
+    },
+    {
+      "name": "context",
+      "type": "ReactNode",
+      "description": "Visible context strip under the header."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "The conversation."
+    },
+    {
+      "name": "composer",
+      "type": "ReactNode",
+      "description": "Pinned to the bottom of the sheet, above the safe-area inset."
+    },
+    {
+      "name": "onRequestClose",
+      "type": "() => boolean",
+      "description": "Called before every dismissal — close button, overlay click, Escape. Return false to keep the sheet open."
+    },
+    {
+      "name": "open",
+      "type": "boolean"
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(open: boolean) => void"
+    }
+  ],
+  "clinicalNotes": "Closing must not discard a drafted prompt, an active recording, or an unreviewed answer. A sheet is dismissible three ways — close button, overlay click, Escape — and the last two are easy to hit by accident mid-consultation, so every path is routed through `onRequestClose` and the caller decides whether the work can be dropped. Focus is trapped while open and returns to the trigger on close, which is what keeps the assistant a side task rather than a place a keyboard user gets stranded. On phones it is a bottom sheet with a safe-area-aware composer, so the send button is not under the home indicator.",
+  "notes": "Radix Dialog requires a title; when `header` is supplied the title is kept as an sr-only element."
+}

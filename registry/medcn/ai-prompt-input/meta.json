@@ -1,0 +1,79 @@
+{
+  "name": "ai-prompt-input",
+  "title": "AI Prompt Input",
+  "description": "Autosizing prompt composer with send/stop states, a tools slot, and caller-authored data restrictions above the field.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "textarea",
+    "button"
+  ],
+  "props": [
+    {
+      "name": "value",
+      "type": "string",
+      "description": "Controlled draft. Omit to let the composer own the draft."
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "default": "\"\"",
+      "description": "Initial draft for the uncontrolled form."
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string) => void",
+      "description": "Fires on every keystroke, in both controlled and uncontrolled forms."
+    },
+    {
+      "name": "onSubmit",
+      "type": "(value: string) => void",
+      "description": "Fires on Enter or the send button, with the trimmed draft."
+    },
+    {
+      "name": "onStop",
+      "type": "() => void",
+      "description": "Fires from the stop button while `streaming`."
+    },
+    {
+      "name": "streaming",
+      "type": "boolean",
+      "default": "false",
+      "description": "A response is in flight — send is swapped for stop."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "maxLength",
+      "type": "number",
+      "description": "Enables the character counter, which turns destructive at the limit."
+    },
+    {
+      "name": "restrictions",
+      "type": "ReactNode",
+      "description": "Caller-authored limits on what may be typed, rendered above the field with a shield icon."
+    },
+    {
+      "name": "tools",
+      "type": "ReactNode",
+      "description": "Leading slot for attachment, voice, or context controls."
+    },
+    {
+      "name": "submitLabel",
+      "type": "string",
+      "default": "\"Send prompt\"",
+      "description": "Accessible name for the send button."
+    }
+  ],
+  "clinicalNotes": "Restrictions are rendered in the composer, immediately above the field, because that is the last moment a clinician can act on them — a generic terms link elsewhere in the product is not disclosure. Write them concretely (\"Do not paste identifiers from outside the active encounter\"), not as boilerplate. An empty or whitespace-only draft can never be sent, and the stop control is always reachable while a response streams, so a request that is pulling in the wrong context can be cut off rather than waited out.",
+  "notes": "Renders a form, so Enter-to-send and the submit button share one path. Autosizing comes from the textarea's field-sizing-content, capped at max-h-40."
+}

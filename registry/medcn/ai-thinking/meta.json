@@ -1,0 +1,37 @@
+{
+  "name": "ai-thinking",
+  "title": "AI Thinking",
+  "description": "Non-blocking assistant working status with a plain-language phase label and an optional stop slot.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "props": [
+    {
+      "name": "phase",
+      "type": "ReactNode",
+      "default": "\"Preparing response\"",
+      "description": "Plain-language description of what the product is doing right now."
+    },
+    {
+      "name": "variant",
+      "type": "\"inline\" | \"bubble\"",
+      "default": "\"inline\"",
+      "description": "`bubble` sits in a transcript next to messages; `inline` sits under a composer or in a toolbar."
+    },
+    {
+      "name": "action",
+      "type": "ReactNode",
+      "description": "Trailing slot for a caller-owned stop/cancel control."
+    }
+  ],
+  "clinicalNotes": "Phase copy describes system work (\"Retrieving approved sources\"), not cognition — never \"thinking clinically\", \"considering differentials\", or anything that implies the system is reasoning about the patient. Clinicians calibrate trust from this wording. The status is aria-live=\"polite\" and the spinner is motion-safe, so it neither interrupts a screen-reader user mid-sentence nor animates for someone who has asked for reduced motion. It is non-blocking by design: a clinician must always be able to keep working in the chart while a turn is in flight.",
+  "notes": "Differs from ai-typing-indicator: this names a processing phase; the indicator only shows conversational turn state."
+}

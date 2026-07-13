@@ -16,7 +16,10 @@ import {
   DashboardGrid,
   DashboardGridItem,
 } from "@/registry/medcn/dashboard-grid/dashboard-grid"
-import { DashboardShell } from "@/registry/medcn/dashboard-shell/dashboard-shell"
+import {
+  DashboardHeader,
+  DashboardShell,
+} from "@/registry/medcn/dashboard-shell/dashboard-shell"
 import { StatTile } from "@/registry/medcn/stat-tile/stat-tile"
 import { PatientRosterTable } from "@/registry/medcn/patient-roster-table/patient-roster-table"
 import { AppointmentsPanel } from "@/registry/medcn/appointments-panel/appointments-panel"
@@ -90,12 +93,15 @@ function ProviderDashboardBlock({
       }
       header={
         header ?? (
-          <div className="flex items-center justify-between gap-4 px-4 py-3 md:px-6">
-            <div className="text-sm font-medium">Today’s overview</div>
-            <div className="flex items-center gap-2 rounded-lg border border-border/60 bg-background px-2.5 py-1.5 text-sm text-muted-foreground">
-              <Search className="size-4" /> Search patients
-            </div>
-          </div>
+          <DashboardHeader
+            icon={<LayoutDashboard />}
+            title="Today’s overview"
+            actions={
+              <div className="flex items-center gap-2 rounded-lg border border-border/60 bg-background px-2.5 py-1.5 text-sm text-muted-foreground">
+                <Search className="size-4" /> Search patients
+              </div>
+            }
+          />
         )
       }
     >

@@ -1,0 +1,21 @@
+{
+  "name": "lab-delta-indicator",
+  "title": "Lab Delta Indicator",
+  "description": "The change since the prior result, with the interval and the prior value in reach — and no verdict unless the caller supplies a significance threshold.",
+  "category": "data",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "badge", "tooltip"],
+  "props": [
+    { "name": "current / prior", "type": "number", "description": "The two results being compared." },
+    { "name": "unit", "type": "string" },
+    { "name": "interval", "type": "ReactNode", "description": "When the prior result was taken. A delta without an interval is unreadable." },
+    { "name": "significantChange", "type": "number", "description": "The assay's reference change value, or the caller's threshold. Without it the badge reports the change and asserts nothing." },
+    { "name": "asPercent", "type": "boolean", "default": "false" },
+    { "name": "concerningDirection", "type": "\"up\" | \"down\"", "description": "Which direction is clinically worse, if the caller wants it marked." }
+  ],
+  "clinicalNotes": "A delta is only meaningful against the assay's own variability — a creatinine that moves 3 µmol/L has probably not moved at all, and a UI that renders every difference as a red arrow trains clinicians to ignore the red arrows. So without `significantChange` this is a neutral badge: an arrow is a direction, not a verdict, and the tooltip says as much. Supply the threshold and it marks the change significant, in the word as well as the colour, so a greyscale reading carries the same meaning. `concerningDirection` is what turns a significant change into a warning — the component never guesses which way is worse, because for haemoglobin it is down and for creatinine it is up.",
+  "notes": "Composes badge + tooltip. Used inside lab-result-chart and lab-panel-table."
+}

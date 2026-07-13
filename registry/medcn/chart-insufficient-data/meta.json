@@ -1,0 +1,20 @@
+{
+  "name": "chart-insufficient-data",
+  "title": "Chart Insufficient Data",
+  "description": "What a chart renders instead of a trend it cannot honestly draw — the count, the threshold, the period, and the readings themselves.",
+  "category": "data",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "empty-state"],
+  "props": [
+    { "name": "count", "type": "number", "description": "Readings actually available." },
+    { "name": "minimum", "type": "number", "description": "Readings this chart needs before a trend means anything. The caller's clinical judgement, not a library default." },
+    { "name": "period", "type": "ReactNode", "description": "The window the count covers — \"30 days\", \"this admission\"." },
+    { "name": "title / description / icon", "type": "ReactNode", "description": "Override the generated copy." },
+    { "name": "children", "type": "ReactNode", "description": "The readings, listed rather than plotted. They are data — just not a trend." }
+  ],
+  "clinicalNotes": "A confident line drawn through two points is indistinguishable from a line through two hundred, and the reader has no way to detect the difference — this component is what a chart renders instead. It states the count, the threshold, and the period, and still shows the readings, because withholding them would be its own kind of dishonesty. `minimum` is deliberately required: how many readings constitute a trend is a clinical decision that varies by measure (two weights a year apart may be meaningful; two blood pressures on one morning are not), so the component will not invent a default.",
+  "notes": "Render in place of the chart, not beside it. Composes empty-state."
+}

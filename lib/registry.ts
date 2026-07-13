@@ -22,8 +22,24 @@ export interface RegistryItemMeta {
   props?: RegistryProp[]
   clinicalNotes?: string
   notes?: string
+  /**
+   * ISO date the item shipped. Drives the "New" badge, which expires on its own
+   * NEW_WINDOW_DAYS later — there is no flag to remember to unset.
+   */
+  added?: string
   /** External references: the Radix primitive a component wraps, or the shadcn counterpart. */
   links?: { radix?: string; shadcn?: string }
+}
+
+/** How long an item wears the "New" badge. Measured from `added` at build time. */
+export const NEW_WINDOW_DAYS = 45
+
+export function isNewItem(item: Pick<RegistryItemMeta, "added">): boolean {
+  if (!item.added) return false
+  const added = new Date(item.added).getTime()
+  if (Number.isNaN(added)) return false
+  const age = Date.now() - added
+  return age >= 0 && age < NEW_WINDOW_DAYS * 24 * 60 * 60 * 1000
 }
 
 export async function getRegistryItems(): Promise<RegistryItemMeta[]> {
@@ -59,7 +75,7 @@ export async function getItemDemoSource(name: string): Promise<string> {
 
 export interface NavGroup {
   label: string
-  items: { title: string; href: string }[]
+  items: { title: string; href: string; isNew?: boolean }[]
 }
 
 /**
@@ -98,6 +114,7 @@ export async function getNavGroups(): Promise<NavGroup[]> {
         items: list.map((item) => ({
           title: item.title,
           href: `/components/${item.name}`,
+          isNew: isNewItem(item),
         })),
       })),
   ]
@@ -115,5 +132,6 @@ export const CATEGORIES: Record<string, string> = {
   records: "Records",
   triage: "Triage",
   dashboard: "Dashboard",
+  ai: "Clinical AI",
   blocks: "Blocks",
 }

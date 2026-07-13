@@ -1,0 +1,19 @@
+{
+  "name": "medication-timeline",
+  "title": "Medication Timeline",
+  "description": "Doses over time on a shared time axis — given, scheduled, held, missed, and refused, each as visible as the others.",
+  "category": "medication",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [],
+  "registryDependencies": ["utils", "badge", "tooltip"],
+  "props": [
+    { "name": "times", "type": "string[]", "description": "The shared time axis. Pass the same labels a vitals chart uses and the two align." },
+    { "name": "medications", "type": "MedicationRow[]", "description": "`{ key, label, doses }` where a dose is `{ time, state, detail? }`." },
+    { "name": "caption", "type": "string", "description": "Required." },
+    { "name": "DoseState", "type": "\"given\" | \"scheduled\" | \"held\" | \"missed\" | \"refused\"" }
+  ],
+  "clinicalNotes": "Held, missed, and refused doses are rendered as prominently as given ones, and each state carries a glyph as well as a colour. A strip that showed only what was administered would answer \"what did we give?\" while hiding the question a clinician is usually asking — \"why is she still tachycardic?\" — when the answer is that three beta-blocker doses were held for a soft blood pressure. Alignment is not causation: placing this above a vitals trend invites the eye to connect a dose with a change, and the component makes the timing visible while making no claim about the link. It is a record view, not an administration record — it cannot sign for a dose.",
+  "notes": "Built from primitives on a categorical time axis so it aligns with vitals-trend-chart. Composes badge + tooltip."
+}

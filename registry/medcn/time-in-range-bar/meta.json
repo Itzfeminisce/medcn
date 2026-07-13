@@ -1,0 +1,20 @@
+{
+  "name": "time-in-range-bar",
+  "title": "Time in Range Bar",
+  "description": "Share of a period spent below, in, and above target — with the period, its data coverage, and every number stated in text.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [],
+  "registryDependencies": ["utils", "tooltip"],
+  "props": [
+    { "name": "below / inRange / above", "type": "number", "description": "Shares of the period, 0–100. Supplied — the component derives nothing from readings." },
+    { "name": "veryBelow / veryAbove", "type": "number", "description": "Urgent bands, if the caller distinguishes them." },
+    { "name": "period", "type": "ReactNode", "description": "Required. The window the percentages describe — \"14 days\", \"this shift\"." },
+    { "name": "coverage", "type": "ReactNode", "description": "How much of the period actually has data — \"96% sensor wear\". A percentage with no denominator cannot be read." },
+    { "name": "targetLabel", "type": "ReactNode", "description": "The band the shares are measured against — \"3.9–10.0 mmol/L\"." }
+  ],
+  "clinicalNotes": "Percentages are meaningless without their denominator: 68% in range over four hours of sensor wear and 68% over a fortnight look identical on a bar and mean entirely different things. That is why `period` is required and `coverage` sits in the header rather than in a caption someone might drop. Every share is also stated in text beside the bar, so the reading never depends on distinguishing colours. The component renders the shares it is given and does not compute them from readings — how a consumer defines \"in range\", and how they treat gaps in the data, stays in code they can validate.",
+  "notes": "Deviates from the round's plan, which said \"composes progress\": a stacked multi-segment bar is not a Progress, so it is built from primitives, with 2px gaps between segments per the mark spec."
+}

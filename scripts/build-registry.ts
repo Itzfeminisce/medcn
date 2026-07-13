@@ -38,6 +38,7 @@ interface Meta {
   props?: unknown[]
   clinicalNotes?: string
   notes?: string
+  added?: string
   links?: { radix?: string; shadcn?: string }
 }
 
@@ -46,10 +47,10 @@ const SHADCN_BUILTINS = new Set(["utils"])
 
 function rewriteImports(source: string): string {
   return source
-    .replaceAll(`"@/registry/${SITE_NAME}/lib/utils"`, `["@/lib/utils"]`)
+    .replaceAll(`"@/registry/${SITE_NAME}/lib/utils"`, `"@/lib/utils"`)
     .replace(
       new RegExp(`"@\/registry\/${SITE_NAME}\/[a-z0-9-]+\/([a-z0-9-]+)"`, "g"),
-      `["@/components/ui/$1"]`
+      `"@/components/ui/$1"`
     )
 }
 
@@ -104,6 +105,7 @@ async function main() {
         category: meta.category,
         version: meta.version,
         docs: `${SITE_URL}/components/${meta.name}`,
+        ...(meta.added ? { added: meta.added } : {}),
         ...(meta.props ? { props: meta.props } : {}),
         ...(meta.clinicalNotes ? { clinicalNotes: meta.clinicalNotes } : {}),
         ...(meta.links ? { links: meta.links } : {}),

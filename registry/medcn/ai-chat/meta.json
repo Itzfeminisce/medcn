@@ -1,0 +1,52 @@
+{
+  "name": "ai-chat",
+  "title": "AI Chat",
+  "description": "State-free assistant shell with header, visible context, transcript, suggestions, and composer slots.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "card",
+    "separator"
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "\"card\" | \"plain\"",
+      "default": "\"card\"",
+      "description": "`plain` drops the card chrome for a full-page workspace or a sheet body."
+    },
+    {
+      "name": "header",
+      "type": "ReactNode",
+      "description": "Typically ai-chat-header."
+    },
+    {
+      "name": "context",
+      "type": "ReactNode",
+      "description": "Visible scope of the conversation — typically ai-context-bar."
+    },
+    {
+      "name": "messages",
+      "type": "ReactNode",
+      "description": "The transcript. Falls back to `children`."
+    },
+    {
+      "name": "suggestions",
+      "type": "ReactNode",
+      "description": "Prompt chips or suggestion cards between transcript and composer."
+    },
+    {
+      "name": "composer",
+      "type": "ReactNode",
+      "description": "Typically ai-prompt-input, optionally above a disclaimer."
+    }
+  ],
+  "clinicalNotes": "Context is a slot, not internal state. That is deliberate: a clinician must be able to see which patient, encounter, and date range a question will carry before they ask it, and a shell that stored context privately would make that invisible. The component holds no conversation state either, so the same shell can host a floating sheet and a full-page workspace without a second implementation drifting out of sync.",
+  "notes": "Give the shell a bounded height (h-[32rem], or h-full in a sheet) so the transcript region can scroll instead of the page."
+}

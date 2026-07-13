@@ -1,0 +1,22 @@
+{
+  "name": "early-warning-score",
+  "title": "Early Warning Score",
+  "description": "An aggregate deterioration score (NEWS2, MEWS, PEWS) with its parameter breakdown and its trajectory. Displays a score — never computes one.",
+  "category": "triage",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["recharts"],
+  "registryDependencies": ["utils", "chart", "badge", "risk-score-gauge"],
+  "props": [
+    { "name": "system", "type": "string", "description": "Required. \"NEWS2\", \"MEWS\", \"PEWS\" — the instruments are not interchangeable, so the chart names the one in use." },
+    { "name": "score / band", "type": "number | RiskBand", "description": "The aggregate score and its band, both from the consumer's validated logic." },
+    { "name": "parameters", "type": "EwsParameter[]", "description": "`{ label, value, points }` — the contributions, so a score can be checked rather than trusted." },
+    { "name": "history", "type": "EwsPoint[]", "description": "The score over time. The trajectory is the reading." },
+    { "name": "escalationThreshold", "type": "number", "description": "The caller's protocol threshold, drawn as a labelled line." },
+    { "name": "guidance", "type": "ReactNode", "description": "The caller's escalation guidance. Local protocol, not the component's." },
+    { "name": "max", "type": "number", "default": "20" }
+  ],
+  "clinicalNotes": "The component displays a score; it does not compute one. NEWS2, MEWS, and PEWS are validated instruments with defined scoring tables, and a UI library that reimplemented one would be shipping an unvalidated clinical calculator that no consumer could audit or version. The parameter breakdown exists so a clinician can check the arithmetic against the chart rather than trust a number. The trajectory is given as much room as the value, because a score of 4 that was 1 four hours ago is a different patient from a score of 4 that has been 4 all day, and a rising score still inside the \"low\" band is exactly the signal an aggregate tends to flatten — hence the explicit \"Rising — was N\" badge. Escalation guidance is the caller's local protocol; the component never asserts what to do.",
+  "notes": "Feeds naturally into ai-escalation-alert. Composes risk-score-gauge + chart + badge."
+}

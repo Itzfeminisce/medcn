@@ -1,0 +1,57 @@
+{
+  "name": "ai-privacy-notice",
+  "title": "AI Privacy Notice",
+  "description": "Compact inline disclosure of how prompt data is used, retained, and processed externally.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "alert",
+    "tooltip"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "default": "\"How this data is used\""
+    },
+    {
+      "name": "facts",
+      "type": "AiPrivacyFact[]",
+      "description": "Disclosure lines: { id, kind?, label, detail? }. Every fact is caller-supplied — the component asserts nothing about your data handling on its own."
+    },
+    {
+      "name": "facts[].kind",
+      "type": "\"use\" | \"retention\" | \"external\" | \"identifiability\"",
+      "default": "\"use\"",
+      "description": "Drives the leading icon so the four disclosures are scannable."
+    },
+    {
+      "name": "facts[].detail",
+      "type": "ReactNode",
+      "description": "The specifics behind the label — processor, region, legal basis, deletion route. Shown on hover/focus and always exposed to assistive technology."
+    },
+    {
+      "name": "detailHref",
+      "type": "string",
+      "description": "Link to the product's authoritative privacy notice or controls."
+    },
+    {
+      "name": "detailLabel",
+      "type": "ReactNode",
+      "default": "\"Privacy notice\""
+    },
+    {
+      "name": "variant",
+      "type": "\"default\" | \"info\" | \"success\" | \"warning\" | \"destructive\"",
+      "default": "\"info\""
+    }
+  ],
+  "clinicalNotes": "The hazard this guards against is a clinician pasting identifiable detail into a prompt without knowing where that text is about to go. The disclosure therefore sits at the point of the action rather than behind a settings page, and it names the four things a clinician actually needs before pressing send: what leaves the device, whether identifiers are stripped, who processes it and where, and how long it is kept. Because those answers differ by deployment, the component hard-codes none of them — a notice that ships with confident defaults would be a false one. The `detail` text is not hidden information: it is rendered into the accessible name of each line as well as into the tooltip, so a screen-reader or keyboard user is never asked to consent to a hover. This is a disclosure, not a control and not a consent record: it does not gate the send action, it does not capture agreement, and it never replaces the product's privacy notice or its opt-outs. Use ai-consent-notice where agreement must actually be collected.",
+  "notes": "Composes alert + tooltip. Designed to sit directly above or beside ai-prompt-input's send action; keep it to three or four facts so it stays readable at a glance."
+}

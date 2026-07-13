@@ -1,9 +1,11 @@
 "use client"
 
+import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import type { NavGroup } from "@/lib/registry"
+import { NewBadge } from "@/components/new-badge"
 import {
   Sidebar,
   SidebarContent,
@@ -24,6 +26,28 @@ import {
 export function DocsSidebar({ groups }: { groups: NavGroup[] }) {
   const pathname = usePathname()
   const { setOpenMobile } = useSidebar()
+  const activeRef = React.useRef<HTMLAnchorElement>(null)
+
+  /**
+   * Land on a component page with its nav entry already in view — the catalog is
+   * long enough that the active item is otherwise below the fold. Scrolls the
+   * rail only, and only when the item is actually out of view, so clicking a
+   * visible link doesn't jump the list under the cursor.
+   */
+  React.useLayoutEffect(() => {
+    const link = activeRef.current
+    const rail = link?.closest<HTMLElement>('[data-sidebar="content"]')
+    if (!link || !rail) return
+
+    const linkBox = link.getBoundingClientRect()
+    const railBox = rail.getBoundingClientRect()
+    if (linkBox.top >= railBox.top && linkBox.bottom <= railBox.bottom) return
+
+    rail.scrollTop +=
+      linkBox.top -
+      railBox.top -
+      (railBox.height - linkBox.height) / 2
+  }, [pathname])
 
   return (
     <Sidebar className="top-14 h-[calc(100svh-3.5rem)]">
@@ -35,19 +59,27 @@ export function DocsSidebar({ groups }: { groups: NavGroup[] }) {
             </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {group.items.map((item) => (
-                  <SidebarMenuItem key={item.href}>
-                    <SidebarMenuButton
-                      asChild
-                      isActive={pathname === item.href}
-                      className="text-muted-foreground hover:text-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground data-[active=true]:font-medium"
-                    >
-                      <Link href={item.href} onClick={() => setOpenMobile(false)}>
-                        {item.title}
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
+                {group.items.map((item) => {
+                  const isActive = pathname === item.href
+                  return (
+                    <SidebarMenuItem key={item.href}>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={isActive}
+                        className="text-muted-foreground hover:text-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground data-[active=true]:font-medium"
+                      >
+                        <Link
+                          ref={isActive ? activeRef : undefined}
+                          href={item.href}
+                          onClick={() => setOpenMobile(false)}
+                        >
+                          <span className="truncate">{item.title}</span>
+                          {item.isNew && <NewBadge className="ml-auto" />}
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  )
+                })}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>

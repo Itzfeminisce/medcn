@@ -1,0 +1,21 @@
+{
+  "name": "growth-chart",
+  "title": "Growth Chart",
+  "description": "A child's growth against a named percentile reference, with corrected age stated rather than assumed.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["recharts"],
+  "registryDependencies": ["utils", "chart", "badge"],
+  "props": [
+    { "name": "measure", "type": "\"weight\" | \"length\" | \"height\" | \"headCircumference\" | \"bmi\"" },
+    { "name": "data", "type": "GrowthPoint[]", "description": "`{ x, y, percentile?, date? }` — x is age in `xUnit`, corrected if `correctedAge`." },
+    { "name": "percentiles", "type": "PercentileCurve[]", "description": "Required. The reference's own published curves — never bundled with the component." },
+    { "name": "reference", "type": "string", "description": "Required. Which reference and for whom: \"WHO 0–2 years, girls\". Rendered on the chart." },
+    { "name": "unit / xUnit", "type": "string", "default": "— / \"months\"" },
+    { "name": "correctedAge / gestationAtBirth", "type": "boolean | string", "description": "Stated, never inferred. Shown as a badge on the chart." }
+  ],
+  "clinicalNotes": "`reference` and `percentiles` are both required and neither ships with the component: the same weight lands on a different percentile against WHO, CDC, or a local standard, so a growth chart that quietly chose one would be putting a clinical claim in the caller's mouth. The reference is named on the chart itself for the same reason. `correctedAge` is stated explicitly because plotting a preterm infant at chronological age drags them down the centiles and invents a growth problem that does not exist — and because the correction eventually stops applying, which is a clinical decision, not a UI one. The component plots what it is given and computes no percentile. A single point says very little; the shape of the line is the reading, and the caption says so.",
+  "notes": "The flagship of the Clinical Data round. Percentile curves are drawn recessive (dashed, muted); the child's series is the only prominent mark. Composes chart + badge."
+}

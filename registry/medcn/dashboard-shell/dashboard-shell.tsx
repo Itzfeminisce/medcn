@@ -61,7 +61,11 @@ function DashboardShell({
 
       {/* Drawer + backdrop — only when narrow and toggled open. */}
       {sidebar && collapsible && open && (
-        <div className="absolute inset-0 z-40 @4xl/shell:hidden" role="dialog" aria-modal="true">
+        <div
+          className="absolute inset-0 z-40 @4xl/shell:hidden"
+          role="dialog"
+          aria-modal="true"
+        >
           <button
             aria-label="Close navigation"
             onClick={() => setOpen(false)}
@@ -106,7 +110,11 @@ function DashboardShell({
         <main
           data-slot="dashboard-shell-content"
           className={cn(
-            "flex-1 p-4 md:p-6",
+            // Container query, not a viewport breakpoint: the shell's whole
+            // promise is that it lays out by the width it is embedded in. A
+            // `md:` here would give a block in a narrow split pane desktop
+            // padding purely because the browser window is wide.
+            "flex-1 p-4 @2xl/shell:p-6",
             contained && "mx-auto w-full max-w-7xl",
             contentClassName
           )}
@@ -118,4 +126,77 @@ function DashboardShell({
   )
 }
 
-export { DashboardShell }
+export interface DashboardHeaderProps extends Omit<
+  React.ComponentProps<"div">,
+  "title"
+> {
+  /** Leading icon. Sized and coloured here so every block's header matches. */
+  icon?: React.ReactNode
+  title?: React.ReactNode
+  /** Second line under the title — patient, encounter, period. */
+  subtitle?: React.ReactNode
+  /** Badges, buttons, freshness stamps. Wraps below the title when space runs out. */
+  actions?: React.ReactNode
+  /** `destructive` for surfaces whose subject is urgency (triage, escalation). */
+  tone?: "primary" | "destructive"
+}
+
+/**
+ * The standard bar for a DashboardShell `header` slot.
+ *
+ * It exists so blocks stop hand-rolling their own: before this, headers differed
+ * in padding, icon colour, and whether they wrapped at all — and the ones that
+ * did not wrap pushed their actions off-screen in a narrow container. The title
+ * truncates, the actions wrap, and the padding follows the shell's container
+ * width rather than the viewport.
+ */
+function DashboardHeader({
+  icon,
+  title,
+  subtitle,
+  actions,
+  tone = "primary",
+  className,
+  children,
+  ...props
+}: DashboardHeaderProps) {
+  return (
+    <div
+      data-slot="dashboard-header"
+      className={cn(
+        "flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 @2xl/shell:px-6",
+        className
+      )}
+      {...props}
+    >
+      <div className="flex min-w-0 items-center gap-2">
+        {icon && (
+          <span
+            aria-hidden
+            className={cn(
+              "shrink-0 [&_svg]:size-4",
+              tone === "destructive" ? "text-destructive" : "text-primary"
+            )}
+          >
+            {icon}
+          </span>
+        )}
+        <div className="min-w-0">
+          <p className="truncate text-sm font-semibold">{title}</p>
+          {subtitle && (
+            <p className="truncate text-xs text-muted-foreground">{subtitle}</p>
+          )}
+        </div>
+      </div>
+
+      {(actions || children) && (
+        <div className="flex flex-wrap items-center gap-2">
+          {actions}
+          {children}
+        </div>
+      )}
+    </div>
+  )
+}
+
+export { DashboardShell, DashboardHeader }

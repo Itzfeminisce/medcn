@@ -1,0 +1,20 @@
+{
+  "name": "lab-result-chart",
+  "title": "Lab Result Chart",
+  "description": "One analyte over time against its reference range. An assay change is a break in the series, drawn as one.",
+  "category": "data",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["recharts"],
+  "registryDependencies": ["utils", "chart", "reference-range-band", "lab-delta-indicator"],
+  "props": [
+    { "name": "analyte", "type": "string", "description": "\"Creatinine\", \"Haemoglobin\"." },
+    { "name": "data", "type": "LabResultPoint[]", "description": "`{ date, value, assay?, flag? }`. A change of `assay` breaks the line." },
+    { "name": "unit", "type": "string", "description": "Required." },
+    { "name": "range", "type": "{ low?, high?, criticalBelow?, criticalAbove?, label? }", "description": "From the laboratory, with the population it applies to." },
+    { "name": "showDelta / significantChange", "type": "boolean | number", "description": "Change between the last two results. Suppressed across an assay change." }
+  ],
+  "clinicalNotes": "Results from different assays are not one continuous series. A platform migration can shift a creatinine by a third with nothing having happened to the patient, so each assay is drawn as its own segment, the changeover is marked on the axis, and no delta is offered across it — comparing two different measurements and calling the difference a change is exactly the error this component exists to prevent. Critical results are flagged by shape (a triangle) and by a label in the data table, not by colour alone. The reference range is the laboratory's, passed in with the population it describes.",
+  "notes": "Composes chart + reference-range-band + lab-delta-indicator."
+}

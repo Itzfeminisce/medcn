@@ -1,0 +1,62 @@
+{
+  "name": "ai-citation",
+  "title": "AI Citation",
+  "description": "Inline or footnote source reference with publisher, date, locator, excerpt, and stale/unavailable states.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "button",
+    "badge",
+    "popover"
+  ],
+  "props": [
+    {
+      "name": "index",
+      "type": "number",
+      "description": "Footnote marker. Omit for the inline document-icon form."
+    },
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "description": "Required. What the source actually is."
+    },
+    {
+      "name": "publisher",
+      "type": "ReactNode"
+    },
+    {
+      "name": "date",
+      "type": "ReactNode",
+      "description": "Publication or observation date."
+    },
+    {
+      "name": "locator",
+      "type": "ReactNode",
+      "description": "Where in the source the claim sits — page, section, or field."
+    },
+    {
+      "name": "excerpt",
+      "type": "ReactNode",
+      "description": "The supporting passage, quoted."
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "description": "Link to the source. Suppressed when the state is unavailable."
+    },
+    {
+      "name": "state",
+      "type": "\"available\" | \"stale\" | \"unavailable\"",
+      "default": "\"available\"",
+      "description": "`stale` warns the source may be out of date; `unavailable` shows the reference without pretending it can be opened."
+    }
+  ],
+  "clinicalNotes": "A citation must identify what source supports the claim — a generic \"sources available\" badge is not a citation, it is reassurance, and it is exactly what makes generated clinical text feel trustworthy when it is not. Give every reference a title, and where you can a locator and an excerpt, so a clinician can check the sentence against the passage rather than taking the link's existence as proof. Model `stale` and `unavailable` honestly: a source the reader cannot open, or one that predates the data they are looking at, changes how much weight the claim deserves, and hiding that is worse than having no citation at all.",
+  "notes": "The popover is the detail surface; the trigger stays small enough to sit inline in a sentence or in a footnote row."
+}

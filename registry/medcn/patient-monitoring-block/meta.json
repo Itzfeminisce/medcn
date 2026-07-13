@@ -1,0 +1,29 @@
+{
+  "name": "patient-monitoring-block",
+  "title": "Patient Monitoring Block",
+  "description": "The deterioration surface — the flowsheet holds the record, the trend chart holds the shape, the early-warning score holds the trajectory.",
+  "category": "blocks",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["lucide-react", "recharts"],
+  "registryDependencies": [
+    "dashboard-shell",
+    "dashboard-grid",
+    "vitals-flowsheet",
+    "vitals-trend-chart",
+    "early-warning-score",
+    "medication-timeline",
+    "data-freshness-stamp"
+  ],
+  "props": [
+    { "name": "flowsheet", "type": "VitalsFlowsheetProps", "description": "The record: what was measured, when, and what was not." },
+    { "name": "trends", "type": "VitalsTrendChartProps", "description": "The shape: the same observations over time." },
+    { "name": "score", "type": "EarlyWarningScoreProps", "description": "The trajectory: an aggregate the consumer's validated logic computed." },
+    { "name": "medications", "type": "MedicationTimelineProps", "description": "Optional. Pass the same `times` as the trends and the two align." },
+    { "name": "freshness", "type": "DataFreshnessStampProps", "description": "Sits in the header — it qualifies everything below it." },
+    { "name": "title / headerActions / header", "type": "ReactNode" }
+  ],
+  "clinicalNotes": "All three surfaces are present because none of them is sufficient alone. A flowsheet shows every value and no trend. A chart shows the trend and hides what was never measured. An aggregate score compresses both into a number a deteriorating patient can sit inside for hours. Read together, a gap in the grid, a slope in the chart, and a climbing score are one story — and the demo is built to show exactly that: a missed 18:00 round, a rising NEWS2, and three beta-blocker doses held for a soft blood pressure. The freshness stamp is in the header rather than beside a panel because it qualifies the whole surface: none of this is current if the monitor stopped reporting at six. The block displays; it escalates nothing and computes no score.",
+  "notes": "Layer-M4 block. Client component. Composes vitals-flowsheet + vitals-trend-chart + early-warning-score + medication-timeline + data-freshness-stamp."
+}

@@ -1,0 +1,19 @@
+{
+  "name": "pain-trend-chart",
+  "title": "Pain Trend Chart",
+  "description": "Reported pain over time with analgesia marked. Each scoring instrument is its own series — scores from different scales are not comparable.",
+  "category": "triage",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["recharts"],
+  "registryDependencies": ["chart"],
+  "props": [
+    { "name": "data", "type": "PainReading[]", "description": "`{ time, score, scale }`. The scale is required on every reading." },
+    { "name": "analgesia", "type": "AnalgesiaMarker[]", "description": "Doses aligned to the x axis." },
+    { "name": "reviewThreshold", "type": "number", "description": "Score at or above which the caller's protocol expects a review." },
+    { "name": "max", "type": "number", "default": "10", "description": "Highest score the scales run to." }
+  ],
+  "clinicalNotes": "The scale is part of the data, so each instrument is plotted as its own series: a 6 on the numeric rating scale and a 6 on FLACC are not the same observation, and joining them draws a trend nobody reported. This matters most exactly where it is easiest to get wrong — a child who becomes able to self-report moves from an observed scale to a self-reported one, and the apparent jump belongs to the instrument, not the pain. Pain is what the patient says it is: the chart does not smooth scores toward what the analgesia would predict, and a score that stays high after a dose is data, not noise.",
+  "notes": "Pairs with the existing pain-scale input. Composes chart."
+}

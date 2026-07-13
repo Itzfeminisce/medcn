@@ -1,0 +1,45 @@
+{
+  "name": "ai-streaming-text",
+  "title": "AI Streaming Text",
+  "description": "Incrementally reveals caller-supplied response text with a stable reading order, reduced-motion fallback, and caller-owned complete, cancel, and replace.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "props": [
+    {
+      "name": "text",
+      "type": "string",
+      "description": "The text known so far. Append to it to stream; replace it to restart."
+    },
+    {
+      "name": "streaming",
+      "type": "boolean",
+      "default": "true",
+      "description": "While true the text is revealed incrementally. Flip to false to complete or cancel."
+    },
+    {
+      "name": "speed",
+      "type": "number",
+      "default": "60",
+      "description": "Reveal rate in characters per second. Ignored under prefers-reduced-motion."
+    },
+    {
+      "name": "onComplete",
+      "type": "() => void",
+      "description": "Fires once when the reveal catches up with `text`."
+    },
+    {
+      "name": "cursor",
+      "type": "boolean",
+      "default": "true",
+      "description": "Blinking caret while text is still being revealed."
+    }
+  ],
+  "clinicalNotes": "A half-rendered sentence is a clinically dangerous object: \"no penicillin allergy\" and \"no penicillin\" are the same string one word apart. So the reveal is character-order-stable and never reorders or rewrites what is already on screen, and a replacement stream keeps any shared prefix instead of flickering — a clinician who has read the first line can trust that line will not change under them. The animating copy is hidden from assistive technology and the completed text is announced once, in a polite live region: a per-character live region would re-announce the whole paragraph on every tick, which in practice means a screen-reader user never hears a clean sentence at all. Under prefers-reduced-motion the full text renders instantly — motion is decoration here, the content is the point. Completion state is caller-owned: the component reveals text, it does not decide when a response is finished, and it makes no claim that a finished response is a correct one.",
+  "notes": "Primitives only — no markdown parsing, no transport. Ticks at 40ms and derives chars-per-tick from `speed`; the interval is not recreated per character."
+}

@@ -1,0 +1,20 @@
+{
+  "name": "vitals-flowsheet",
+  "title": "Vitals Flowsheet",
+  "description": "The time × parameter grid, with sticky headers, flagged cells, and missing observations that say so.",
+  "category": "data",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [],
+  "registryDependencies": ["utils"],
+  "props": [
+    { "name": "columns", "type": "FlowsheetColumn[]", "description": "`{ key, label, sublabel? }` — the times observations were TAKEN." },
+    { "name": "parameters", "type": "FlowsheetParameter[]", "description": "`{ key, label, unit?, values }` — values keyed by column. A column with no entry was not measured." },
+    { "name": "caption", "type": "string", "description": "Required. Names the grid and its period." },
+    { "name": "missingLabel", "type": "string", "default": "\"Not measured\"", "description": "Rendered in a cell with no observation. Never blank, never zero." },
+    { "name": "FlowsheetCell", "type": "{ value, flag?, chartedLate?, note? }", "description": "`flag` is the laboratory's or the caller's — the grid classifies nothing." }
+  ],
+  "clinicalNotes": "Three refusals define this component. It will not render a missing observation as blank: an empty cell that looks like a normal value is how a deteriorating patient goes unnoticed on a busy ward, so an unmeasured cell says \"Not measured\". It will not move a late-charted value to the time it was charted — a value sits at the time it was TAKEN, with `chartedLate` marking that the record was written afterwards, because doing otherwise silently rewrites the clinical timeline. And it will not signal abnormality by colour alone: every flagged cell carries a glyph (↑ ↓ !) and a screen-reader word, so the flag survives greyscale, print, and colour-blindness. Row and column headers stick, so a value scrolled away from its parameter or its time is never orphaned.",
+  "notes": "The round's densest component. Built from primitives — no charting library. Give it a bounded height so the sticky headers have something to stick against."
+}

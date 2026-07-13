@@ -1,0 +1,28 @@
+{
+  "name": "ai-message-actions",
+  "title": "AI Message Actions",
+  "description": "Tooltip-labelled action row for a message — copy, retry, feedback — with only the controls the caller supplies.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "registryDependencies": [
+    "utils",
+    "button",
+    "tooltip"
+  ],
+  "props": [
+    {
+      "name": "revealOnHover",
+      "type": "boolean",
+      "description": "On AiMessageActions. Hides the row until the parent (group/message) is hovered; focus always reveals it."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "On AiMessageAction. Required — becomes both the tooltip and the accessible name of the icon button."
+    }
+  ],
+  "clinicalNotes": "Actions are passed in, never assumed: a viewer without regenerate rights simply gets no regenerate button, so the component cannot surface an operation the user is not permitted to perform. Copy applies to the visible text only and must never be presented as filing, signing, or saving to the record — if your product writes to a chart, that belongs in an explicit accept/insert action with its own confirmation. When `revealOnHover` is set the row still appears on keyboard focus, so hover is never the only way to reach an action.",
+  "notes": "Pair `revealOnHover` with `group/message` on the message container (ai-message already sets it)."
+}

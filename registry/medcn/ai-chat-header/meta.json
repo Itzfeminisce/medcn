@@ -1,0 +1,58 @@
+{
+  "name": "ai-chat-header",
+  "title": "AI Chat Header",
+  "description": "Assistant identity, system-status badge, conversation scope, and new-chat/close controls.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "avatar",
+    "badge",
+    "button"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "default": "\"Clinical assistant\""
+    },
+    {
+      "name": "subtitle",
+      "type": "ReactNode",
+      "description": "Conversation title or scope line, e.g. the patient and encounter in context."
+    },
+    {
+      "name": "status",
+      "type": "\"available\" | \"working\" | \"offline\" | \"unavailable\"",
+      "default": "\"available\"",
+      "description": "System state only. `unavailable` is for surfaces where the assistant is switched off by policy."
+    },
+    {
+      "name": "statusLabel",
+      "type": "ReactNode",
+      "description": "Overrides the default label for the status."
+    },
+    {
+      "name": "onNewChat",
+      "type": "() => void",
+      "description": "Renders the new-conversation control when supplied."
+    },
+    {
+      "name": "onClose",
+      "type": "() => void",
+      "description": "Renders the close control when supplied."
+    },
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "description": "Extra controls, rendered before new-chat/close."
+    }
+  ],
+  "clinicalNotes": "Status describes the system, never the clinical quality of an answer: \"Preparing response\" is legitimate, \"High confidence\" is not — that would read as diagnostic certainty, which no chat header can honestly assert. Each status is carried by a shape-and-text badge as well as a coloured dot. Use `unavailable` where local policy switches the assistant off (a paediatric chart, a restricted record) and say why in the subtitle; a disabled assistant with no explanation invites workarounds.",
+  "notes": "Status config is exported as aiChatHeaderStatuses if a product needs to mirror the labels elsewhere."
+}

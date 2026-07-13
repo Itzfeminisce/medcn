@@ -1,0 +1,53 @@
+{
+  "name": "ai-escalation-alert",
+  "title": "AI Escalation Alert",
+  "description": "Non-dismissible human-review surface with a stated reason, a severity rail, and a caller-owned escalation action.",
+  "category": "triage",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "alert",
+    "badge",
+    "button"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "description": "Required. The condition that needs a human, stated plainly."
+    },
+    {
+      "name": "severity",
+      "type": "\"urgent\" | \"priority\" | \"review\"",
+      "default": "\"urgent\"",
+      "description": "Drives the rail, icon, and badge. Urgent pulses the rail under motion-safe."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "Why this was raised, and by what service."
+    },
+    {
+      "name": "action",
+      "type": "ReactNode",
+      "description": "Caller-owned escalation action, e.g. a link into the local protocol."
+    },
+    {
+      "name": "dismissible",
+      "type": "boolean",
+      "default": "false",
+      "description": "Off by default. An escalation that can be swiped away without acting is not an escalation."
+    },
+    {
+      "name": "onDismiss",
+      "type": "() => void"
+    }
+  ],
+  "clinicalNotes": "This presents an escalation signal for a human to act on. It must never be described — in your copy or your product — as emergency triage, and it does not replace a local protocol: the action slot exists so it can point at one. Say what raised the flag (\"flagged by your lab-rules service\") rather than implying the model made a clinical judgement; a model-authored escalation with no named source teaches clinicians to distrust every future one. It renders role=\"alert\" so assistive tech announces it immediately, and it is non-dismissible by default. If you do enable `dismissible`, log the dismissal — an unacted escalation that silently disappears is the failure mode this component exists to prevent.",
+  "notes": "Severity is redundantly encoded: rail, icon, badge text, and tone — never colour alone."
+}

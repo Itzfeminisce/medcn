@@ -1,0 +1,63 @@
+{
+  "name": "ai-medication-check",
+  "title": "AI Medication Check",
+  "description": "Presentation surface for caller-supplied medication-review findings, grouped by severity with source, version, and explicit review actions.",
+  "category": "medication",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "ai-answer-card",
+    "ai-evidence-panel",
+    "badge"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "default": "\"Medication review\""
+    },
+    {
+      "name": "findings",
+      "type": "AiMedicationFinding[]",
+      "description": "Findings exactly as returned by the checking service: { id, title, severity, medications?, description?, recommendation?, documentation?, evidence? }. Nothing is computed by the component."
+    },
+    {
+      "name": "source",
+      "type": "AiMedicationCheckSource",
+      "description": "Required. { name, version?, retrievedAt? } — the validated service behind the findings. A finding with no attributable source is not reviewable."
+    },
+    {
+      "name": "screened",
+      "type": "string[]",
+      "description": "The medications actually screened. Makes the coverage gap visible: anything absent here was not checked."
+    },
+    {
+      "name": "emptyState",
+      "type": "ReactNode",
+      "description": "Replaces the default empty copy. The default states that no findings were returned and that this is not a safety claim — override only with copy that is at least as cautious."
+    },
+    {
+      "name": "limitations",
+      "type": "ReactNode",
+      "description": "Overrides the default limitations line passed to AiAnswerCard."
+    },
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "description": "Caller-owned review actions."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "Extra content rendered under the findings."
+    }
+  ],
+  "clinicalNotes": "This is a display for a validated interaction-checking service, not a drug-interaction engine. It contains no clinical logic: it groups the findings the caller passes in, in the severity order the caller assigns, and it never derives, filters, or scores a finding itself. Because a finding is only as good as the knowledge base behind it, `source` is required and its name, version, and retrieval time sit in the card header — a review against a stale version is a different review, and the clinician must be able to see which one they got. The most dangerous state is the empty one. A green \"No interactions found\" tick reads as clearance, and clinicians act on clearance; so the empty state says instead that no findings were returned for the medications screened, that this is not a statement that the order is safe, and that the source may simply not cover the combination. `screened` exists for the same reason: a medication the service never saw cannot generate a finding, and the reviewer must be able to spot the omission. The limitations line names what the check structurally cannot see — dose appropriateness, indication, allergies, renal and hepatic function, and local protocol. All actions are caller-owned; nothing here overrides, accepts, or signs an order.",
+  "notes": "Composes AiAnswerCard for the shell and takes per-finding AiEvidencePanel nodes for provenance. Severity is caller-assigned and only controls grouping and badge colour — see aiMedicationSeverities for the presentation order."
+}

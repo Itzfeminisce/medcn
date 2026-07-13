@@ -1,0 +1,20 @@
+{
+  "name": "blood-pressure-chart",
+  "title": "Blood Pressure Chart",
+  "description": "Systolic and diastolic over time, drawn as one observation — a filled range between the pair, with optional MAP.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["recharts"],
+  "registryDependencies": ["chart"],
+  "props": [
+    { "name": "data", "type": "BloodPressureReading[]", "description": "`{ time, systolic, diastolic, map?, position? }`. Null values are not bridged." },
+    { "name": "systolicTarget / diastolicTarget", "type": "number", "description": "The caller's targets, drawn as labelled lines." },
+    { "name": "showMap", "type": "boolean", "default": "false", "description": "Plots mean arterial pressure if the caller supplies it — the component computes nothing." },
+    { "name": "unit", "type": "string", "default": "\"mmHg\"" },
+    { "name": "label / caption", "type": "string | ReactNode" }
+  ],
+  "clinicalNotes": "Systolic and diastolic are one observation, so they are drawn as one mark: a filled band between the pair, with each bound also plotted. Two unrelated lines hide the thing a clinician reads a blood-pressure chart for — the pulse pressure narrowing or widening between them. Position and cuff site are caller-supplied annotations shown per reading rather than assumptions, because a standing measurement and a seated one are not interchangeable: a chart that silently mixes them can invent a postural drop or conceal one.",
+  "notes": "Composes chart. The band is a Recharts range Area fed a [diastolic, systolic] tuple."
+}

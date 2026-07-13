@@ -1,0 +1,19 @@
+{
+  "name": "weight-trend-chart",
+  "title": "Weight Trend Chart",
+  "description": "Weight over time, with the change across a window stated in plain numbers — and no interpretation of it.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["recharts"],
+  "registryDependencies": ["chart"],
+  "props": [
+    { "name": "data", "type": "WeightReading[]", "description": "`{ date, weight }`. A null weight is not bridged." },
+    { "name": "unit", "type": "\"kg\" | \"lb\"", "description": "Required." },
+    { "name": "deltaWindow", "type": "number", "description": "How many readings back the annotated change is measured over. Defaults to the whole series." },
+    { "name": "deltaNote", "type": "ReactNode", "description": "The caller's reading of the change. The component supplies the magnitude; the meaning is theirs." }
+  ],
+  "clinicalNotes": "The component annotates magnitude and refuses to interpret it. Fluid overload in heart failure, healthy growth in an infant, and cachexia in advanced disease all draw the same arrow, and the arrow does not know which one it is — `deltaNote` is where the caller, who has the context, says. Weights are plotted as recorded: the component does not convert units, and it cannot detect a scale change mid-series, so a consumer switching between kg and lb must reconcile before passing data in.",
+  "notes": "Composes chart."
+}

@@ -1,0 +1,57 @@
+{
+  "name": "ai-patient-context-card",
+  "title": "AI Patient Context Card",
+  "description": "Expanded patient/encounter scope for an assistant request, with identity, alerts, and last-updated slots.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "card",
+    "avatar",
+    "badge"
+  ],
+  "props": [
+    {
+      "name": "name",
+      "type": "ReactNode",
+      "description": "Required. Display name — you decide what is safe to show on this surface."
+    },
+    {
+      "name": "initials",
+      "type": "string",
+      "description": "Avatar initials. Falls back to a generic person icon."
+    },
+    {
+      "name": "identifiers",
+      "type": "ReactNode",
+      "description": "Identifiers you have chosen to display (age/sex, MRN, DOB). Passed as a node, never assembled here."
+    },
+    {
+      "name": "encounter",
+      "type": "ReactNode",
+      "description": "Encounter or scope label."
+    },
+    {
+      "name": "alerts",
+      "type": "ReactNode",
+      "description": "Allergy/alert badges. Presentational only."
+    },
+    {
+      "name": "lastUpdated",
+      "type": "ReactNode",
+      "description": "When the underlying context was last refreshed."
+    },
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "description": "Trailing controls, e.g. \"Change patient\"."
+    }
+  ],
+  "clinicalNotes": "Consumers decide which identifiers are safe to render here, which is why there is no `patient` object prop and no default demographic payload — a component that happily accepts a full record will end up displaying one on a shared screen, in a screenshot, or in a support ticket. Pass only what the surface warrants. `lastUpdated` matters more than it looks: an assistant answering from context pulled twenty minutes ago, before the last set of observations, is answering about a patient who no longer exists, and the clinician needs to see that staleness rather than infer it. The alert badges are presentational — this component does not check allergies, it displays checks your product already ran.",
+  "notes": "The expanded counterpart to an ai-context-chip of kind=\"patient\"; use it where the scope deserves a full card (a workspace header) rather than a token."
+}

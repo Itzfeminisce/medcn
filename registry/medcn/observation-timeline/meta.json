@@ -1,0 +1,19 @@
+{
+  "name": "observation-timeline",
+  "title": "Observation Timeline",
+  "description": "Clinical observations in one chronological stream — vitals, results, notes, medications, encounters — each labelled with its source.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "badge", "timeline", "sparkline-cell"],
+  "props": [
+    { "name": "observations", "type": "Observation[]", "description": "`{ key, kind, title, time, source, author?, description?, trend?, flagged? }`." },
+    { "name": "kind", "type": "\"vital\" | \"result\" | \"note\" | \"medication\" | \"encounter\"", "description": "Drives the marker icon and colour." },
+    { "name": "source", "type": "\"clinician\" | \"device\" | \"patient\" | \"system\"", "description": "Required. Rendered on every entry." },
+    { "name": "trend", "type": "SparklineCell props", "description": "An inline value-plus-glyph for observations that have a history." }
+  ],
+  "clinicalNotes": "Interleaving record types is the point of a timeline, and it is also its risk: a device reading, a patient's own report, and a clinician's assessment carry very different evidential weight, and a stream that rendered them identically would quietly launder one into another — a patient-reported breathlessness must never end up looking like a measured respiratory rate. `source` is therefore required, not optional, and it is shown on every entry alongside the author where there is one. The inline trend follows the sparkline rule: the value is in text, the glyph is decorative.",
+  "notes": "Composes timeline + sparkline-cell + badge."
+}

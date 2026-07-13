@@ -1,0 +1,85 @@
+{
+  "name": "ai-summary",
+  "title": "AI Summary",
+  "description": "Reviewable structured summary with configurable sections, per-section status, and per-section provenance.",
+  "category": "records",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "ai-answer-card",
+    "card",
+    "badge",
+    "button"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "default": "\"Clinical summary\""
+    },
+    {
+      "name": "sections",
+      "type": "AiSummarySection[]",
+      "description": "{ id, heading, content?, status?, statusDetail?, provenance?, uncertainty? }. Order is the caller's."
+    },
+    {
+      "name": "sections[].status",
+      "type": "\"generated\" | \"empty\" | \"omitted\" | \"verbatim\"",
+      "default": "content ? \"generated\" : \"omitted\"",
+      "description": "generated = model prose; empty = reviewed, nothing found; omitted = never produced; verbatim = copied unchanged from the record."
+    },
+    {
+      "name": "sections[].statusDetail",
+      "type": "ReactNode",
+      "description": "Shown in place of content for empty/omitted sections — say what was checked, or what was not read."
+    },
+    {
+      "name": "sections[].provenance",
+      "type": "ReactNode",
+      "description": "Per-section sources — AiCitation elements or an AiEvidencePanel. A generated or empty section without provenance renders as unsourced and says so."
+    },
+    {
+      "name": "sections[].uncertainty",
+      "type": "ReactNode",
+      "description": "What is uncertain or contested inside this section."
+    },
+    {
+      "name": "onCopySection",
+      "type": "(section: AiSummarySection) => void",
+      "description": "Caller copies. The component never touches the clipboard."
+    },
+    {
+      "name": "onInsertSection",
+      "type": "(section: AiSummarySection) => void",
+      "description": "Hands a section to the caller for insertion. The component never writes to a record."
+    },
+    {
+      "name": "copySectionLabel",
+      "type": "string",
+      "default": "\"Copy\""
+    },
+    {
+      "name": "insertSectionLabel",
+      "type": "string",
+      "default": "\"Insert\""
+    },
+    {
+      "name": "emptyState",
+      "type": "ReactNode",
+      "description": "Rendered when sections is empty."
+    },
+    {
+      "name": "…",
+      "type": "AiAnswerCardProps",
+      "description": "metadata, confidence, limitations, evidence, and actions pass through to AiAnswerCard."
+    }
+  ],
+  "clinicalNotes": "A summary's most dangerous property is that it reads as complete. Three failures look identical in ordinary prose and are separated here by section status: a section the model wrote (`generated`), a section it reviewed and found nothing in (`empty` — \"no safeguarding concern recorded\"), and a section it never produced at all (`omitted` — the medication list was not read). An omitted section is not a negative finding, and the component says so in place of the content rather than leaving a blank a reader will fill in with an assumption. Provenance is per-section for the same reason: a summary can be sourced in one paragraph and invented in the next, so a `generated` or `empty` section with no provenance is drawn with a warning rule and labelled unsourced instead of quietly inheriting the card's overall citations. Nothing here writes to the chart — `onCopySection` and `onInsertSection` hand the section back to the caller, and the caller owns the record, the audit trail, and the decision to keep the text.",
+  "notes": "Composes AiAnswerCard; per-section provenance slots accept AiCitation / AiEvidencePanel. Section variants exported as aiSummarySectionVariants."
+}

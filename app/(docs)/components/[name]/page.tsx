@@ -8,9 +8,11 @@ import {
   getItemSource,
   getRegistryItem,
   getRegistryItems,
+  isNewItem,
 } from "@/lib/registry"
 import { Badge } from "@/registry/medcn/badge/badge"
 import { BlockPreview } from "@/components/block-preview"
+import { NewBadge } from "@/components/new-badge"
 import { CodeBlock } from "@/components/code-block"
 import { CommandPill } from "@/components/command-pill"
 import { ComponentPreview } from "@/components/component-preview"
@@ -78,6 +80,7 @@ export default async function ComponentPage({
             <Badge variant="soft">
               {CATEGORIES[item.category] ?? item.category}
             </Badge>
+            {isNewItem(item) && <NewBadge />}
             <span className="text-muted-foreground font-mono text-xs">
               v{item.version}
             </span>

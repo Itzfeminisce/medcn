@@ -1,0 +1,58 @@
+{
+  "name": "ai-answer-card",
+  "title": "AI Answer Card",
+  "description": "Reviewable generated-answer surface with provenance, confidence, limitations, evidence, and review actions.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "card",
+    "badge",
+    "separator"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "default": "\"Generated response\""
+    },
+    {
+      "name": "generatedLabel",
+      "type": "ReactNode",
+      "default": "\"Generated\"",
+      "description": "Provenance badge. Pass null only where provenance is unmistakable."
+    },
+    {
+      "name": "metadata",
+      "type": "ReactNode",
+      "description": "Model, version, or timestamp — small print under the title."
+    },
+    {
+      "name": "confidence",
+      "type": "ReactNode",
+      "description": "Model-reported confidence. Rendered as metadata beside the limitations, with an explicit caveat — never as a standalone score."
+    },
+    {
+      "name": "limitations",
+      "type": "ReactNode",
+      "description": "What the answer does not cover and what must be checked."
+    },
+    {
+      "name": "evidence",
+      "type": "ReactNode",
+      "description": "Citations / provenance — typically an evidence panel."
+    },
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "description": "Review actions: insert, copy, discard."
+    }
+  ],
+  "clinicalNotes": "A confidence value is metadata about a generation, not a measure of clinical correctness — 0.78 does not mean the patient's blood pressure is 78% likely to be right. The component therefore refuses to render confidence as a bare number: it always appears with that caveat and next to the limitations it qualifies. Fill `limitations` with what was NOT read (\"medications, allergies, and results were not read\"), since a reviewer's biggest risk is assuming an answer covered a source it never saw. Nothing here writes to a record: the action slot is caller-owned, and accepting generated content into the legal record must stay a deliberate human act.",
+  "notes": "Base surface for the specialised clinical outputs — summary, note draft, medication check, differential list."
+}

@@ -1,6 +1,7 @@
 import Link from "next/link"
 
-import { CATEGORIES, getRegistryItems } from "@/lib/registry"
+import { NewBadge } from "@/components/new-badge"
+import { CATEGORIES, getRegistryItems, isNewItem } from "@/lib/registry"
 
 export const metadata = { title: "Components" }
 
@@ -40,8 +41,13 @@ export default async function ComponentsIndex() {
                   href={`/components/${item.name}`}
                   className="group border-border/60 bg-card hover:border-primary/40 hover:shadow-glow-sm rounded-xl border p-5 transition-all hover:-translate-y-0.5"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="font-semibold">{item.title}</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="flex min-w-0 items-center gap-2">
+                      <span className="truncate font-semibold">
+                        {item.title}
+                      </span>
+                      {isNewItem(item) && <NewBadge />}
+                    </span>
                     <span className="text-primary opacity-0 transition-opacity group-hover:opacity-100">
                       →
                     </span>

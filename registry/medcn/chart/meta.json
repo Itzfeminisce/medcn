@@ -1,0 +1,41 @@
+{
+  "name": "chart",
+  "title": "Chart",
+  "description": "Themed chart shell on Recharts — CSS-variable colours, a config-driven tooltip that always carries units, and an accessible tabular equivalent of the plotted data.",
+  "category": "primitives",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["recharts"],
+  "registryDependencies": ["utils"],
+  "props": [
+    {
+      "name": "config",
+      "type": "ChartConfig",
+      "description": "Per-series `label`, `unit`, `color`, `icon`. `unit` drives the tooltip — a clinical value without its unit is unreadable."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Required. Names the chart for assistive tech; an unlabelled plot is unreadable to a screen reader."
+    },
+    {
+      "name": "dataTable",
+      "type": "ReactNode",
+      "description": "The plotted values as a table — use ChartDataTable. Visually hidden unless `showTable`."
+    },
+    { "name": "showTable", "type": "boolean", "default": "false", "description": "Reveals the data table below the chart." },
+    { "name": "caption", "type": "ReactNode", "description": "Units, the period, or the source of a reference range." },
+    { "name": "children", "type": "ReactElement", "description": "A single Recharts element (LineChart, AreaChart, BarChart…)." },
+    {
+      "name": "ChartDataTable: caption / columns / rows / missingLabel",
+      "type": "string | Column[] | Record<string, ReactNode>[]",
+      "description": "`missingLabel` renders where a value was not measured — never \"0\", never blank."
+    }
+  ],
+  "clinicalNotes": "The container renders the series it is given: it does not resample, interpolate across gaps, or smooth, because a smoothed line through missing observations is a measurement that was never taken. Two rules are structural rather than optional. Units live in the series config so the tooltip cannot omit them — unit ambiguity (mg/dL vs mmol/L, kg vs lb) is a documented source of clinical harm. And every chart carries a tabular equivalent, because a screen-reader user gets nothing from an SVG path; ChartDataTable renders \"Not measured\" for absent values so a gap in charting never reads as a zero. Where a value is critical, flag it by shape and label as well as colour — a colour-blind reader, or a printed chart, must convey the same warning.",
+  "notes": "The foundation of the Clinical Data round: reference-range-band, the trend charts, and the flowsheet all compose it. Hand-drawn SVG components (ecg-strip, trend-sparkline) deliberately do not — a waveform and an inline glyph are the wrong jobs for a charting library.",
+  "links": {
+    "shadcn": "https://ui.shadcn.com/docs/components/chart"
+  }
+}

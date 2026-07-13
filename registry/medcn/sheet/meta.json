@@ -1,0 +1,46 @@
+{
+  "name": "sheet",
+  "title": "Sheet",
+  "description": "Accessible slide-out dialog anchored to any edge, with header, footer, and close slots.",
+  "category": "primitives",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "radix-ui",
+    "lucide-react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "links": {
+    "shadcn": "https://ui.shadcn.com/docs/components/sheet"
+  },
+  "props": [
+    {
+      "name": "side",
+      "type": "\"top\" | \"right\" | \"bottom\" | \"left\"",
+      "default": "\"right\"",
+      "description": "Edge the sheet is anchored to. On SheetContent."
+    },
+    {
+      "name": "showClose",
+      "type": "boolean",
+      "default": "true",
+      "description": "Render the built-in top-right close button. On SheetContent."
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Controlled open state. On Sheet."
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(open: boolean) => void",
+      "description": "Fired on open and on every dismissal path — close button, overlay click, and Escape. On Sheet."
+    }
+  ],
+  "clinicalNotes": "A sheet traps focus and returns it to its trigger on close, which is what makes it safe for a side task (notes, assistant, filters) launched from a chart. It is dismissible three ways — close button, overlay click, Escape — so never let a sheet be the only place unsaved clinical data lives: a stray Escape must not silently discard a drafted note or an unreviewed order. Guard those flows in onOpenChange.",
+  "notes": "Wraps Radix Dialog via the radix-ui package. Animations come from tw-animate-css."
+}

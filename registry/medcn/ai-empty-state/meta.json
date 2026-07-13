@@ -1,0 +1,45 @@
+{
+  "name": "ai-empty-state",
+  "title": "AI Empty State",
+  "description": "Opening conversation state that introduces available tasks and keeps the context check part of starting one.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "empty-state"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "default": "\"Ask about the active encounter\""
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "default": "\"Check the context above before sending anything that identifies a patient.\""
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "description": "Overrides the default sparkles icon."
+    },
+    {
+      "name": "suggestions",
+      "type": "ReactNode",
+      "description": "Prompt chips or suggestion cards — what the assistant can actually do here."
+    },
+    {
+      "name": "action",
+      "type": "ReactNode",
+      "description": "Passed through to EmptyState."
+    }
+  ],
+  "clinicalNotes": "An empty assistant is where scope gets set, so this state does two jobs: it says what the assistant can do here (via suggestions, so a clinician does not have to guess a prompt) and it points at the context bar before anything identifying is typed. Prefer `insert`-mode prompt chips: a first prompt that sends the moment it is tapped gives no chance to check which patient is attached. Keep the task list to what the product actually supports — advertising a capability the assistant cannot deliver is how trust is spent.",
+  "notes": "Wraps the shared empty-state primitive and adds the suggestions row."
+}

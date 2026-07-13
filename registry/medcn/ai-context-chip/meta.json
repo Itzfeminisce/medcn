@@ -1,0 +1,47 @@
+{
+  "name": "ai-context-chip",
+  "title": "AI Context Chip",
+  "description": "Removable token for one piece of context sent with an assistant prompt, with a sensitive-data marker.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "badge",
+    "button"
+  ],
+  "props": [
+    {
+      "name": "kind",
+      "type": "\"patient\" | \"encounter\" | \"document\" | \"medication\" | \"date-range\"",
+      "default": "\"document\"",
+      "description": "Drives the leading icon so context types are scannable at a glance."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "Human-readable label, e.g. \"Encounter · 12 Mar\"."
+    },
+    {
+      "name": "sensitive",
+      "type": "boolean",
+      "description": "Marks context carrying identifiable or otherwise sensitive data. Adds a lock icon, a warning tint, and a hidden \"Contains sensitive data\" string."
+    },
+    {
+      "name": "onRemove",
+      "type": "() => void",
+      "description": "Removes the item from the outgoing context. Omit for a fixed chip."
+    },
+    {
+      "name": "removeLabel",
+      "type": "string",
+      "description": "Accessible name for the remove control. Defaults from the label when it is a string."
+    }
+  ],
+  "clinicalNotes": "Removing a chip changes only what leaves the building with the next prompt — it must never delete, hide, or amend the underlying clinical record, and consumers should not wire it to a destructive action. The sensitive marker exists so a clinician can see, before sending, that identifiable data is attached; it is conveyed by icon and hidden text as well as tint, because a warning that only exists in colour is no warning at all.",
+  "notes": "Designed to sit inside ai-context-bar, but works standalone anywhere the outgoing context needs to be visible."
+}

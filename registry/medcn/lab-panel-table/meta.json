@@ -1,0 +1,19 @@
+{
+  "name": "lab-panel-table",
+  "title": "Lab Panel Table",
+  "description": "Grouped laboratory results with flags, deltas, and collapsible detail — where a group holding a critical result cannot be collapsed shut.",
+  "category": "data",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["utils", "badge", "collapsible", "lab-delta-indicator"],
+  "props": [
+    { "name": "groups", "type": "LabPanelGroup[]", "description": "`{ key, label, analytes, defaultCollapsed? }` — the laboratory's grouping, not the UI's." },
+    { "name": "LabAnalyte", "type": "{ key, label, value, unit, flag?, referenceLow?, referenceHigh?, prior?, significantChange?, concerningDirection?, detail? }" },
+    { "name": "collectedAt", "type": "ReactNode", "description": "When the sample was taken." },
+    { "name": "caption", "type": "string", "description": "Screen-reader caption for the result tables." }
+  ],
+  "clinicalNotes": "A group holding a critical result cannot be collapsed: `defaultCollapsed` is ignored for it, the disclosure chevron is hidden, and the group is badged so the reader knows why it will not close. Hiding a critical value behind a disclosure is the single failure this table exists to make impossible — and a caller who set `defaultCollapsed` did so before they knew what was in the panel. Grouping, flags, and reference ranges come from the laboratory; the component classifies nothing. Every flag is rendered as a word as well as a colour, and an analyte with no prior result says so rather than showing a delta of zero.",
+  "notes": "Composes badge + collapsible + lab-delta-indicator. Pairs with lab-result-chart in the labs-review-block."
+}

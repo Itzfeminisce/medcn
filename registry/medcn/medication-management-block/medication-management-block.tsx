@@ -8,7 +8,10 @@ import {
   DashboardGrid,
   DashboardGridItem,
 } from "@/registry/medcn/dashboard-grid/dashboard-grid"
-import { DashboardShell } from "@/registry/medcn/dashboard-shell/dashboard-shell"
+import {
+  DashboardHeader,
+  DashboardShell,
+} from "@/registry/medcn/dashboard-shell/dashboard-shell"
 import { WidgetPanel } from "@/registry/medcn/widget-panel/widget-panel"
 import { MedicationListPanel } from "@/registry/medcn/medication-list-panel/medication-list-panel"
 import { AppointmentsPanel } from "@/registry/medcn/appointments-panel/appointments-panel"
@@ -78,9 +81,7 @@ function MedicationManagementBlock({
       }
       header={
         header ?? (
-          <div className="px-4 py-3 text-sm font-medium md:px-6">
-            Medication management
-          </div>
+          <DashboardHeader icon={<Pill />} title="Medication management" />
         )
       }
     >

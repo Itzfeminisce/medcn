@@ -1,0 +1,21 @@
+{
+  "name": "vitals-trend-chart",
+  "title": "Vitals Trend Chart",
+  "description": "Vitals over time. Series that do not share a unit are drawn as separate panels over a common x axis — never as two y-scales on one plot.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["recharts"],
+  "registryDependencies": ["utils", "chart", "reference-range-band"],
+  "props": [
+    { "name": "data", "type": "Record<string, string | number | null>[]", "description": "Rows keyed by `xKey` plus each series key. `null` means not measured." },
+    { "name": "series", "type": "VitalsSeries[]", "description": "`{ key, label, unit, color?, domain?, range? }`. Series are grouped into panels by `unit`." },
+    { "name": "xKey", "type": "string", "default": "\"time\"" },
+    { "name": "label", "type": "string", "description": "Required. Names the figure for assistive tech." },
+    { "name": "events", "type": "VitalsEvent[]", "description": "Clinical events aligned to the x axis — a dose, a position change, an escalation." },
+    { "name": "caption / showTable", "type": "ReactNode | boolean" }
+  ],
+  "clinicalNotes": "The component refuses a dual axis. A second y-scale silently rescales one series against another — it is how a respiratory rate of 20 gets read against a heart rate of 20 — so series with different units become separate stacked panels sharing one time axis, and every value stays on the only scale it means anything in. Missing observations are not bridged: a line drawn across a gap is a measurement nobody took. Ranges are per-series and caller-supplied, because a normal heart rate for a neonate is a tachycardia in an adult. Events are markers only; their alignment with a change is not a causal claim.",
+  "notes": "Composes chart + reference-range-band. Each panel renders at h-48."
+}

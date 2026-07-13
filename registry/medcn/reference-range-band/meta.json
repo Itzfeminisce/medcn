@@ -1,0 +1,21 @@
+{
+  "name": "reference-range-band",
+  "title": "Reference Range Band",
+  "description": "The normal range behind a series, plus labelled critical thresholds. Bounds and their population are supplied by the caller — never assumed.",
+  "category": "data",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["recharts"],
+  "registryDependencies": ["chart"],
+  "props": [
+    { "name": "axis", "type": "\"y\" | \"x\"", "default": "\"y\"", "description": "Which axis the bounds are read against." },
+    { "name": "low / high", "type": "number", "description": "Bounds of the normal range. Omit one for a one-sided range." },
+    { "name": "criticalBelow / criticalAbove", "type": "number", "description": "Drawn as labelled dashed lines that extend the axis domain, so a threshold never falls silently outside the visible range." },
+    { "name": "label", "type": "string", "description": "Names the band and its population — \"Normal (adult, seated)\". An unattributed band is an assertion the reader cannot check." },
+    { "name": "showBounds", "type": "boolean", "default": "true", "description": "Draws lines on the band edges." },
+    { "name": "fill", "type": "string", "default": "var(--chart-range)", "description": "Low-chroma by default so the band never competes with the series." }
+  ],
+  "clinicalNotes": "A reference range is a property of the assay, the patient's age, and often their sex — it is never a constant, so every bound is passed in and `label` records which population it describes. Critical thresholds are drawn as labelled dashed lines rather than a red wash: colour alone is not a warning, and a colour-blind reader or a printed chart must carry the same information. Pair the band with a series whose out-of-range points differ in shape as well as colour (the demo does this). The band describes where values are expected to fall; it does not assert that a value inside it is clinically fine.",
+  "notes": "Drop it inside any Recharts cartesian chart as a child — recharts 3 renders it directly. Composes chart."
+}

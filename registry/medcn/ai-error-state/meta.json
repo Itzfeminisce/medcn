@@ -1,0 +1,56 @@
+{
+  "name": "ai-error-state",
+  "title": "AI Error State",
+  "description": "Failed-turn state that visibly preserves the prompt and offers retry or edit, without claiming anything was saved.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "empty-state",
+    "button"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "default": "\"The response could not be completed\""
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "default": "\"Nothing was sent to the record. Your prompt was kept — retry or edit it.\""
+    },
+    {
+      "name": "draft",
+      "type": "string",
+      "description": "The prompt that failed, echoed back so a long draft is visibly preserved."
+    },
+    {
+      "name": "onRetry",
+      "type": "() => void",
+      "description": "Renders the Retry button."
+    },
+    {
+      "name": "onEdit",
+      "type": "() => void",
+      "description": "Renders the Edit prompt button — returns the draft to the composer."
+    },
+    {
+      "name": "action",
+      "type": "ReactNode",
+      "description": "Replaces the built-in retry/edit buttons."
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "description": "Overrides the default warning icon."
+    }
+  ],
+  "clinicalNotes": "Error copy must never imply that clinical processing succeeded when the system cannot confirm it — no \"saved as draft\", no \"we'll finish this in the background\", unless that is literally true and verifiable. State what did not happen (\"Nothing was sent to the record\"). Echoing the prompt back is not decoration: a clinician who loses a carefully worded question mid-clinic will not rewrite it, they will abandon the tool, and a failure that silently eats work is worse than a failure that admits it. If a partial answer was produced, show it separately and label it incomplete rather than folding it into this state.",
+  "notes": "Pairs with ai-empty-state; both wrap the shared empty-state primitive."
+}

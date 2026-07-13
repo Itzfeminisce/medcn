@@ -1,0 +1,70 @@
+{
+  "name": "ai-differential-list",
+  "title": "AI Differential List",
+  "description": "Candidate considerations for human review, with supporting and contradicting evidence, model-reported likelihood, a separate red-flag slot, and suggested information to gather.",
+  "category": "triage",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "ai-answer-card",
+    "ai-escalation-alert",
+    "collapsible",
+    "progress",
+    "separator"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "default": "\"Considerations for review\""
+    },
+    {
+      "name": "considerations",
+      "type": "AiDifferentialConsideration[]",
+      "description": "{ id, label, likelihood?, supporting?, contradicting?, gather?, note? }. Listed in the caller's order; the order is presentational, not a severity ranking."
+    },
+    {
+      "name": "redFlags",
+      "type": "ReactNode",
+      "description": "Rendered above and outside the list — pass AiEscalationAlert nodes. Critical possibilities must never be encoded as a ranked row."
+    },
+    {
+      "name": "uncertainty",
+      "type": "ReactNode",
+      "description": "What the model could not weigh — which sources it read, and which it did not."
+    },
+    {
+      "name": "informationToGather",
+      "type": "ReactNode[]",
+      "description": "Suggested information that would narrow the list, across all considerations."
+    },
+    {
+      "name": "showLikelihood",
+      "type": "boolean",
+      "default": "true",
+      "description": "Set false when the caller has no calibrated number to show. Preferred over inventing one."
+    },
+    {
+      "name": "defaultExpanded",
+      "type": "string[]",
+      "description": "Consideration ids expanded on first render."
+    },
+    {
+      "name": "limitations",
+      "type": "ReactNode",
+      "description": "Overrides the default limitations line passed to AiAnswerCard."
+    },
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "description": "Caller-owned review actions."
+    }
+  ],
+  "clinicalNotes": "A differential is a thinking aid, not a diagnosis, and the failure mode of a ranked list is that readers treat rank as danger. A high-likelihood consideration is usually the benign one; the item that kills the patient often sits fourth. The component is built around that inversion. Rank is rendered as a plain grey position marker, never as a severity colour, and the limitations line says outright that the order is not a ranking of danger. `redFlags` is a separate slot rendered above the list and outside it, intended for AiEscalationAlert: a red flag that a low likelihood could bury is not a red flag. Likelihood, when shown, is a model-reported number — the bar is neutral-coloured, is always labelled \"model-reported\", and is optional precisely so that a caller with no calibrated number can omit it rather than fabricate one. Every consideration carries a `contradicting` slot beside its `supporting` slot, because a list that only shows confirming evidence trains confirmation bias; `gather` names what would actually discriminate between the rows, which is the clinically useful output. Nothing here is a diagnosis, an order, or a disposition, and no action in the footer writes to the record.",
+  "notes": "Composes AiAnswerCard for the shell, collapsible for per-row evidence, and progress for the likelihood bar. Defers red flags to ai-escalation-alert rather than modelling severity itself."
+}

@@ -1,0 +1,26 @@
+{
+  "name": "labs-review-block",
+  "title": "Labs Review Block",
+  "description": "The review loop: read the panel, pick the result that moved, look at its history — with too-thin histories listed rather than trended.",
+  "category": "blocks",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["lucide-react", "recharts"],
+  "registryDependencies": [
+    "dashboard-shell",
+    "dashboard-grid",
+    "lab-panel-table",
+    "lab-result-chart",
+    "chart-insufficient-data"
+  ],
+  "props": [
+    { "name": "panels", "type": "LabPanelTableProps", "description": "The grouped results, as the laboratory reported them." },
+    { "name": "histories", "type": "AnalyteHistory[]", "description": "`{ key, analyte, unit, data, range?, significantChange? }` — keyed to the panel rows." },
+    { "name": "defaultAnalyte", "type": "string", "description": "Shown on load. Defaults to the first history." },
+    { "name": "minimumForTrend", "type": "number", "default": "3", "description": "Below this many results, the analyte is listed instead of plotted." },
+    { "name": "title / headerActions / header", "type": "ReactNode" }
+  ],
+  "clinicalNotes": "Selection lives in the block rather than the table, so the panel stays a record of what the laboratory reported and the chart stays a view of one analyte. `minimumForTrend` is the round's honesty rule made structural: an analyte with two results is listed, not plotted, because a confident line through two points is indistinguishable from a line through two hundred. The demo shows both paths at once — creatinine has six results and trends (with an assay change breaking the line), potassium has two and is listed. Nothing here classifies a result or decides what is critical; the laboratory did that before the data arrived.",
+  "notes": "Layer-M4 block. Client component. Composes lab-panel-table + lab-result-chart + chart-insufficient-data."
+}

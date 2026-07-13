@@ -1,0 +1,20 @@
+{
+  "name": "glucose-trend-chart",
+  "title": "Glucose Trend Chart",
+  "description": "Glucose over time against an individualised target band, with meal and dose markers. Unit and target are required — neither has a default.",
+  "category": "vitals",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["recharts"],
+  "registryDependencies": ["chart", "reference-range-band"],
+  "props": [
+    { "name": "data", "type": "GlucoseReading[]", "description": "`{ time, glucose, context? }` — context is \"Fasting\", \"Post-meal\"." },
+    { "name": "unit", "type": "\"mmol/L\" | \"mg/dL\"", "description": "Required. The two differ by roughly 18 times." },
+    { "name": "target", "type": "{ low, high }", "description": "Required. Individualised — there is no population default." },
+    { "name": "hypo / hyper", "type": "number", "description": "Urgent thresholds from the care plan. Points beyond them are drawn as triangles, not merely recoloured." },
+    { "name": "markers", "type": "GlucoseMarker[]", "description": "Meals and doses, supplied by the caller." }
+  ],
+  "clinicalNotes": "The unit and the target band are both required and neither is defaulted, because a component that guessed either would be guessing about harm: a reading of 7 is unremarkable in mmol/L and profoundly hypoglycaemic in mg/dL, and a value that is a hypo for one patient is a target for another. Urgent readings differ in shape as well as colour, so the warning survives greyscale, print, and colour-blindness. Meals and doses are markers only — a fall after insulin is alignment in time, not proof of cause.",
+  "notes": "Pairs with time-in-range-bar. Composes chart + reference-range-band."
+}

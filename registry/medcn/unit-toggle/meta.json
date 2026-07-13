@@ -1,0 +1,19 @@
+{
+  "name": "unit-toggle",
+  "title": "Unit Toggle",
+  "description": "Switches the unit a value is displayed in (mg/dL ↔ mmol/L, kg ↔ lb, °C ↔ °F). Emits the unit; the caller owns the conversion.",
+  "category": "forms",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": ["@radix-ui/react-toggle-group"],
+  "registryDependencies": ["utils", "toggle-group"],
+  "props": [
+    { "name": "units", "type": "UnitOption[]", "description": "`{ value, label?, description? }`. `description` is the spoken name — \"milligrams per decilitre\"." },
+    { "name": "value / defaultValue / onValueChange", "type": "string | (unit: string) => void", "description": "Controlled or uncontrolled. Emits the selected unit only." },
+    { "name": "label", "type": "string", "default": "\"Display unit\"", "description": "Accessible name. Say which measurement it switches, not just \"units\"." },
+    { "name": "size / variant", "type": "ToggleGroup props", "default": "sm / outline" }
+  ],
+  "clinicalNotes": "Unit ambiguity is a documented source of clinical harm — a glucose read as mg/dL when it was mmol/L is off by a factor of eighteen. Two consequences are built in. The component performs no conversion: it emits the selected unit and the caller converts, so rounding and precision stay under test in code the consumer owns rather than being decided by a UI library. And deselection is ignored (Radix emits an empty value when the active item is pressed again), because a clinical value must never be displayed without a unit. Always render the active unit beside the number, never only on the toggle.",
+  "notes": "Pairs with any chart or value display in the Clinical Data round. Composes toggle-group."
+}

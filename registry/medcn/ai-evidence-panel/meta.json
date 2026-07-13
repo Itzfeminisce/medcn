@@ -1,0 +1,51 @@
+{
+  "name": "ai-evidence-panel",
+  "title": "AI Evidence Panel",
+  "description": "Collapsible provenance section grouping citations with a retrieval date and caller-authored limitations.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "collapsible",
+    "ai-citation"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "default": "\"Evidence\""
+    },
+    {
+      "name": "retrievedAt",
+      "type": "ReactNode",
+      "description": "When the sources were retrieved. Evidence ages; say when it was pulled."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "The citations — usually AiCitation elements."
+    },
+    {
+      "name": "limitations",
+      "type": "ReactNode",
+      "description": "What the evidence does not establish, including sources that could not be read."
+    },
+    {
+      "name": "count",
+      "type": "number",
+      "description": "Override the count in the header. Defaults to the number of children."
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "clinicalNotes": "Collapsed by default so an answer stays readable, but the count and retrieval date are visible without expanding — a clinician can see at a glance that an answer rests on two sources from six weeks ago. Put the sources you could NOT read in the limitations, not in silence: an evidence panel that lists three accessible sources and omits the inaccessible pharmacy record implies a completeness the answer does not have. This is the audit trail a reviewer works from, so never populate it with sources the model did not actually use.",
+  "notes": "Depends on ai-citation. Collapsible animation classes come from tw-animate-css."
+}

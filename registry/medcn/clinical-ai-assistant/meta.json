@@ -1,0 +1,81 @@
+{
+  "name": "clinical-ai-assistant",
+  "title": "Clinical AI Assistant",
+  "description": "The flagship Clinical AI composition — floating trigger, sheet, visible context, transcript, suggestions, and composer. The same props render a full-page workspace.",
+  "category": "blocks",
+  "type": "registry:block",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils",
+    "ai-assistant-button",
+    "ai-assistant-sheet",
+    "ai-chat",
+    "ai-chat-header",
+    "ai-chat-messages",
+    "ai-context-bar",
+    "ai-prompt-input",
+    "ai-suggestion-list"
+  ],
+  "props": [
+    {
+      "name": "variant",
+      "type": "\"floating\" | \"page\"",
+      "default": "\"floating\"",
+      "description": "`floating` mounts the trigger + sheet; `page` renders the same conversation inline as a full-height workspace and ignores the trigger props."
+    },
+    {
+      "name": "open / defaultOpen / onOpenChange",
+      "type": "boolean | (open: boolean) => void",
+      "description": "Panel state. Uncontrolled unless `open` is supplied."
+    },
+    {
+      "name": "onRequestClose",
+      "type": "() => boolean",
+      "description": "Guards every dismissal — close button, Escape, overlay. Return false to keep the panel open."
+    },
+    {
+      "name": "trigger / hideTrigger / triggerPlacement / unread / attention / triggerLabel / triggerTooltip",
+      "type": "ReactNode | boolean | number | string",
+      "description": "The AiAssistantButton. `unread` reports new assistant output, never an urgent clinical event."
+    },
+    {
+      "name": "header / title / subtitle / status / statusLabel / onNewChat / headerActions",
+      "type": "ReactNode | AiAssistantStatus | () => void",
+      "description": "The AiChatHeader. `header` replaces the whole block."
+    },
+    {
+      "name": "context / contextLabel / onManageContext / contextBar",
+      "type": "ReactNode | string | () => void",
+      "description": "Context chips rendered in an AiContextBar. `contextBar` replaces it — e.g. with an ai-patient-context-card."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "The transcript: ai-message, answer cards, ai-thinking, ai-error-state."
+    },
+    {
+      "name": "empty",
+      "type": "ReactNode",
+      "description": "Shown when the transcript is empty — typically ai-empty-state."
+    },
+    {
+      "name": "suggestions / suggestionLayout",
+      "type": "ReactNode | \"row\" | \"scroll\" | \"grid\"",
+      "description": "Prompt chips or suggestion cards, above the composer."
+    },
+    {
+      "name": "composer / value / defaultValue / onValueChange / onSubmit / onStop / streaming / disabled / placeholder / restrictions / tools",
+      "type": "ReactNode | string | boolean | callbacks",
+      "description": "The AiPromptInput. `tools` is the slot for voice, attachments, and context controls; `composer` replaces the whole block, disclaimer included."
+    },
+    {
+      "name": "disclaimer",
+      "type": "ReactNode",
+      "description": "Safety notice directly above the composer — typically ai-clinical-disclaimer."
+    }
+  ],
+  "clinicalNotes": "The block owns panel-open state and nothing else. It does not call a model, transcribe audio, retrieve patient data, or perform any clinical check — the transcript, streaming, context, and every safety check stay with the consumer, so a product cannot inherit clinical behaviour it never authorised. Two properties are deliberately structural rather than optional: the context bar sits above the transcript so a clinician sees which patient, encounter, and date range a prompt will carry before sending it, and dismissal is routed through `onRequestClose` so a drafted prompt, an active recording, or an unreviewed answer cannot be lost to a stray Escape. Generated content is for review; wire `disclaimer` and `restrictions` with copy that describes the real review boundary rather than a blanket notice.",
+  "notes": "Floating variant renders a fixed trigger (bottom-right by default) plus the sheet — mount it once, near the root of the surface. Page variant needs a bounded height from its parent (h-full / h-[40rem]) so the transcript scrolls instead of the page. Voice, attachments, evidence panels, and task-output cards (ai-summary, ai-note-draft, ai-medication-check, ai-differential-list, ai-order-suggestion) are opt-in: pass them through `tools` and the transcript."
+}

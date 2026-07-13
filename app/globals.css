@@ -30,6 +30,14 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
+  /* Chart series, so the palette is reachable from utilities (bg-chart-2) as
+     well as from SVG fills. Identity only — never a status. */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
   /* Clinical status channels */
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
@@ -104,6 +112,26 @@
   --info: oklch(0.58 0.13 225);
   --info-foreground: oklch(0.99 0.003 220);
 
+  /* Chart series — identity only. Fixed order, never cycled, never recoloured by
+     rank. Deliberately excludes the status hues (success/warning/destructive):
+     those are reserved for state and must never read as "series 4".
+     Validated as a set: worst adjacent CVD ΔE 53.9 on this surface. Two slots
+     sit under 3:1 against white, which is why every chart also ships direct
+     labels and a data table. */
+  --chart-1: oklch(0.575 0.163 255.5); /* blue    */
+  --chart-2: oklch(0.669 0.141 162.1); /* aqua    */
+  --chart-3: oklch(0.433 0.167 283.6); /* violet  */
+  --chart-4: oklch(0.671 0.175 40.6); /* orange  */
+  --chart-5: oklch(0.716 0.141 357.4); /* magenta */
+
+  /* Reference range: low-chroma so a normal band never competes with a series.
+     Critical/abnormal borrow the status tokens — and never travel without a
+     label or a marker shape, since colour alone is not a warning. */
+  --chart-range: oklch(0.48 0.02 230 / 8%);
+  --chart-range-line: oklch(0.48 0.02 230 / 35%);
+  --chart-critical: var(--destructive);
+  --chart-abnormal: var(--warning);
+
   --glow: oklch(0.5 0.11 205 / 18%);
   --edge: oklch(0.9 0.01 220 / 0.7);
   --grid-line: oklch(0.22 0.03 240 / 5%);
@@ -148,6 +176,18 @@
   --warning-foreground: oklch(0.16 0.03 85);
   --info: oklch(0.72 0.12 220);
   --info-foreground: oklch(0.12 0.02 220);
+
+  /* Dark is selected, not flipped: the same five hues stepped for the dark
+     surface and re-validated against it (worst adjacent CVD ΔE 48.8, all five
+     clear 3:1). */
+  --chart-1: oklch(0.622 0.161 255.1); /* blue    */
+  --chart-2: oklch(0.621 0.128 163.1); /* aqua    */
+  --chart-3: oklch(0.67 0.145 286.8); /* violet  */
+  --chart-4: oklch(0.622 0.173 40.1); /* orange  */
+  --chart-5: oklch(0.622 0.171 0.8); /* magenta */
+
+  --chart-range: oklch(0.62 0.015 220 / 10%);
+  --chart-range-line: oklch(0.62 0.015 220 / 40%);
 
   --glow: oklch(0.8 0.13 195 / 25%);
   --edge: oklch(1 0 0 / 0.09);

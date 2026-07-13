@@ -1,0 +1,90 @@
+{
+  "name": "ai-context-picker",
+  "title": "AI Context Picker",
+  "description": "Searchable, grouped picker for the documents, observations, and medications sent with an assistant prompt.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "ai-context-chip",
+    "badge",
+    "button",
+    "checkbox",
+    "input",
+    "popover",
+    "separator"
+  ],
+  "props": [
+    {
+      "name": "groups",
+      "type": "AiContextPickerGroup[]",
+      "description": "Caller-provided, already-authorized sources: { id, label, items }. Typically Documents, Observations, Medications."
+    },
+    {
+      "name": "groups[].items[]",
+      "type": "AiContextPickerItem",
+      "description": "{ id, label, meta?, kind?, restricted?, restrictedReason?, unavailable?, unavailableReason? }."
+    },
+    {
+      "name": "selected",
+      "type": "string[]",
+      "description": "Selected item ids (controlled)."
+    },
+    {
+      "name": "defaultSelected",
+      "type": "string[]",
+      "description": "Initial selection when uncontrolled."
+    },
+    {
+      "name": "onSelectedChange",
+      "type": "(ids: string[]) => void"
+    },
+    {
+      "name": "search",
+      "type": "string",
+      "description": "Search query (controlled). Omit to let the picker filter internally over label and meta."
+    },
+    {
+      "name": "onSearchChange",
+      "type": "(query: string) => void",
+      "description": "Use with `search` to filter server-side."
+    },
+    {
+      "name": "loading",
+      "type": "boolean",
+      "description": "Sources are still being fetched; the list is marked aria-busy."
+    },
+    {
+      "name": "emptyMessage",
+      "type": "ReactNode",
+      "default": "\"No matching context.\""
+    },
+    {
+      "name": "heading",
+      "type": "ReactNode",
+      "default": "\"Attach context\""
+    },
+    {
+      "name": "trigger",
+      "type": "ReactNode",
+      "description": "Custom trigger. Defaults to an \"Add context\" button carrying the selection count."
+    },
+    {
+      "name": "footnote",
+      "type": "ReactNode",
+      "description": "Small print under the list — scope, audit, or retention reminders."
+    },
+    {
+      "name": "open / defaultOpen / onOpenChange",
+      "type": "boolean / boolean / (open: boolean) => void",
+      "description": "Popover state, forwarded to the underlying popover."
+    }
+  ],
+  "clinicalNotes": "A record a clinician may not read is still a record whose existence they can usually see, and hiding it entirely is its own hazard: a summary generated from an incomplete chart looks exactly like one generated from a complete chart. So restricted items stay in the list — but the component structurally cannot leak them. A `restricted` item renders its label and its policy reason and nothing else: `meta` is dropped, no preview is composed, the checkbox is replaced by a lock, and the row is aria-disabled and unselectable, so restricted context can never end up in a prompt by mistake. The corollary is a rule for the caller: the label of a restricted item must itself be non-identifying (\"Correspondence from a specialist service\", not the clinic's name), because the component will render whatever string it is handed. `unavailable` is deliberately distinct from `restricted` — \"the imaging system is not responding\" and \"you are not permitted to see this\" call for different actions, and collapsing them into one greyed-out row teaches clinicians to ignore both. Selection changes only what is attached to the next prompt; it never reads, retrieves, opens, or authorizes anything, and it never mutates the record. Authorization, retrieval, and audit remain the caller's to enforce — the picker cannot be the access-control boundary.",
+  "notes": "Composes popover + input + checkbox, and reuses ai-context-chip's kind icons so the picker, the chips, and ai-context-bar read as one system. Wire its selection to the chips rendered inside ai-context-bar, and open it from that bar's `onManage`."
+}

@@ -1,0 +1,98 @@
+{
+  "name": "ai-consent-notice",
+  "title": "AI Consent Notice",
+  "description": "Explicit, per-permission acknowledgement surface for workflows that require consent before AI processing or sharing.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "alert",
+    "badge",
+    "button",
+    "checkbox",
+    "label"
+  ],
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "default": "\"Consent required\""
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "description": "What the consent covers, in the caller's words."
+    },
+    {
+      "name": "items",
+      "type": "AiConsentItem[]",
+      "description": "One entry per legally distinct permission: { id, label, description?, required? }. Each is acknowledged on its own line."
+    },
+    {
+      "name": "acknowledged",
+      "type": "string[]",
+      "description": "Acknowledged item ids (controlled). There is deliberately no `defaultAcknowledged` — the uncontrolled fallback always starts empty."
+    },
+    {
+      "name": "onAcknowledgedChange",
+      "type": "(ids: string[]) => void",
+      "description": "Fires with the full acknowledged set on every change."
+    },
+    {
+      "name": "version",
+      "type": "ReactNode",
+      "description": "Version identifier of the consent text, e.g. \"v3.2 · effective 1 Jan 2026\"."
+    },
+    {
+      "name": "detailHref",
+      "type": "string",
+      "description": "Link to the full, authoritative consent document."
+    },
+    {
+      "name": "detailLabel",
+      "type": "ReactNode",
+      "default": "\"Read the full consent\""
+    },
+    {
+      "name": "confirmLabel",
+      "type": "ReactNode",
+      "default": "\"I consent\""
+    },
+    {
+      "name": "onConfirm",
+      "type": "(acknowledged: string[]) => void",
+      "description": "Fires only when every required item is acknowledged; the control is disabled until then."
+    },
+    {
+      "name": "declineLabel",
+      "type": "ReactNode",
+      "description": "Renders a decline control when supplied."
+    },
+    {
+      "name": "onDecline",
+      "type": "() => void"
+    },
+    {
+      "name": "pending",
+      "type": "boolean",
+      "description": "Disables confirm while the caller records the acknowledgement."
+    },
+    {
+      "name": "footnote",
+      "type": "ReactNode",
+      "description": "Small print under the actions — audit trail, withdrawal instructions."
+    },
+    {
+      "name": "variant",
+      "type": "\"default\" | \"info\" | \"success\" | \"warning\" | \"destructive\"",
+      "default": "\"default\""
+    }
+  ],
+  "clinicalNotes": "Consent that was never actively given is not consent. The component therefore has no way to pre-check a box: there is no `defaultAcknowledged` prop, and the uncontrolled state can only start empty — a caller who wants a box ticked has to model a user having ticked it. It also refuses to bundle permissions. Recording the consultation, processing the transcript, and retaining a de-identified copy for quality review are legally distinct acts with different bases and different consequences of refusal, so each gets its own checkbox, its own scope description, and its own required/optional status; a single blanket \"I agree\" would make a patient's refusal of the optional item indistinguishable from a refusal of care. Confirm stays disabled until every required item is acknowledged, and the outstanding count is announced rather than left to be inferred from a greyed-out button. The version identifier is not decoration: consent is only valid against the text that was actually shown, so the version travels with the acknowledgement. Nothing here writes an audit record — the caller owns the durable, timestamped, attributable record of what was agreed, and must offer a route to withdraw it.",
+  "notes": "Composes alert + checkbox + button + label. Pairs with ai-privacy-notice: the privacy notice discloses, the consent notice collects agreement. Sits ahead of ai-prompt-input in capture workflows."
+}

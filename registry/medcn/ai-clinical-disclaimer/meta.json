@@ -1,0 +1,38 @@
+{
+  "name": "ai-clinical-disclaimer",
+  "title": "AI Clinical Disclaimer",
+  "description": "Contextual safety notice for generated clinical material, with a provenance badge and caller-authored review boundary.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "alert",
+    "badge"
+  ],
+  "props": [
+    {
+      "name": "severity",
+      "type": "\"info\" | \"warning\"",
+      "default": "\"info\"",
+      "description": "Use `warning` for a real review boundary (unvalidated dosing, out-of-scope data), not for emphasis."
+    },
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "default": "\"Generated\"",
+      "description": "Provenance badge. Pass null where provenance is already unmistakable."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "The disclaimer copy. Required."
+    }
+  ],
+  "clinicalNotes": "The copy is caller-authored because only you know the boundary that actually applies: what the model saw, what it did not see, and what a clinician must therefore verify. \"Summarised from the 12 Mar note only — check the medication list against the chart\" changes behaviour; \"AI can make mistakes\" on every message is wallpaper, and wallpaper is what people stop reading. Reserve `warning` for boundaries with clinical consequence, and never use this component to make an unvalidated output feel sanctioned — if the content should not be acted on at all, do not show it.",
+  "notes": "Renders an Alert with role=\"status\": contextual, not interruptive. Escalations that must interrupt belong in ai-escalation-alert."
+}

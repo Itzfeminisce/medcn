@@ -1,0 +1,82 @@
+{
+  "name": "ai-attachment-card",
+  "title": "AI Attachment Card",
+  "description": "Reviewable attachment row showing type, name, size, upload and analysis status, a thumbnail slot, and remove or retry actions.",
+  "category": "ai",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "card",
+    "badge",
+    "button",
+    "progress"
+  ],
+  "props": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": "File name. Truncated in the row; the full name is on the native title."
+    },
+    {
+      "name": "kind",
+      "type": "\"image\" | \"document\" | \"audio\" | \"video\" | \"file\"",
+      "default": "\"file\""
+    },
+    {
+      "name": "size",
+      "type": "number",
+      "description": "Size in bytes. Formatted for display."
+    },
+    {
+      "name": "status",
+      "type": "\"pending\" | \"uploading\" | \"analyzing\" | \"ready\" | \"error\"",
+      "default": "\"ready\"",
+      "description": "Lifecycle of the attachment. `ready` means available for a human to read."
+    },
+    {
+      "name": "progress",
+      "type": "number",
+      "description": "Upload progress, 0–100. Shown while uploading."
+    },
+    {
+      "name": "statusLabel",
+      "type": "ReactNode",
+      "description": "Override the status badge copy."
+    },
+    {
+      "name": "thumbnail",
+      "type": "ReactNode",
+      "description": "Thumbnail slot — an <img>, a page preview, or nothing."
+    },
+    {
+      "name": "note",
+      "type": "ReactNode",
+      "description": "Neutral processing facts only, e.g. \"4 pages · text extracted\". Never a finding."
+    },
+    {
+      "name": "error",
+      "type": "ReactNode",
+      "description": "What went wrong, shown in the error state."
+    },
+    {
+      "name": "onRemove",
+      "type": "() => void"
+    },
+    {
+      "name": "onRetry",
+      "type": "() => void"
+    },
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "description": "Extra caller-owned actions, e.g. \"Open in viewer\"."
+    }
+  ],
+  "clinicalNotes": "There is no findings slot on this card, and that absence is the design. A wound photo or an ECG strip is exactly the kind of attachment a product is tempted to annotate with a one-line verdict — \"looks infected\", \"possible ST elevation\" — and a verdict rendered as a caption on a thumbnail arrives with no evidence, no limitations, and no review action attached to it. Anything a model concluded from an attachment belongs in a sourced answer a clinician can interrogate; `note` is for neutral processing facts (\"4 pages · text extracted\", \"read for text and metadata\") and nothing else. The status enum keeps the two questions a reviewer actually asks separate — did the file arrive, and has anything read it yet — because \"uploaded\" and \"understood\" are not the same state, and an attachment that failed silently is an attachment the clinician believes the assistant saw. Removal is always available: a misfiled document must be retractable before it becomes part of the record.",
+  "notes": "Pairs with ai-attachment-picker: the picker hands back File[], the caller renders one card per file and owns the upload/analysis state machine. Bytes are formatted locally (B/KB/MB/GB)."
+}

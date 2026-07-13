@@ -1,0 +1,20 @@
+{
+  "name": "sparkline-cell",
+  "title": "Sparkline Cell",
+  "description": "A trend glyph beside the value it summarises, sized for a table row. The value is always in text.",
+  "category": "data",
+  "type": "registry:ui",
+  "version": "0.1.0",
+  "added": "2026-07-13",
+  "dependencies": [],
+  "registryDependencies": ["utils", "trend-sparkline"],
+  "props": [
+    { "name": "value", "type": "ReactNode", "description": "The current value, in text. Always rendered — the glyph is the second encoding." },
+    { "name": "unit", "type": "ReactNode" },
+    { "name": "data", "type": "TrendPoint[]", "description": "The series behind the glyph." },
+    { "name": "thresholdMin / thresholdMax", "type": "number", "description": "Passed through to trend-sparkline." },
+    { "name": "align", "type": "\"start\" | \"end\"", "default": "\"start\"", "description": "Right-align for a numeric table column." }
+  ],
+  "clinicalNotes": "A sparkline has no axis, no scale, and no labels: it cannot be the only place a trend is expressed. So the current value is always rendered in text, the glyph is marked `aria-hidden`, and the row remains fully readable to anyone the glyph fails — a screen-reader user, a low-vision reader, a printed chart. Where the trend itself carries the clinical weight, use a real chart with an axis, not this.",
+  "notes": "Composes trend-sparkline. Used in vitals flowsheets, panel rows, and observation-timeline."
+}

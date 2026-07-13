@@ -7,7 +7,10 @@ import {
   DashboardGrid,
   DashboardGridItem,
 } from "@/registry/medcn/dashboard-grid/dashboard-grid"
-import { DashboardShell } from "@/registry/medcn/dashboard-shell/dashboard-shell"
+import {
+  DashboardHeader,
+  DashboardShell,
+} from "@/registry/medcn/dashboard-shell/dashboard-shell"
 import { TelehealthCallCard } from "@/registry/medcn/telehealth-call-card/telehealth-call-card"
 import { PatientSummaryPanel } from "@/registry/medcn/patient-summary-panel/patient-summary-panel"
 import { VitalsOverviewPanel } from "@/registry/medcn/vitals-overview-panel/vitals-overview-panel"
@@ -45,13 +48,11 @@ function TelehealthConsoleBlock({
       className={className}
       header={
         header ?? (
-          <div className="flex items-center justify-between gap-4 px-4 py-3 md:px-6">
-            <div className="flex items-center gap-2 text-sm font-semibold">
-              <Video className="size-4 text-primary" />
-              {title}
-            </div>
-            {headerActions}
-          </div>
+          <DashboardHeader
+            icon={<Video />}
+            title={title}
+            actions={headerActions}
+          />
         )
       }
     >

@@ -1,6 +1,71 @@
 import type * as React from "react"
 
+import AiAnswerCardDemo from "@/registry/medcn/ai-answer-card/ai-answer-card.demo"
+import AiAssistantButtonDemo from "@/registry/medcn/ai-assistant-button/ai-assistant-button.demo"
+import AiAssistantSheetDemo from "@/registry/medcn/ai-assistant-sheet/ai-assistant-sheet.demo"
+import AiAttachmentCardDemo from "@/registry/medcn/ai-attachment-card/ai-attachment-card.demo"
+import AiAttachmentPickerDemo from "@/registry/medcn/ai-attachment-picker/ai-attachment-picker.demo"
+import AiChatDemo from "@/registry/medcn/ai-chat/ai-chat.demo"
+import AiChatHeaderDemo from "@/registry/medcn/ai-chat-header/ai-chat-header.demo"
+import AiChatMessagesDemo from "@/registry/medcn/ai-chat-messages/ai-chat-messages.demo"
+import AiCitationDemo from "@/registry/medcn/ai-citation/ai-citation.demo"
+import AiClinicalDisclaimerDemo from "@/registry/medcn/ai-clinical-disclaimer/ai-clinical-disclaimer.demo"
+import AiConsentNoticeDemo from "@/registry/medcn/ai-consent-notice/ai-consent-notice.demo"
+import AiContextBarDemo from "@/registry/medcn/ai-context-bar/ai-context-bar.demo"
+import AiContextChipDemo from "@/registry/medcn/ai-context-chip/ai-context-chip.demo"
+import AiContextPickerDemo from "@/registry/medcn/ai-context-picker/ai-context-picker.demo"
+import AiDifferentialListDemo from "@/registry/medcn/ai-differential-list/ai-differential-list.demo"
+import AiEscalationAlertDemo from "@/registry/medcn/ai-escalation-alert/ai-escalation-alert.demo"
+import AiEmptyStateDemo from "@/registry/medcn/ai-empty-state/ai-empty-state.demo"
+import AiErrorStateDemo from "@/registry/medcn/ai-error-state/ai-error-state.demo"
+import AiEvidencePanelDemo from "@/registry/medcn/ai-evidence-panel/ai-evidence-panel.demo"
+import AiMedicationCheckDemo from "@/registry/medcn/ai-medication-check/ai-medication-check.demo"
+import AiMessageDemo from "@/registry/medcn/ai-message/ai-message.demo"
+import AiMessageActionsDemo from "@/registry/medcn/ai-message-actions/ai-message-actions.demo"
+import AiNoteDraftDemo from "@/registry/medcn/ai-note-draft/ai-note-draft.demo"
+import AiOrderSuggestionDemo from "@/registry/medcn/ai-order-suggestion/ai-order-suggestion.demo"
+import AiPatientContextCardDemo from "@/registry/medcn/ai-patient-context-card/ai-patient-context-card.demo"
+import AiPrivacyNoticeDemo from "@/registry/medcn/ai-privacy-notice/ai-privacy-notice.demo"
+import AiPromptChipDemo from "@/registry/medcn/ai-prompt-chip/ai-prompt-chip.demo"
+import AiPromptInputDemo from "@/registry/medcn/ai-prompt-input/ai-prompt-input.demo"
+import AiStreamingTextDemo from "@/registry/medcn/ai-streaming-text/ai-streaming-text.demo"
+import AiSuggestionCardDemo from "@/registry/medcn/ai-suggestion-card/ai-suggestion-card.demo"
+import AiSuggestionListDemo from "@/registry/medcn/ai-suggestion-list/ai-suggestion-list.demo"
+import AiSummaryDemo from "@/registry/medcn/ai-summary/ai-summary.demo"
+import AiThinkingDemo from "@/registry/medcn/ai-thinking/ai-thinking.demo"
+import AiTypingIndicatorDemo from "@/registry/medcn/ai-typing-indicator/ai-typing-indicator.demo"
+import AiVoiceInputDemo from "@/registry/medcn/ai-voice-input/ai-voice-input.demo"
+import ClinicalAiAssistantDemo from "@/registry/medcn/clinical-ai-assistant/clinical-ai-assistant.demo"
+import SheetDemo from "@/registry/medcn/sheet/sheet.demo"
+
+// M4 clinical data & trends
+import BloodPressureChartDemo from "@/registry/medcn/blood-pressure-chart/blood-pressure-chart.demo"
+import ChartDemo from "@/registry/medcn/chart/chart.demo"
+import ChartInsufficientDataDemo from "@/registry/medcn/chart-insufficient-data/chart-insufficient-data.demo"
+import DataFreshnessStampDemo from "@/registry/medcn/data-freshness-stamp/data-freshness-stamp.demo"
+import EarlyWarningScoreDemo from "@/registry/medcn/early-warning-score/early-warning-score.demo"
+import GlucoseTrendChartDemo from "@/registry/medcn/glucose-trend-chart/glucose-trend-chart.demo"
+import GrowthChartDemo from "@/registry/medcn/growth-chart/growth-chart.demo"
+import IntakeOutputChartDemo from "@/registry/medcn/intake-output-chart/intake-output-chart.demo"
+import LabDeltaIndicatorDemo from "@/registry/medcn/lab-delta-indicator/lab-delta-indicator.demo"
+import LabPanelTableDemo from "@/registry/medcn/lab-panel-table/lab-panel-table.demo"
+import LabResultChartDemo from "@/registry/medcn/lab-result-chart/lab-result-chart.demo"
+import LabsReviewBlockDemo from "@/registry/medcn/labs-review-block/labs-review-block.demo"
+import MedicationTimelineDemo from "@/registry/medcn/medication-timeline/medication-timeline.demo"
+import ObservationTimelineDemo from "@/registry/medcn/observation-timeline/observation-timeline.demo"
+import PainTrendChartDemo from "@/registry/medcn/pain-trend-chart/pain-trend-chart.demo"
+import PatientMonitoringBlockDemo from "@/registry/medcn/patient-monitoring-block/patient-monitoring-block.demo"
+import ReferenceRangeBandDemo from "@/registry/medcn/reference-range-band/reference-range-band.demo"
+import SparklineCellDemo from "@/registry/medcn/sparkline-cell/sparkline-cell.demo"
+import TemperatureCurveDemo from "@/registry/medcn/temperature-curve/temperature-curve.demo"
+import TimeInRangeBarDemo from "@/registry/medcn/time-in-range-bar/time-in-range-bar.demo"
+import UnitToggleDemo from "@/registry/medcn/unit-toggle/unit-toggle.demo"
+import VitalsFlowsheetDemo from "@/registry/medcn/vitals-flowsheet/vitals-flowsheet.demo"
+import VitalsTrendChartDemo from "@/registry/medcn/vitals-trend-chart/vitals-trend-chart.demo"
+import WeightTrendChartDemo from "@/registry/medcn/weight-trend-chart/weight-trend-chart.demo"
+
 import AdherenceRingDemo from "@/registry/medcn/adherence-ring/adherence-ring.demo"
+import AlertDemo from "@/registry/medcn/alert/alert.demo"
 import AllergyBadgeDemo from "@/registry/medcn/allergy-badge/allergy-badge.demo"
 import AllergyInputFieldDemo from "@/registry/medcn/allergy-input-field/allergy-input-field.demo"
 import AppointmentCheckInDemo from "@/registry/medcn/appointment-check-in/appointment-check-in.demo"
@@ -118,6 +183,43 @@ import TriageBoardBlockDemo from "@/registry/medcn/triage-board-block/triage-boa
  * candidate for generation once the catalog grows.
  */
 export const demos: Record<string, React.ComponentType> = {
+  "ai-answer-card": AiAnswerCardDemo,
+  "ai-assistant-button": AiAssistantButtonDemo,
+  "ai-assistant-sheet": AiAssistantSheetDemo,
+  "ai-attachment-card": AiAttachmentCardDemo,
+  "ai-attachment-picker": AiAttachmentPickerDemo,
+  "ai-chat": AiChatDemo,
+  "ai-chat-header": AiChatHeaderDemo,
+  "ai-chat-messages": AiChatMessagesDemo,
+  "ai-citation": AiCitationDemo,
+  "ai-clinical-disclaimer": AiClinicalDisclaimerDemo,
+  "ai-consent-notice": AiConsentNoticeDemo,
+  "ai-context-bar": AiContextBarDemo,
+  "ai-context-chip": AiContextChipDemo,
+  "ai-context-picker": AiContextPickerDemo,
+  "ai-differential-list": AiDifferentialListDemo,
+  "ai-escalation-alert": AiEscalationAlertDemo,
+  "ai-empty-state": AiEmptyStateDemo,
+  "ai-error-state": AiErrorStateDemo,
+  "ai-evidence-panel": AiEvidencePanelDemo,
+  "ai-medication-check": AiMedicationCheckDemo,
+  "ai-message": AiMessageDemo,
+  "ai-message-actions": AiMessageActionsDemo,
+  "ai-note-draft": AiNoteDraftDemo,
+  "ai-order-suggestion": AiOrderSuggestionDemo,
+  "ai-patient-context-card": AiPatientContextCardDemo,
+  "ai-privacy-notice": AiPrivacyNoticeDemo,
+  "ai-prompt-chip": AiPromptChipDemo,
+  "ai-prompt-input": AiPromptInputDemo,
+  "ai-streaming-text": AiStreamingTextDemo,
+  "ai-suggestion-card": AiSuggestionCardDemo,
+  "ai-suggestion-list": AiSuggestionListDemo,
+  "ai-summary": AiSummaryDemo,
+  "ai-thinking": AiThinkingDemo,
+  "ai-typing-indicator": AiTypingIndicatorDemo,
+  "ai-voice-input": AiVoiceInputDemo,
+  "clinical-ai-assistant": ClinicalAiAssistantDemo,
+  sheet: SheetDemo,
   "allergy-panel": AllergyPanelDemo,
   "appointments-panel": AppointmentsPanelDemo,
   "care-gaps-panel": CareGapsPanelDemo,
@@ -140,7 +242,32 @@ export const demos: Record<string, React.ComponentType> = {
   "provider-dashboard-block": ProviderDashboardBlockDemo,
   "telehealth-console-block": TelehealthConsoleBlockDemo,
   "triage-board-block": TriageBoardBlockDemo,
+  chart: ChartDemo,
+  "chart-insufficient-data": ChartInsufficientDataDemo,
+  "data-freshness-stamp": DataFreshnessStampDemo,
+  "reference-range-band": ReferenceRangeBandDemo,
+  "unit-toggle": UnitToggleDemo,
+  "vitals-trend-chart": VitalsTrendChartDemo,
+  "blood-pressure-chart": BloodPressureChartDemo,
+  "glucose-trend-chart": GlucoseTrendChartDemo,
+  "time-in-range-bar": TimeInRangeBarDemo,
+  "temperature-curve": TemperatureCurveDemo,
+  "weight-trend-chart": WeightTrendChartDemo,
+  "growth-chart": GrowthChartDemo,
+  "lab-result-chart": LabResultChartDemo,
+  "lab-delta-indicator": LabDeltaIndicatorDemo,
+  "pain-trend-chart": PainTrendChartDemo,
+  "vitals-flowsheet": VitalsFlowsheetDemo,
+  "lab-panel-table": LabPanelTableDemo,
+  "sparkline-cell": SparklineCellDemo,
+  "intake-output-chart": IntakeOutputChartDemo,
+  "medication-timeline": MedicationTimelineDemo,
+  "early-warning-score": EarlyWarningScoreDemo,
+  "observation-timeline": ObservationTimelineDemo,
+  "patient-monitoring-block": PatientMonitoringBlockDemo,
+  "labs-review-block": LabsReviewBlockDemo,
   "adherence-ring": AdherenceRingDemo,
+  alert: AlertDemo,
   "allergy-badge": AllergyBadgeDemo,
   "allergy-input-field": AllergyInputFieldDemo,
   "appointment-check-in": AppointmentCheckInDemo,

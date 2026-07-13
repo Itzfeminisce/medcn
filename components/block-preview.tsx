@@ -37,13 +37,23 @@ export function BlockPreview({
   height?: number
 }) {
   const [tab, setTab] = React.useState<"preview" | "code">("preview")
-  const [device, setDevice] = React.useState<Device>("desktop")
   const [width, setWidth] = React.useState<number | null>(null)
   const frameRef = React.useRef<HTMLDivElement>(null)
   const dragging = React.useRef(false)
 
+  /**
+   * The device is derived from the width rather than tracked alongside it.
+   * Holding both let them disagree: dragging used to leave "Desktop" selected
+   * while the panel sat at 400px.
+   */
+  const device: Device | null =
+    width === null
+      ? "desktop"
+      : ((Object.entries(deviceWidth).find(
+          ([, value]) => value === width
+        )?.[0] as Device) ?? null)
+
   function pick(d: Device) {
-    setDevice(d)
     setWidth(deviceWidth[d])
   }
 
@@ -55,10 +65,10 @@ export function BlockPreview({
   function onDrag(e: React.PointerEvent) {
     if (!dragging.current || !frameRef.current) return
     const rect = frameRef.current.getBoundingClientRect()
-    // Handle sits on the right edge; width = pointer - left, clamped.
+    // The panel is left-aligned in the frame, so its width is simply the
+    // distance from the frame's left edge to the pointer.
     const next = Math.max(320, Math.min(rect.width, e.clientX - rect.left))
     setWidth(next)
-    setDevice("desktop")
   }
   function onDragEnd() {
     dragging.current = false
@@ -107,29 +117,30 @@ export function BlockPreview({
             ))}
             <button
               type="button"
-              title="Reset width"
-              aria-label="Reset width"
+              title="Reset to full width"
+              aria-label="Reset to full width"
               onClick={() => pick("desktop")}
               className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent/60 hover:text-foreground"
             >
               <RotateCcw className="size-4" />
             </button>
-            {width && (
-              <span className="ml-1 w-14 text-right text-xs tabular-nums text-muted-foreground">
-                {Math.round(width)}px
-              </span>
-            )}
+            {/* Always shown, so the readout never blinks in and out mid-drag. */}
+            <span className="ml-1 w-20 text-right text-xs tabular-nums text-muted-foreground">
+              {width ? `${Math.round(width)}px` : "Full width"}
+            </span>
           </div>
         )}
       </div>
 
       <div className={cn(tab !== "preview" && "hidden")}>
+        {/* Left-aligned, so the panel's right edge is where the handle is — and
+            so the drag math is the pointer's distance from the frame's left. */}
         <div
           ref={frameRef}
-          className="relative flex justify-center rounded-xl border border-border/60 bg-grid p-3"
+          className="bg-grid relative flex justify-start rounded-xl border border-border/60 p-3"
         >
           <div
-            className="relative shrink-0 no-scrollbar overflow-hidden rounded-lg border border-border/60 bg-background shadow-soft transition-[width] duration-200"
+            className="no-scrollbar relative shrink-0 overflow-hidden rounded-lg border border-border/60 bg-background shadow-soft transition-[width] duration-200"
             style={{ width: width ? `${width}px` : "100%", height }}
           >
             <iframe
@@ -138,15 +149,19 @@ export function BlockPreview({
               className="h-full w-full"
               loading="lazy"
             />
-          </div>
-          {/* Drag handle on the right edge of the frame. */}
-          <div
-            onPointerDown={onDragStart}
-            onPointerMove={onDrag}
-            onPointerUp={onDragEnd}
-            className="absolute inset-y-0 right-3 hidden w-3 cursor-ew-resize touch-none items-center justify-center sm:flex"
-          >
-            <div className="h-10 w-1.5 rounded-full bg-border transition-colors hover:bg-ring/60" />
+
+            {/* Handle rides the panel's own right edge, at every width. */}
+            <div
+              role="separator"
+              aria-orientation="vertical"
+              aria-label="Drag to resize the preview"
+              onPointerDown={onDragStart}
+              onPointerMove={onDrag}
+              onPointerUp={onDragEnd}
+              className="absolute inset-y-0 right-0 hidden w-3 cursor-ew-resize touch-none items-center justify-center sm:flex"
+            >
+              <div className="h-10 w-1.5 rounded-full bg-border transition-colors hover:bg-ring/60" />
+            </div>
           </div>
         </div>
       </div>
