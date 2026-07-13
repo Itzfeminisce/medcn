@@ -50,8 +50,8 @@ function AiContextBar({
         data-slot="ai-context-bar-items"
         className={cn(
           "flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto",
-          // Hairline scrollbar so a long context list never adds visual weight.
-          "[scrollbar-width:thin] [&::-webkit-scrollbar]:h-1"
+          // No scrollbar: a long context list scrolls without adding chrome.
+          "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         )}
       >
         {isEmpty ? (

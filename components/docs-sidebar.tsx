@@ -50,7 +50,12 @@ export function DocsSidebar({ groups }: { groups: NavGroup[] }) {
   }, [pathname])
 
   return (
-    <Sidebar className="top-14 h-[calc(100svh-3.5rem)]">
+    /**
+     * The shell sets `inset-y-0 h-svh` on this same element, so `top`/`height`
+     * are forced here rather than left to stylesheet order — the rail must
+     * start below the site header and end at the viewport, never behind it.
+     */
+    <Sidebar className="top-14! h-[calc(100svh-3.5rem)]!">
       <SidebarContent className="no-scrollbar gap-1 py-4">
         {groups.map((group) => (
           <SidebarGroup key={group.label}>

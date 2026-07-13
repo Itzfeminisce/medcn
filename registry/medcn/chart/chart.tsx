@@ -113,7 +113,7 @@ function ChartContainer({
               !showTable && "sr-only",
               // When revealed, the table scrolls in its own box rather than
               // widening the figure and pushing the page sideways.
-              showTable && "w-full overflow-x-auto [scrollbar-width:thin]"
+              showTable && "w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             )}
           >
             {dataTable}

@@ -149,7 +149,7 @@ function LabPanelGroupRow({
 
       <CollapsibleContent>
         {/* The table scrolls inside its own panel; a block must never scroll sideways. */}
-        <div className="w-full overflow-x-auto [scrollbar-width:thin]">
+        <div className="w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <table className="w-full min-w-[28rem] text-sm">
             {caption && <caption className="sr-only">{caption}</caption>}
             <thead>

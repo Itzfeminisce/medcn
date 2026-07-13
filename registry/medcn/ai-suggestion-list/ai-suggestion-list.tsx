@@ -10,7 +10,7 @@ const aiSuggestionListVariants = cva("flex min-w-0", {
       row: "flex-wrap gap-2",
       /** Scrolling single line — keeps a composer from being pushed off screen. */
       scroll:
-        "gap-2 overflow-x-auto pb-1 [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1",
+        "gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
       /** One per line, or two up on wide containers — right for suggestion cards. */
       grid: "flex-col gap-2 @md:grid @md:grid-cols-2",
     },

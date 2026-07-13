@@ -275,3 +275,23 @@ body:has([data-preview-root]) > footer {
 body:has([data-preview-root]) {
   min-height: 100svh;
 }
+/* The frame is the chrome. Anything the demo overflows scrolls without a
+   scrollbar, so a block preview never shows a bar the real app would not. */
+body:has([data-preview-root]),
+body:has([data-preview-root]) * {
+  scrollbar-width: none;
+}
+body:has([data-preview-root])::-webkit-scrollbar,
+body:has([data-preview-root]) *::-webkit-scrollbar {
+  display: none;
+}
+
+/* Docs routes: the sidebar and the content column are each their own scroll
+   container, so the page itself must not scroll — and the site footer, which
+   would need that page scroll to be reachable, steps aside. */
+body:has([data-docs-shell]) > footer {
+  display: none;
+}
+body:has([data-docs-shell]) {
+  overflow: hidden;
+}

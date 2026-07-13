@@ -93,7 +93,11 @@ function MedicationTimeline({
   return (
     <div
       data-slot="medication-timeline"
-      className={cn("w-full overflow-x-auto rounded-xl border", className)}
+      className={cn(
+        "w-full overflow-x-auto rounded-xl border",
+        "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+        className
+      )}
       {...props}
     >
       <table className="w-full border-separate border-spacing-0 text-sm">

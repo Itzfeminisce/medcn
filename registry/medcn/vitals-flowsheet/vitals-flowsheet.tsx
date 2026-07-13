@@ -91,7 +91,7 @@ function VitalsFlowsheet({
       data-slot="vitals-flowsheet"
       className={cn(
         "relative w-full overflow-auto rounded-xl border",
-        "[scrollbar-width:thin]",
+        "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
         className
       )}
       {...props}
